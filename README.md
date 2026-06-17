@@ -28,11 +28,11 @@ Under Section 69A of the IT Act, MEIT directs domestic internet service provider
 
 However, shortly after the block was ordered, users *outside* of India—including in the United Arab Emirates, Europe, and parts of the Middle East—began reporting severe connection failures and outages when trying to access Telegram. 
 
-Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/2066945969854234977) Indian practically defunct (insolvent) telecommunications provider **Reliance Communications (operating under ASN 18101 / RCom)** of BGP hijacking. Durov pointed out a potential conflict of interest, noting that Meta (the parent company of WhatsApp, Telegram's primary competitor) holds a substantial stake in Jio, a digital subsidiary of Reliance Industries Limited (RIL). (Importantly, Durov seems to have confused RCom with Jio. RCom is a separate corporate entity from Reliance Jio `AS55836`. Our analysis of RIPE RIS data shows no evidence of Jio (AS55836) appearing as an upstream for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.) Instead of implementing a local block for its Indian subscribers, RCom had announced BGP route updates claiming that its network was the preferred path for Telegram's global IP address blocks. 
+Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/2066945969854234977) Reliance Communications (operating under ASN 18101 / RCom) of BGP hijacking. Durov pointed out a potential conflict of interest, noting that Meta (the parent company of WhatsApp, Telegram's primary competitor) holds a substantial stake in Jio, a digital subsidiary of Reliance Industries Limited (RIL). 
 
-Because BGP route announcements propagate globally, RCom's rogue advertisements were accepted by its international upstream transit providers and spread across the world. International user traffic destined for Telegram servers was diverted to India and dropped (blackholed), transforming a domestic government censorship order into a global outage.
+However, Durov appears to have confused RCom with Jio. While Jio (`AS55836`) is a highly active and modern subsidiary of RIL, RCom is a separate corporate entity that is practically defunct and insolvent. Our analysis of RIPE RIS data shows no evidence of Jio appearing as an upstream transit for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.
 
-> **Data Availability:** All raw BGP datasets required to reproduce this analysis and verify these claims are committed directly in this repository (~46MB).
+Instead of implementing a local block for its Indian subscribers to comply with the blocking order, RCom announced BGP route updates claiming that its network was the preferred path for Telegram's global IP address blocks. Because BGP route announcements propagate globally, RCom's rogue advertisements were accepted by its international upstream transit providers and spread across the world. International user traffic destined for Telegram servers was diverted to India and dropped (blackholed), transforming a domestic government censorship order into a global outage.
 
 ### Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
@@ -183,11 +183,9 @@ Analyzing these Kentik data visualizations reveals several key insights:
 
 A critical question in BGP leak analysis is: **What mechanism limited global propagation of the IPv4 prefixes (2% to 4% visibility) when the IPv6 super-prefix achieved 100% propagation through the same upstreams?** We compare the two scenarios, but readers should be aware that this is **not a clean A/B test** — multiple variables differ simultaneously.
 
-Could the low visibility of the IPv4 prefixes (2% to 4%) be explained by RCom's upstreams (like FLAG and Tata) failing to propagate the announcements globally, or filtering them using outbound prefix-lists or IRR filters on most sessions?
+Could the low visibility of the IPv4 prefixes (2% to 4%) be explained by RCom's upstreams (like FLAG and Tata) failing to propagate the announcements globally, or filtering them using outbound prefix-lists or IRR filters on most sessions? 
 
-The incident itself provides an instructive A/B test: the **IPv6 parent prefix `2a0a:f280::/32`**.
-
-When RCom advertised the IPv6 prefix `2a0a:f280::/32`, the BGP path updates propagated through the exact same upstream transit path (`18101 -> 15412 -> ...` via FLAG) as the IPv4 prefixes. However, unlike the IPv4 prefixes, the IPv6 parent prefix achieved **100% global visibility** among RIS peers.
+To evaluate this, the incident itself provides an instructive (though imperfect) A/B test: the IPv6 parent prefix **`2a0a:f280::/32`**. When RCom advertised this prefix, the BGP path updates propagated through the exact same upstream transit path (`18101 -> 15412 -> ...` via FLAG) as the IPv4 prefixes. Yet, unlike the IPv4 prefixes, the IPv6 parent prefix achieved **100% global visibility** among RIS peers.
 
 By querying the RPKI validation status of these prefixes at peak, we can see the exact difference in validation behavior:
 *   **IPv4 Prefixes (`95.161.64.0/20`, `91.108.56.0/22`):** Classified as **`RPKI Invalid`** when originated by `AS18101` (RCom), since Telegram's ROAs explicitly authorize only its own ASNs (like `AS62041`). BGP routers performing Route Origin Validation globally dropped these routes, restricting visibility to under 5%.
