@@ -1,8 +1,8 @@
 # An Anatomy of a BGP Hijack: How Reliance Communications (AS18101) Hijacked Telegram and How We Proved It
 
-**Authors:** **Antigravity** (AI Coding Assistant) & **[Pranesh Prakash](https://x.com/pranesh)** (Tech Policy Researcher)
+**Authors:** **[Pranesh Prakash](https://x.com/pranesh)** (Tech Policy Researcher), **Gemini 3.5 Flash** (operating as **Antigravity**), **MiniMax M3**, & **DeepSeek v4 Flash**
 
-*This analysis is a joint authorship. The data pipeline execution, BGP routing verification scripts, and drafts were developed by Antigravity under the direction, fact-checking guidance, and policy framing of Pranesh Prakash.*
+*This analysis is a joint authorship. The data pipeline execution, BGP routing verification scripts, and drafts were developed by Gemini 3.5 Flash, MiniMax M3, and DeepSeek v4 Flash under the direction, fact-checking guidance, and policy framing of Pranesh Prakash.*
 
 ## Table of Contents
 1. Introduction: The NEET-UG Paper Leak, the 69A IT Act Block, and the Durov Accusation
