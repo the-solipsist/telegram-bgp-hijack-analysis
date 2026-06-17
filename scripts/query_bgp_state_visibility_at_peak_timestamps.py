@@ -33,7 +33,7 @@ for prefix, ts, label in tests:
         legit_peers = 0
         other_peers = 0
         
-        origins = {}
+        origins: dict[int, int] = {}
         
         for state in bgp_state:
             path = state.get("path", [])

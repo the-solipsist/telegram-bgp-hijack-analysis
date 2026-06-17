@@ -40,7 +40,7 @@ for update in updates:
         path = update.get("attrs", {}).get("path", [])
         if path and path[-1] == 18101:
             # Normalize prepended paths (e.g. [18101, 18101, 18101] -> [18101])
-            clean_path = []
+            clean_path: list[int] = []
             for asn in path:
                 if not clean_path or clean_path[-1] != asn:
                     clean_path.append(asn)

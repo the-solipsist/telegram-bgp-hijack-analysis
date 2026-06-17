@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Any
 
 hijacked_prefixes = [
     "149.154.160.0/22",
@@ -49,7 +50,7 @@ DIRECT_UPSTREAMS = {
 repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 data_dir = os.path.join(repo_root, "data", "raw")
 
-results = []
+results: list[tuple[str, str, str, str, str]] = []
 
 for prefix in hijacked_prefixes:
     safe_name = prefix.replace("/", "_").replace(":", "_")
@@ -70,10 +71,10 @@ for prefix in hijacked_prefixes:
     updates.sort(key=lambda x: x.get("timestamp"))
 
     # Track hijack events per upstream
-    upstream_hijack_events = {asn: [] for asn in DIRECT_UPSTREAMS}
-    upstream_resolution_events = {asn: [] for asn in DIRECT_UPSTREAMS}
+    upstream_hijack_events: dict[int, list[tuple[str, str, str, list[int]]]] = {asn: [] for asn in DIRECT_UPSTREAMS}
+    upstream_resolution_events: dict[int, list[tuple[str, str, str]]] = {asn: [] for asn in DIRECT_UPSTREAMS}
     # Track which upstream currently has each peer in hijack state
-    hijacked_peers = {}
+    hijacked_peers: dict[str, int] = {}
 
     for u in updates:
         timestamp = u.get("timestamp")
@@ -94,7 +95,7 @@ for prefix in hijacked_prefixes:
                     )
                 else:
                     # Still hijacked - check if upstream changed
-                    clean_path = []
+                    clean_path: list[int] = []
                     for asn in path:
                         if not clean_path or clean_path[-1] != asn:
                             clean_path.append(asn)
@@ -136,7 +137,7 @@ for prefix in hijacked_prefixes:
                 )
 
     # Compute per-upstream start/stop for this prefix
-    upstream_summaries = {}
+    upstream_summaries: dict[str, dict[str, Any]] = {}
     for upstream_asn, upstream_name in DIRECT_UPSTREAMS.items():
         events = upstream_hijack_events[upstream_asn]
         resolutions = upstream_resolution_events[upstream_asn]

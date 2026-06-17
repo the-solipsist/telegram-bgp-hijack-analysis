@@ -33,10 +33,11 @@ for prefix, file_path in prefix_files.items():
     updates = data.get("data", {}).get("updates", [])
 
     # Track hijack state per upstream
-    peer_upstream_states = {}  # source -> current upstream_asn (if hijacked)
-    upstream_anns = {asn: [] for asn in DIRECT_UPSTREAMS}
-    upstream_wids = {asn: [] for asn in DIRECT_UPSTREAMS}
-    upstream_switches = {asn: [] for asn in DIRECT_UPSTREAMS}
+    peer_upstream_states: dict[str, int] = {}  # source -> current upstream_asn (if hijacked)
+    upstream_anns: dict[int, list[tuple[str, str, list[int]]]] = {asn: [] for asn in DIRECT_UPSTREAMS}
+    upstream_wids: dict[int, list[tuple[str, str, list[int]]]] = {asn: [] for asn in DIRECT_UPSTREAMS}
+    # type matches (timestamp, event_type, source, path)
+    upstream_switches: dict[int, list[tuple[str, str, str, list[int]]]] = {asn: [] for asn in DIRECT_UPSTREAMS}
 
     for u in updates:
         timestamp = u.get("timestamp")
@@ -47,7 +48,7 @@ for prefix, file_path in prefix_files.items():
             path = u.get("attrs", {}).get("path", [])
 
             if path and path[-1] == 18101:
-                clean_path = []
+                clean_path: list[int] = []
                 for asn in path:
                     if not clean_path or clean_path[-1] != asn:
                         clean_path.append(asn)
