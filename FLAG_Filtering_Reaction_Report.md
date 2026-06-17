@@ -81,13 +81,13 @@ You can run the following commands in the root of this repository against the do
 ### 1. Download the Raw Data
 First, run the download script to fetch the prefix-specific BGP updates:
 ```bash
-python3 scripts/download_prefix_updates.py
+python3 scripts/download_33_telegram_prefix_bgp_updates.py
 ```
 
 ### 2. Run the Unified Python Proof Script
 Run this script to output the verified start, last advertisement, and final resolution timestamps for FLAG:
 ```bash
-python3 scripts/analyze_timeline.py
+python3 scripts/hijack_resolution_timeline_per_upstream.py
 ```
 
 ### 3. Verify with standard `jq` commands (Bash)

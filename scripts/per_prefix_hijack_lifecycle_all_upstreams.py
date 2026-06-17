@@ -71,8 +71,9 @@ for prefix in hijacked_prefixes:
 
     # Track hijack events per upstream
     upstream_hijack_events = {asn: [] for asn in DIRECT_UPSTREAMS}
+    upstream_resolution_events = {asn: [] for asn in DIRECT_UPSTREAMS}
     # Track which upstream currently has each peer in hijack state
-    peer_states = {}
+    hijacked_peers = {}
 
     for u in updates:
         timestamp = u.get("timestamp")
@@ -82,43 +83,77 @@ for prefix in hijacked_prefixes:
 
         if utype == "A":
             path = u.get("attrs", {}).get("path", [])
-            peer_states[source] = path
 
-            # Check if this update originates from AS18101
-            if path and path[-1] == 18101:
-                clean_path = []
-                for asn in path:
-                    if not clean_path or clean_path[-1] != asn:
-                        clean_path.append(asn)
-                if len(clean_path) >= 2 and clean_path[-2] in DIRECT_UPSTREAMS:
-                    upstream_asn = clean_path[-2]
-                    upstream_hijack_events[upstream_asn].append((timestamp, "A", source, clean_path))
+            if source in hijacked_peers:
+                # Peer was in hijacked state - check if it still is
+                if not path or path[-1] != 18101:
+                    # Switched to legitimate route - resolution
+                    prev_upstream = hijacked_peers.pop(source)
+                    upstream_resolution_events[prev_upstream].append(
+                        (timestamp, "RESOLVED_SWITCH", source)
+                    )
                 else:
-                    if source in peer_states and peer_states.get(source) and peer_states[source][-1] == 18101:
-                        # Was hijacked but now via non-tracked upstream
-                        for usn in DIRECT_UPSTREAMS:
-                            pass  # Complex to backtrack; just record the event
+                    # Still hijacked - check if upstream changed
+                    clean_path = []
+                    for asn in path:
+                        if not clean_path or clean_path[-1] != asn:
+                            clean_path.append(asn)
+                    if len(clean_path) >= 2 and clean_path[-2] in DIRECT_UPSTREAMS:
+                        new_upstream = clean_path[-2]
+                        if hijacked_peers.get(source) != new_upstream:
+                            prev_upstream = hijacked_peers[source]
+                            upstream_resolution_events[prev_upstream].append(
+                                (timestamp, "RESOLVED_SWITCH", source)
+                            )
+                            hijacked_peers[source] = new_upstream
+                            upstream_hijack_events[new_upstream].append(
+                                (timestamp, "A", source, clean_path)
+                            )
+                    # If path[-1] is 18101 but upstream not tracked, treat as resolution
+                    elif path[-1] == 18101:
+                        prev_upstream = hijacked_peers.pop(source)
+                        upstream_resolution_events[prev_upstream].append(
+                            (timestamp, "RESOLVED_SWITCH", source)
+                        )
             else:
-                # Switched to legitimate non-hijack route
-                pass
+                # Peer not in hijacked state - check if this is a new hijack
+                if path and path[-1] == 18101:
+                    clean_path = []
+                    for asn in path:
+                        if not clean_path or clean_path[-1] != asn:
+                            clean_path.append(asn)
+                    if len(clean_path) >= 2 and clean_path[-2] in DIRECT_UPSTREAMS:
+                        upstream_asn = clean_path[-2]
+                        hijacked_peers[source] = upstream_asn
+                        upstream_hijack_events[upstream_asn].append(
+                            (timestamp, "A", source, clean_path)
+                        )
         elif utype == "W":
-            peer_states[source] = None
+            if source in hijacked_peers:
+                prev_upstream = hijacked_peers.pop(source)
+                upstream_resolution_events[prev_upstream].append(
+                    (timestamp, "RESOLVED_WITHDRAWAL", source)
+                )
 
     # Compute per-upstream start/stop for this prefix
     upstream_summaries = {}
     for upstream_asn, upstream_name in DIRECT_UPSTREAMS.items():
         events = upstream_hijack_events[upstream_asn]
+        resolutions = upstream_resolution_events[upstream_asn]
         if not events:
             continue
         events.sort(key=lambda x: x[0])
+        resolutions.sort(key=lambda x: x[0])
         upstream_summaries[upstream_name] = {
             "first_seen": events[0][0],
             "last_seen": events[-1][0],
+            "last_resolution": resolutions[-1][0] if resolutions else "N/A",
             "count": len(events)
         }
 
-    # For backward compat: also compute FLAG-only stats (legacy behavior)
+    # Compute FLAG-only stats
     flag_events = upstream_hijack_events[15412]
+    flag_resolutions = upstream_resolution_events[15412]
     if flag_events:
         anns = [e for e in flag_events if e[1] == "A"]
         if anns:
@@ -128,23 +163,26 @@ for prefix in hijacked_prefixes:
             start_time = "N/A"
             last_adv = "N/A"
 
-        # Find resolution: last event for this prefix via FLAG
-        last_event = flag_events[-1]
-        resolution_time = last_event[0]
+        # Resolution time: last resolution event, or last announcement if no resolution
+        if flag_resolutions:
+            resolution_time = flag_resolutions[-1][0]
+        else:
+            resolution_time = flag_events[-1][0]
 
-        # Build summary string with per-upstream counts
         upstream_str = ", ".join(
             f"{name}={info['count']}" for name, info in upstream_summaries.items()
         )
         status = f"Hijacked ({upstream_str})"
         results.append((prefix, status, start_time, last_adv, resolution_time))
     elif upstream_summaries:
-        # Hijacked via other upstreams but not FLAG
         upstream_str = ", ".join(
             f"{name}={info['count']}" for name, info in upstream_summaries.items()
         )
         first_overall = min(info["first_seen"] for info in upstream_summaries.values())
-        last_overall = max(info["last_seen"] for info in upstream_summaries.values())
+        last_overall = max(
+            info["last_resolution"] if info["last_resolution"] != "N/A" else info["last_seen"]
+            for info in upstream_summaries.values()
+        )
         status = f"Hijacked (non-FLAG: {upstream_str})"
         results.append((prefix, status, first_overall, last_overall, last_overall))
     else:

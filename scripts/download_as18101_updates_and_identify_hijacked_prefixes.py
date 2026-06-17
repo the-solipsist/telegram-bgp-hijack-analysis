@@ -173,18 +173,20 @@ def analyze_local_data():
     hijacked_ipv6 = set()
 
     for p in originated_prefixes:
-        try:
-            p_net = ipaddress.ip_network(p)
-            for t_net in telegram_networks:
+        p_net = ipaddress.ip_network(p)
+        is_ipv6 = ":" in p
+        for t_net in telegram_networks:
+            try:
                 # Check if prefix matches Telegram prefix, is a subnet (more specific),
                 # or is a supernet (less specific — covering route).
                 if p_net == t_net or p_net.subnet_of(t_net) or t_net.subnet_of(p_net):
-                    if ":" in p:
+                    if is_ipv6:
                         hijacked_ipv6.add((p, str(t_net)))
                     else:
                         hijacked_ipv4.add((p, str(t_net)))
-        except Exception as e:
-            print(f"Error processing prefix {p}: {e}")
+            except Exception as e:
+                print(f"  Skipping comparison {p} vs {t_net}: {e}")
+                continue
 
     print(f"\nIdentified {len(hijacked_ipv4)} hijacked IPv4 prefixes:")
     for p, parent in sorted(hijacked_ipv4):
