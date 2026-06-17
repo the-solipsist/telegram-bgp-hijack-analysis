@@ -10,7 +10,6 @@
 
 import json
 import os
-import ipaddress
 
 repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 raw_data_dir = os.path.join(repo_root, "data", "raw")

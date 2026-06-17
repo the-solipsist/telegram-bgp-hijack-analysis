@@ -77,7 +77,7 @@ print("\n=== SECOND-TIER TRANSITS (2nd Hop) ===")
 print(f"Total: {len(tier2_transits)}")
 print(", ".join(f"AS{asn}" for asn in sorted(tier2_transits)))
 
-print(f"\n=== AFFECTED DOWNSTREAMS (Final Receivers) ===")
+print("\n=== AFFECTED DOWNSTREAMS (Final Receivers) ===")
 print(f"Total Unique Networks Affected: {len(downstreams)}")
 # Print first 20 as sample
 print("Sample of first 20:")

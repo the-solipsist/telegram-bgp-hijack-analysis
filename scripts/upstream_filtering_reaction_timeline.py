@@ -23,9 +23,9 @@ DIRECT_UPSTREAMS = {
 }
 
 for prefix, file_path in prefix_files.items():
-    print(f"\n==========================================")
+    print("\n==========================================")
     print(f"Prefix: {prefix}")
-    print(f"==========================================")
+    print("==========================================")
 
     with open(file_path, "r") as f:
         data = json.load(f)

@@ -1,6 +1,5 @@
 import json
 import os
-import ipaddress
 
 hijacked_prefixes = [
     "149.154.160.0/22",
