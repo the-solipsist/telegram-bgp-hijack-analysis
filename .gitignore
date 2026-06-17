@@ -17,7 +17,5 @@ pip-delete-this-directory.txt
 .idea/
 .commandcode/
 
-# Local data (except tracked timeline JSON)
-*.json
-!data/per_prefix_per_upstream_timeline.json
-!data/route_visibility_snapshots.json
+# Local data
+# Keep JSON files tracked for immediate reproducibility and offline execution

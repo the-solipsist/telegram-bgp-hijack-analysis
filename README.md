@@ -32,8 +32,7 @@ Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/20669
 
 Because BGP route announcements propagate globally, RCom's rogue advertisements were accepted by its international upstream transit providers and spread across the world. International user traffic destined for Telegram servers was diverted to India and dropped (blackholed), transforming a domestic government censorship order into a global outage.
 
-> [!NOTE]
-> **Data scope caveat:** All 34 prefix-specific BGP update files and the full `bgp_updates_18101.json` (07:00-22:00 UTC, 81,925 updates) are required to reproduce the per-upstream resolution timestamps. These files are gitignored due to size (~46MB). To regenerate from scratch, run `scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py` first. Claims about specific networks' cleanup times (Tata, Airtel) are cross-checked against the in-repo raw data.
+> **Data scope caveat:** All 34 prefix-specific BGP update files and the full `bgp_updates_18101.json` (07:00-22:00 UTC, 81,925 updates) are required to reproduce the per-upstream resolution timestamps. These files are committed directly in this repository (~46MB) for immediate, offline reproducibility. If you wish to regenerate the datasets from scratch or fetch fresh data, you can run the download scripts: `scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`. Claims about specific networks' cleanup times (Tata, Airtel) are cross-checked against the in-repo raw data.
 
 ### Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
@@ -363,8 +362,8 @@ To gather these BGP updates and verify the timeline, we built a python analysis 
 6. **[scripts/count_as18101_hijack_paths_and_upstreams.py](./scripts/count_as18101_hijack_paths_and_upstreams.py):** Processes the raw `AS18101` updates to count and trace unique BGP path configurations, identifying direct upstreams, second-tier transits, and downstream networks.
 7. **[scripts/per_prefix_hijack_lifecycle_all_upstreams.py](./scripts/per_prefix_hijack_lifecycle_all_upstreams.py):** Processes the raw update data for all 34 hijacked subnets to calculate their start and stop times per upstream, generating the processed timeline output file `data/per_prefix_per_upstream_timeline.json`. Reports per-upstream hijack counts.
 
-> [!IMPORTANT]
-> **Data Directory Setup:** The raw JSON datasets used by these analysis scripts are gitignored to prevent storing large payloads (~46MB) in version control. After cloning the repository, you **MUST** run the download scripts (`scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`) first to populate the `data/raw/` directory before executing the analysis scripts.
+> [!NOTE]
+> **Data Directory Setup:** The raw JSON BGP datasets are already committed directly in the repository (~46MB) for immediate, offline analysis. You can run all analysis scripts out of the box. If you wish to rebuild the datasets or fetch fresh BGP updates from RIPE Stat, you can run the download scripts (`scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`) first to refresh the `data/raw/` directory.
 
 ### Sub-section: Core Technical Assumptions and Validation
 To ensure the scientific rigour and reproducibility of this BGP routing analysis, we explicitly document the following methodology assumptions, each of which is warranted by standard network engineering operations:
