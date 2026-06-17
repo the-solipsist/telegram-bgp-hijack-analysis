@@ -11,7 +11,7 @@ import json
 import ipaddress
 import sys
 
-TELEGRAM_ASNS = ["AS62041", "AS62014", "AS59930", "AS211157", "AS205103"]
+TELEGRAM_ASNS = ["AS62041", "AS62014", "AS59930", "AS211157", "AS205103", "AS44907"]
 
 # Set data directories relative to repository root
 repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

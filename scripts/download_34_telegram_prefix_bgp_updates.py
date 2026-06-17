@@ -32,6 +32,7 @@ prefixes = [
     "149.154.168.0/22",
     "185.76.151.0/24",
     "2001:67c:4e8::/48",
+    "2001:b28:f23c::/48",
     "2001:b28:f23d::/48",
     "2001:b28:f23f::/48",
     "2a0a:f280::/32",
@@ -113,6 +114,9 @@ def fetch_with_pagination(url, max_pages=50):
 for prefix in prefixes:
     safe_name = prefix.replace("/", "_").replace(":", "_")
     file_path = os.path.join(data_dir, f"{safe_name}_full.json")
+    if os.path.exists(file_path):
+        print(f"  Local file for {prefix} already exists; skipping download.")
+        continue
     url = f"{BASE_URL}?resource={prefix}&starttime={start_time}&endtime={end_time}"
     print(f"Downloading BGP updates for {prefix} from {start_time} to {end_time}...")
     try:

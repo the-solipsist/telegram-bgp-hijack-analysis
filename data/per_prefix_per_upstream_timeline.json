@@ -119,6 +119,13 @@
     "resolution_time": "2026-06-16T20:39:11"
   },
   {
+    "prefix": "2001:b28:f23c::/48",
+    "status": "Hijacked (FLAG=6)",
+    "start_time": "2026-06-16T16:32:43",
+    "last_announcement": "2026-06-16T16:32:44",
+    "resolution_time": "2026-06-16T20:39:11"
+  },
+  {
     "prefix": "2001:b28:f23d::/48",
     "status": "Hijacked (FLAG=3)",
     "start_time": "2026-06-16T16:29:42",

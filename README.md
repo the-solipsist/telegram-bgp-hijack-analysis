@@ -27,12 +27,12 @@ Under Section 69A of the IT Act, MEIT directs domestic internet service provider
 
 However, shortly after the block was ordered, users *outside* of India—including in the United Arab Emirates, Europe, and parts of the Middle East—began reporting severe connection failures and outages when trying to access Telegram. 
 
-Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/2066945969854234977) Indian practically defunct (insolvent) telecommunications provider **Reliance Communications (operating under ASN 18101 / RCom)** of BGP hijacking. Durov pointed out a potential conflict of interest, noting that Meta (the parent company of WhatsApp, Telegram's primary competitor) holds a substantial stake in Jio, a digital subsidiary of Reliance Industries Limited (RIL). (Importantly, Durov seems to have confused RCom with Jio. RCom is a separate corporate entity from Reliance Jio `AS55836`. Our analysis of RIPE RIS data shows no evidence of Jio (AS55836) appearing as an upstream for any of the 33 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.) Instead of implementing a local block for its Indian subscribers, RCom had announced BGP route updates claiming that its network was the preferred path for Telegram's global IP address blocks. 
+Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/2066945969854234977) Indian practically defunct (insolvent) telecommunications provider **Reliance Communications (operating under ASN 18101 / RCom)** of BGP hijacking. Durov pointed out a potential conflict of interest, noting that Meta (the parent company of WhatsApp, Telegram's primary competitor) holds a substantial stake in Jio, a digital subsidiary of Reliance Industries Limited (RIL). (Importantly, Durov seems to have confused RCom with Jio. RCom is a separate corporate entity from Reliance Jio `AS55836`. Our analysis of RIPE RIS data shows no evidence of Jio (AS55836) appearing as an upstream for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.) Instead of implementing a local block for its Indian subscribers, RCom had announced BGP route updates claiming that its network was the preferred path for Telegram's global IP address blocks. 
 
 Because BGP route announcements propagate globally, RCom's rogue advertisements were accepted by its international upstream transit providers and spread across the world. International user traffic destined for Telegram servers was diverted to India and dropped (blackholed), transforming a domestic government censorship order into a global outage.
 
 > [!NOTE]
-> **Data scope caveat:** All 33 prefix-specific BGP update files and the full `bgp_updates_18101.json` (07:00-22:00 UTC, 81,925 updates) are required to reproduce the per-upstream resolution timestamps. These files are gitignored due to size (~46MB). To regenerate from scratch, run `scripts/download_33_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py` first. Claims about specific networks' cleanup times (Tata, Airtel) are cross-checked against the in-repo raw data.
+> **Data scope caveat:** All 34 prefix-specific BGP update files and the full `bgp_updates_18101.json` (07:00-22:00 UTC, 81,925 updates) are required to reproduce the per-upstream resolution timestamps. These files are gitignored due to size (~46MB). To regenerate from scratch, run `scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py` first. Claims about specific networks' cleanup times (Tata, Airtel) are cross-checked against the in-repo raw data.
 
 ### Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
@@ -42,7 +42,7 @@ Indeed, the incident is a classic illustration of [Hanlon's razor](https://en.wi
 
 To block access to a service like Telegram at the routing layer, a network operator typically configures "blackhole" or null routes for the target's IP prefixes. Under standard procedures, the ISP creates static null routes (e.g., routing Telegram's IP blocks to a `/dev/null` interface) and redistributes these routes internally to its domestic edge routers so that subscribers' requests are dropped.
 
-However, if the ISP's external BGP export policies (route-maps) are misconfigured or fail to filter these newly redistributed static routes, the router will advertise them to external eBGP peers and upstream transits. As Pranesh Prakash noted in his [thread](https://x.com/pranesh/status/2066948164025008343), RCom was likely trying to redirect Telegram traffic internally within India to comply with the Section 69A blocking order, but misconfigured their BGP filters, leaking the hijack to the global internet. This is exactly what happened: instead of keeping the blackhole routes internal to drop local traffic, RCom redistributed them into its external BGP sessions, announcing to the entire internet that `AS18101` was the origin for Telegram's prefixes.
+However, if the ISP's external BGP export policies (route-maps) are misconfigured or fail to filter these newly redistributed static routes, the router will advertise them to external eBGP peers and upstream transits. As Pranesh Prakash noted in his [thread](https://x.com/pranesh/status/2066948164025008343), RCom leaked the hijack to the global internet. The underlying cause was likely RCom trying to redirect Telegram traffic internally within India to comply with the Section 69A blocking order, but failing to apply proper export filters on their external sessions. This is exactly what happened: instead of keeping the blackhole routes internal to drop local traffic, RCom redistributed them into its external BGP sessions, announcing to the entire internet that `AS18101` was the origin for Telegram's prefixes.
 
 Several pieces of technical evidence support this route leak theory over intentional sabotage:
 1. **The Origin ASN:** RCom announced the routes with its own ASN (`AS18101`) as the origin. If RCom had intended to hijack the traffic maliciously and silently, a sophisticated attacker would have spoofed Telegram's own origin ASN (`AS62041` or `AS211157`) in the path. By originating the prefixes under its own ASN, RCom guaranteed that the announcements would immediately trigger **RPKI Route Origin Validation (ROV) failures** at all validating networks globally. This kept the hijack's propagation very low (~2.2% to 4.4% visibility for IPv4 prefixes) and restricted the traffic diversion to non-validating networks downstream of RCom's upstreams.
@@ -84,7 +84,7 @@ flowchart TD
 2. **Phase 2 (The Rogue Sub-Prefix Injection):** At **16:14:19 UTC**, RCom's announcements expanded to include the more-specific `/23` and `/24` sub-prefixes themselves. In a route leak context, this suggests RCom network operators updated their domestic null-route configurations to block Telegram's new sub-prefixes locally (to keep up with Telegram's mitigations), but because the export filters on their external BGP peerings were still missing, these newly configured static routes immediately leaked to global peers. This bypassed Telegram's mitigation and caused a second, much larger spike in global misdirected traffic. This wave remained active until **20:10 UTC**, which matches Kentik's traffic measurements and our BGP database analysis showing that the rogue `/24` announcements stopped and resolved at `20:06` UTC.
 
 ### Sub-section: Parent Prefix vs. Sub-Prefix Overlap Analysis
-To find all affected prefixes, we wrote a Python script to mathematically check overlaps between the prefixes announced by RCom (`AS18101`) and Telegram's registered IP prefixes. RCom announced **33 unique prefixes** that overlapped with Telegram's space. These 33 prefixes mapped back to **16 distinct parent prefixes** announced by Telegram:
+To find all affected prefixes, we wrote a Python script to mathematically check overlaps between the prefixes announced by RCom (`AS18101`) and Telegram's registered IP prefixes. RCom announced **34 unique prefixes** that overlapped with Telegram's space. These 34 prefixes mapped back to **16 distinct parent prefixes** announced by Telegram:
 
 | Telegram Parent Prefix | Hijacked Prefixes Announced by RCom | Hijack Type |
 | :--- | :--- | :--- |
@@ -104,6 +104,7 @@ To find all affected prefixes, we wrote a Python script to mathematically check 
 | **`2001:67c:4e8::/48`** *(AS62041)* | `2001:67c:4e8::/48` | Exact Match |
 | **`2001:b28:f23d::/48`** *(AS59930)* | `2001:b28:f23d::/48` | Exact Match |
 | **`2001:b28:f23f::/48`** *(AS62014)* | `2001:b28:f23f::/48` | Exact Match |
+| **`2001:b28:f23c::/48`** *(AS44907)* | `2001:b28:f23c::/48` | Exact Match |
 
 ---
 
@@ -113,13 +114,13 @@ To trace how these rogue announcements propagated, we analyzed the routing paths
 
 By normalizing prepended paths (removing duplicate consecutive ASNs) and isolating the ASN preceding `18101` in the path array, we identified **3 direct upstream transits** that accepted RCom's announcements and leaked them directly to global peers. However, the distribution of propagation is **highly skewed** — FLAG Telecom dominates:
 
-1. **FLAG Telecom (AS15412):** FLAG is a major undersea cable operator. It was overwhelmingly the dominant leak path with **830 hijack events** transiting via FLAG (per `hijack_resolution_timeline_per_upstream.py`). It was also the longest-lasting, propagating the hijacked routes until filters were deployed at approximately 21:12 UTC.
+1. **FLAG Telecom (AS15412):** FLAG is a major undersea cable operator. It was overwhelmingly the dominant leak path with **830 hijack events** transiting via FLAG (across the 3 representative prefixes tracked in `hijack_resolution_timeline_per_upstream.py`). It was also the longest-lasting, propagating the hijacked routes until filters were deployed at approximately 21:12 UTC.
 2. **Tata Communications (AS4755):** Tata is a global Tier-1 transit provider. It propagated the routes in **12 hijack events** — primarily parent `/22` prefixes during the early phase of the hijack.
 3. **Bharti Airtel (AS9498):** Airtel is a major Indian telecommunications network. In our RIPE RIS dataset, Airtel appears as the direct upstream of AS18101 for **exactly 1 hijacked path** — the IPv6 super-prefix `2a0a:f280::/32` at 16:46:14 UTC. This is a marginal propagation contribution but technically qualifies Airtel as a direct upstream.
 
-Behind these 3 direct transits, a total of **44 second-tier transit providers** accepted these routes and propagated them further. This second tier includes major networks such as Sify Technologies (`AS9583`, observed in 34 hijack paths), Cogent (`AS174`), Sparkle (`AS6762`), and Hurricane Electric (`AS6939`). In total, **158 unique final receiver/peer networks** (downstreams) logged the hijacked paths in their routing tables.
+Behind these 3 direct transits, a total of **44 second-tier transit providers** accepted these routes and propagated them further. This second tier includes major networks such as Sify Technologies (`AS9583`, observed in 31 unique hijacked prefix-path combinations), Cogent (`AS174`), Sparkle (`AS6762`), and Hurricane Electric (`AS6939`). In total, **158 unique final receiver/peer networks** (downstreams) logged the hijacked paths in their routing tables.
 
-*(Note: We did not observe AS55836 (Reliance Jio) in any hijacked Telegram prefix path in our RIPE RIS dataset. Jio's appearances in our data are exclusively as an upstream for RCom's own legitimate prefixes. Sify (AS9583) did appear as a second-tier transit for 34 hijack paths — the last such path being at 16:46:34 UTC for `2a0a:f280::/32`.)*
+*(Note: We did not observe AS55836 (Reliance Jio) in any hijacked Telegram prefix path in our RIPE RIS dataset. Jio's appearances in our data are exclusively as an upstream for RCom's own legitimate prefixes. Sify (AS9583) did appear as a second-tier transit for 31 unique hijacked prefix-path combinations (56 total updates) — the last such path being at 20:39:36 UTC for `2a0a:f280::/32` (and last Sify path overall being at 20:55:31 UTC for `95.161.64.0/20`).)*
 
 ---
 
@@ -255,9 +256,9 @@ flowchart TD
     Start -->|"Phase 2: Sub-prefixes (16:14 UTC)"| P2["/23, /24 sub-prefix leaks bypass filters"]
     P2 --> SubRes["20:06 UTC<br/>Sub-prefixes resolved"]
 
-    P1 --> Tata["~16:14 UTC<br/>Tata (direct) Cleared<br/>(33 hijack paths)"]
+    P1 --> Tata["~21:08 UTC<br/>Tata (direct) Cleared<br/>(12 hijack paths)"]
     P1 --> Airtel["~16:46 UTC<br/>Airtel (direct) Cleared<br/>(1 hijack path: IPv6 /32)"]
-    P1 --> FLAG["21:12 UTC<br/>FLAG (direct): Filters Injected<br/>(699 hijack paths)"]
+    P1 --> FLAG["21:12 UTC<br/>FLAG (direct): Filters Injected<br/>(830 hijack paths)"]
     FLAG --> Resolved["21:13 UTC<br/>Last FLAG-mediated peer<br/>switches to legitimate path"]
 
     style Start fill:#f8d7da,stroke:#dc3545
@@ -268,7 +269,7 @@ flowchart TD
 
 Our analysis pipeline (specifically `scripts/hijack_resolution_timeline_per_upstream.py` and `scripts/per_prefix_hijack_lifecycle_all_upstreams.py`) tracks hijack resolution through **all 3 direct upstreams** (FLAG AS15412, Tata AS4755, Airtel AS9498). It tracks peer-state transitions where a peer's path goes from `[..., <upstream>, 18101]` (upstream-mediated hijack) to either a legitimate origin or a withdrawal. The "final resolution" timestamp of 21:13:11 UTC represents the last **FLAG-mediated** peer to clear. The cross-upstream summary at the end of the timeline output shows the global last resolution across all 3 upstreams.
 
-**Direct upstream activity summary (verified by `hijack_resolution_timeline_per_upstream.py` against the 33 prefix-specific files):**
+**Direct upstream activity summary (verified by `hijack_resolution_timeline_per_upstream.py` against the 3 representative prefix files):**
 
 | Direct Upstream | Hijack events | First hijack | Last announcement | Last resolution | Notes |
 |---|---|---|---|---|---|
@@ -278,7 +279,7 @@ Our analysis pipeline (specifically `scripts/hijack_resolution_timeline_per_upst
 
 **Global cross-upstream last resolution:** 2026-06-16T21:13:11 UTC (FLAG, prefix `91.108.56.0/22`).
 
-**Second-tier transits:** Sify Technologies (AS9583) appeared in 34 hijack paths across the data, with the last such path at 2026-06-16T16:46:34 (for the `2a0a:f280::/32` IPv6 prefix). Sify did not appear as a direct upstream of AS18101 for any hijacked prefix; it acted as a second-tier transit accepting routes from FLAG or Tata. We did **not** observe AS55836 (Jio) in any hijacked Telegram prefix path in our dataset — Jio only appeared as an upstream for RCom's own legitimate prefixes.
+**Second-tier transits:** Sify Technologies (AS9583) appeared in 31 unique hijacked prefix-path combinations (56 total updates) across the data, with the last such path overall at 2026-06-16T20:55:31 UTC (for the prefix `95.161.64.0/20`), and the last such path for `2a0a:f280::/32` at 20:39:36 UTC. Sify did not appear as a direct upstream of AS18101 for any hijacked prefix; it acted as a second-tier transit accepting routes from FLAG or Tata. We did **not** observe AS55836 (Jio) in any hijacked Telegram prefix path in our dataset — Jio only appeared as an upstream for RCom's own legitimate prefixes.
 
 The three direct upstream transits cleared more slowly, with Phase 2 sub-prefixes and parent prefixes resolving on separate tracks:
 1. **Tata India (AS4755):** Last hijack announcement observed at **20:55:31 UTC** (2:25:31 AM IST on June 17) for `95.161.64.0/20`, with final resolution at **21:08:31 UTC** (per `hijack_resolution_timeline_per_upstream.py`). Tata cleared ~5 minutes before FLAG.
@@ -291,7 +292,7 @@ The BGP hijack progressed in two distinct waves, which also resolved at differen
 1. **Parent Prefixes (Wave 1):** Large blocks like `95.161.64.0/20` and various `/22`s started leaking around `07:08` UTC and remained active all day until FLAG finally deployed its filters at `21:12` UTC.
 2. **Sub-Prefixes (Wave 2):** More-specific `/24` sub-prefixes were injected around `16:14` UTC. These were resolved and withdrawn much earlier, around `20:06` UTC.
 
-Below is the disaggregated start and stop/resolution time for all 33 affected subnets propagating via FLAG (AS15412):
+Below is the disaggregated start and stop/resolution time for all 34 affected subnets propagating via FLAG (AS15412):
 
 | Prefix / Sub-prefix | Status via FLAG | Start Time (UTC) | Stop / Resolution (UTC) |
 | :--- | :--- | :--- | :--- |
@@ -312,6 +313,7 @@ Below is the disaggregated start and stop/resolution time for all 33 affected su
 | **`149.154.168.0/22`** | Hijacked | `2026-06-16T16:14:19` | `2026-06-16T20:06:04` |
 | **`185.76.151.0/24`**  | Hijacked | `2026-06-16T16:14:19` | `2026-06-16T20:06:39` |
 | **`2001:67c:4e8::/48`**| Hijacked | `2026-06-16T07:21:32` | `2026-06-16T20:39:11` |
+| **`2001:b28:f23c::/48`**| Hijacked | `2026-06-16T16:32:43` | `2026-06-16T20:39:11` |
 | **`2001:b28:f23d::/48`**| Hijacked | `2026-06-16T16:29:42` | `2026-06-16T20:39:11` |
 | **`2001:b28:f23f::/48`**| Hijacked | `2026-06-16T16:30:41` | `2026-06-16T20:39:11` |
 | **`2a0a:f280::/32`**   | Hijacked | `2026-06-16T16:46:04` | `2026-06-16T20:43:54` |
@@ -346,7 +348,7 @@ We can say the hijack finally resolved at **21:13:11 UTC** (2:43:11 AM IST on Ju
 This is the exact timestamp when the last peer in the RIPE RIS database received a `RESOLVED_SWITCH` update, changing its path for the prefix `91.108.56.0/22` from RCom's network (`18101 -> 15412 -> ...`) back to Telegram's legitimate path:
 `62041 -> 6762 -> 2914 -> 19151` (Telegram -> transits -> receiver peer).
 
-After `21:13:11` UTC, no peer on the global internet monitored by RIPE RIS held a route for Telegram's prefixes originating from RCom's ASN. The global routing table was clean.
+Except for a single IPv6 peer session via Bharti Airtel (`AS9498`) for prefix `2a0a:f280::/32` (which did not show a withdrawal or switch during our 24-hour observation window), no peer on the global internet monitored by RIPE RIS held a route for Telegram's prefixes originating from RCom's ASN. The global routing table was clean.
 
 ---
 
@@ -354,16 +356,16 @@ After `21:13:11` UTC, no peer on the global internet monitored by RIPE RIS held 
 
 To gather these BGP updates and verify the timeline, we built a python analysis pipeline. The complete source code for our pipeline is available in the `scripts/` directory of this repository:
 
-1. **[scripts/download_33_telegram_prefix_bgp_updates.py](./scripts/download_33_telegram_prefix_bgp_updates.py):** Downloads raw prefix-specific BGP updates (announcements and withdrawals) from RIPE Stat's API for each of the 33 hijacked Telegram IP blocks between June 16, 07:00 UTC and June 17, 06:00 UTC. Implements pagination via the `see_also` field and warns when the server-returned `query_endtime` does not match the requested end time.
+1. **[scripts/download_34_telegram_prefix_bgp_updates.py](./scripts/download_34_telegram_prefix_bgp_updates.py):** Downloads raw prefix-specific BGP updates (announcements and withdrawals) from RIPE Stat's API for each of the 34 hijacked Telegram IP blocks between June 16, 07:00 UTC and June 17, 06:00 UTC. Implements pagination via the `see_also` field and warns when the server-returned `query_endtime` does not match the requested end time.
 2. **[scripts/hijack_resolution_timeline_per_upstream.py](./scripts/hijack_resolution_timeline_per_upstream.py):** Processes the 3 core prefix update JSON logs chronologically to track the active routing state of every RIPE collector peer. Tracks **all 3 direct upstreams** (FLAG AS15412, Tata AS4755, Airtel AS9498), producing per-upstream resolution timestamps and a global cross-upstream last-resolution timestamp.
 3. **[scripts/query_bgp_state_visibility_at_peak_timestamps.py](./scripts/query_bgp_state_visibility_at_peak_timestamps.py):** Queries RIPE Stat's `bgp-state` API at specific timestamps (Wave 1 and Wave 2 peaks) to calculate route origin distribution and visibility percentages across all reporting peers globally.
 4. **[scripts/upstream_filtering_reaction_timeline.py](./scripts/upstream_filtering_reaction_timeline.py):** Filters BGP updates involving the 3 direct upstreams to isolate RCom's incorrect path advertisements, tracking active hijacked-path counts over time and each upstream's final withdrawal/filtering timeline.
-5. **[scripts/download_as18101_updates_and_identify_hijacked_prefixes.py](./scripts/download_as18101_updates_and_identify_hijacked_prefixes.py):** Downloads Telegram's announced prefixes for all 5 Telegram ASNs and all BGP updates for `AS18101` from RIPE Stat, then performs the intersection overlap analysis to identify the 33 hijacked subnets. Implements pagination and warns on truncation.
+5. **[scripts/download_as18101_updates_and_identify_hijacked_prefixes.py](./scripts/download_as18101_updates_and_identify_hijacked_prefixes.py):** Downloads Telegram's announced prefixes for all 6 Telegram ASNs and all BGP updates for `AS18101` from RIPE Stat, then performs the intersection overlap analysis to identify the 34 hijacked subnets. Implements pagination and warns on truncation.
 6. **[scripts/count_as18101_hijack_paths_and_upstreams.py](./scripts/count_as18101_hijack_paths_and_upstreams.py):** Processes the raw `AS18101` updates to count and trace unique BGP path configurations, identifying direct upstreams, second-tier transits, and downstream networks.
-7. **[scripts/per_prefix_hijack_lifecycle_all_upstreams.py](./scripts/per_prefix_hijack_lifecycle_all_upstreams.py):** Processes the raw update data for all 33 hijacked subnets to calculate their start and stop times per upstream, generating the processed timeline output file `data/per_prefix_per_upstream_timeline.json`. Reports per-upstream hijack counts.
+7. **[scripts/per_prefix_hijack_lifecycle_all_upstreams.py](./scripts/per_prefix_hijack_lifecycle_all_upstreams.py):** Processes the raw update data for all 34 hijacked subnets to calculate their start and stop times per upstream, generating the processed timeline output file `data/per_prefix_per_upstream_timeline.json`. Reports per-upstream hijack counts.
 
 > [!IMPORTANT]
-> **Data Directory Setup:** The raw JSON datasets used by these analysis scripts are gitignored to prevent storing large payloads (~46MB) in version control. After cloning the repository, you **MUST** run the download scripts (`scripts/download_33_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`) first to populate the `data/raw/` directory before executing the analysis scripts.
+> **Data Directory Setup:** The raw JSON datasets used by these analysis scripts are gitignored to prevent storing large payloads (~46MB) in version control. After cloning the repository, you **MUST** run the download scripts (`scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`) first to populate the `data/raw/` directory before executing the analysis scripts.
 
 ---
 
@@ -373,9 +375,9 @@ The June 16, 2026 BGP hijack of Telegram's IP prefixes by Reliance Communication
 
 Our analysis of the RIPE RIS BGP updates verified the following:
 1. The hijack began at **07:08:57 UTC** on June 16, 2026, targeting `95.161.64.0/20`.
-2. A total of **33 unique prefixes and sub-prefixes** (covering 16 Telegram parent ranges) were hijacked. *(The `bgp_updates_18101.json` covers 07:00-22:00 UTC with 81,925 total updates, of which 980 (1.2%) are for hijacked prefixes — the rest cover RCom's legitimate prefixes. The 33 prefix-specific files add 17,987 additional updates for deeper timeline analysis.)*
+2. A total of **34 unique prefixes and sub-prefixes** (covering 16 Telegram parent ranges) were hijacked. *(The `bgp_updates_18101.json` covers 07:00-22:00 UTC with 81,925 total updates, of which 980 (1.2%) are for hijacked prefixes — the rest cover RCom's legitimate prefixes. The 34 prefix-specific files add 21,896 additional updates (23,270 total across all files) for deeper timeline analysis.)*
 3. RCom utilized a combination of exact-match and highly disruptive **sub-prefix injections** (Phase 2, starting at approximately 16:14 UTC) to bypass basic filters.
-4. Three direct upstream transits accepted RCom's leaked routes, with **FLAG Telecom (AS15412) dominating propagation** at 830 of 843 total hijack events (98.5%) across the 33 prefixes. Tata Communications accounted for 12 events and Bharti Airtel for a single IPv6 path. Sify Technologies (AS9583) acted as a second-tier transit for 34 paths. FLAG Telecom was the slowest to respond among the direct upstreams, continuing to propagate hijacked routes until **21:12:44 UTC** and finally resolving at **21:13:11 UTC**.
+4. Three direct upstream transits accepted RCom's leaked routes, with **FLAG Telecom (AS15412) dominating propagation** at 830 of 843 total hijack events (98.5%) across the 3 representative prefixes tracked in the timeline script. Tata Communications accounted for 12 events and Bharti Airtel for a single IPv6 path. Sify Technologies (AS9583) acted as a second-tier transit for 31 unique prefix-path combinations (56 total updates). FLAG Telecom was the slowest to respond among the direct upstreams, continuing to propagate hijacked routes until **21:12:44 UTC** and finally resolving at **21:13:11 UTC**.
 5. The global last resolution across all 3 upstreams was at **21:13:11 UTC** (FLAG, prefix `91.108.56.0/22`). Tata cleared at 21:08:31 UTC. Airtel's single path did not show a resolution withdrawal in the 24-hour window.
 
 Ultimately, the impact of this leak appears to have been minimized by RPKI Route Origin Validation. Our visibility measurements (2.2% to 4.4% for IPv4 vs. 100% for the IPv6 super-prefix) are **consistent with** RPKI playing a significant role, but we cannot definitively prove RPKI was the sole or primary filter — as we noted in Section 4, at least three alternative explanations (peering topology differences, IRR filtering, and competing-prefix routing dynamics) could also account for the gap. No script in this repository performs actual RPKI validation; the RPKI classification labels (Invalid vs. Unknown) are inferences based on Telegram's published ROAs. To prevent future incidents, transit providers must enforce strict prefix filtering on their customer sessions and reject advertisements for IP blocks their customers do not mathematically own.
