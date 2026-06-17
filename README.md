@@ -51,12 +51,8 @@ Several pieces of technical evidence support this route leak theory over intenti
 2. **Comparison with Other ISPs:** Other major Indian ISPs implemented the block successfully without leaking routes. For example, traceroute (`mtr`) measurements compiled by [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/) showed that Bharti Airtel (`AS9498`) successfully blackholed Telegram's traffic locally inside India (losing packets at the network boundary) without advertising those prefixes to its global peers. This demonstrates that while the domestic block order was common, RCom's global leak was a unique configuration failure.
 3. **The "Fat Finger" Pattern:** The inclusion of Telegram's parent blocks along with subsequent updates targeting more-specific `/23` and `/24` sub-prefixes suggests RCom was copy-pasting prefix-lists into its routing tables to mirror Telegram's own mitigations, but continually failing to apply export filters on its external peerings.
 
-> **Alternative explanations considered:** We acknowledge that the specificity of Phase 2 (which targeted the exact sub-prefixes that Telegram introduced in Phase 1 as a counter-measure) is striking and could alternatively be explained by:
-> - An automated script at RCom that periodically scrapes Telegram's BGP announcements and updates its blocklist accordingly
-> - Active monitoring of Telegram's response by RCom operators who manually updated their null-routes
-> - A combination of automated tooling and operator intervention
->
-> The "fat finger" / Hanlon's razor explanation remains the most parsimonious for the *initial* (Phase 1) leak, but Phase 2's mirror-the-mitigation behavior warrants explicit acknowledgment that more sophisticated internal processes may have been involved.
+> **Did RCom intend to leak or hijack BGP?** 
+> The answer for both waves is almost certainly **no**. While the *internal configuration* of new null-routes (first for the parent prefixes in Phase 1, and then in Phase 2 for the more-specific sub-prefixes introduced by Telegram) was an intentional effort to comply with the domestic block order, the *BGP route leak* (the global propagation of these routes) was entirely accidental for both phases. RCom simply had a persistent, underlying configuration failure: a lack of proper BGP export filters on their external sessions. When they updated their internal null-routes in Phase 2 to mirror Telegram's mitigations, those new routes leaked to the global internet via the same unfiltered eBGP sessions.
 
 This repository provides a step-by-step technical analysis of this incident. We will explain how we gathered raw routing data, filtered out false positives, wrote code to trace BGP updates, and generated the disaggregated timeline that proves RCom's role.
 
