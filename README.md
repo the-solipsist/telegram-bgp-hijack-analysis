@@ -6,16 +6,16 @@
 
 ## Table of Contents
 1. Introduction: The NEET-UG Paper Leak, the 69A IT Act Block, and the Durov Accusation
-    * Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
+    * Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 2. When Did All This Begin? What Telegram IP Prefixes Were Affected?
-    * Sub-section: The Two Waves of the Hijack (Phase 1 vs Phase 2)
-    * Sub-section: Parent Prefix vs. Sub-Prefix Overlap Analysis
+    * The Two Waves of the Hijack (Phase 1 vs Phase 2)
+    * Parent Prefix vs. Sub-Prefix Overlap Analysis
 3. Which Networks Were Affected?
 4. How Vast Was the Problem at Its Peak? (The Extent Question)
 5. When Did It Start Getting Resolved?
 6. When Can We Say It Finally Got Resolved?
 7. Methodology: Gathering the Evidentiary Proof
-    * Sub-section: Core Technical Assumptions and Validation
+    * Core Technical Assumptions and Validation
 8. Conclusion: Routing Security and the Path Forward
 
 ---
@@ -36,7 +36,7 @@ However, Durov appears to have confused RCom with Jio. While Jio (`AS55836`) is 
 
 Rather than implementing a local block restricted to its domestic subscribers, RCom appears to have accidentally redistributed these static null-routes into its external eBGP sessions due to a configuration error (a route leak). Because BGP route announcements propagate globally by default, these rogue advertisements were accepted by RCom's international upstream transit providers and leaked across the world. While validating networks dropped the invalid routes, international user traffic from some non-validating downstream networks was diverted to India and dropped (blackholed). This configuration error inadvertently transformed a domestic government blocking order into localized connectivity disruptions for a small percentage of Telegram's global user base, though it fell far short of a global outage.
 
-### Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
+### Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
 Pavel Durov's public accusation that RCom's action was "intentional sabotage" linked to corporate competition generated massive media attention. However, BGP routing experts and network operators—including [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/), [Doug Madory (Kentik)](https://x.com/DougMadory/status/2067048607858016416?s=20), and tech policy researcher [Pranesh Prakash](https://x.com/pranesh/status/2066948164025008343)—quickly pointed to a more mundane yet equally dangerous culprit: a **route leak** caused by a "fat finger" policy configuration mistake.
 
@@ -64,7 +64,8 @@ The first question we must answer is when the incident began, and what specific 
 
 By analyzing RIPE RIS BGP updates, we determined that the hijack officially began at **07:08:57 UTC** (12:38:57 PM IST) on June 16, 2026. The initial rogue announcement was for the prefix **`95.161.64.0/20`**, a block belonging to Telegram Messenger Inc. (announced legitimately under `AS62041`). 
 
-### Sub-section: The Two Waves of the Hijack (Phase 1 vs Phase 2)
+### The Two Waves of the Hijack (Phase 1 vs Phase 2)
+
 Our temporal update analysis revealed that the BGP hijack was not a single static event, but progressed in **two distinct waves**:
 
 ```mermaid
@@ -81,7 +82,7 @@ flowchart TD
    To counter this, Telegram network operators launched a rapid mitigation response: they began announcing **more-specific `/23` and `/24` sub-prefixes** of their own IP space to override RCom's announcements and pull traffic back to Telegram. Because routers always prefer the more-specific route length, this mitigation successfully drew traffic back, and the volume of misdirected traffic dropped back to near-zero by **08:21 UTC**.
 2. **Phase 2 (The Rogue Sub-Prefix Injection):** At **16:14:19 UTC**, RCom's announcements expanded to include the more-specific `/23` and `/24` sub-prefixes themselves. In a route leak context, this suggests RCom network operators updated their domestic null-route configurations to block Telegram's new sub-prefixes locally (to keep up with Telegram's mitigations), but because the export filters on their external BGP peerings were still missing, these newly configured static routes immediately leaked to global peers. This bypassed Telegram's mitigation and caused a second, much larger spike in global misdirected traffic. This wave remained active until **20:10 UTC**, which matches Kentik's traffic measurements and our BGP database analysis showing that the rogue `/24` announcements stopped and resolved at `20:06` UTC.
 
-### Sub-section: Parent Prefix vs. Sub-Prefix Overlap Analysis
+### Parent Prefix vs. Sub-Prefix Overlap Analysis
 To find all affected prefixes, we wrote a Python script to mathematically check overlaps between the prefixes announced by RCom (`AS18101`) and Telegram's registered IP prefixes. RCom announced **34 unique prefixes** that overlapped with Telegram's space. These 34 prefixes mapped back to **17 distinct parent prefixes** announced by Telegram:
 
 | Telegram Parent Prefix | Hijacked Prefixes Announced by RCom | Hijack Type |
@@ -175,9 +176,13 @@ Analyzing these Kentik data visualizations reveals several key insights:
     *   **Other countries:** 4.1%
     
     This geographic distribution demonstrates how BGP leaks work. RCom's upstream transits (such as FLAG Telecom and Tata Communications) failed to filter the rogue announcements and leaked them to their global peers. Consequently, a user in London (UK), Seattle (US), or Hong Kong trying to connect to Telegram had their packets sent over transits into India and dropped inside RCom's network.
+
+> **The UAE Discrepancy:** While Telegram's CEO, Pavel Durov (based in Dubai, UAE), specifically highlighted the UAE as one of the affected international regions, the country does not show up as a significant source of misdirected traffic in Kentik's global NetFlow data. This apparent discrepancy is explained by two factors:
+> 1. **Direct Local Peering:** Telegram is headquartered in Dubai, and major UAE ISPs (such as Etisalat `AS10103` and du `AS15895`) peer directly with Telegram at regional exchange points (like UAE-IX). Because local peer routes are topologically shorter and preferred over transit routes, the vast majority of UAE users' traffic went directly to Telegram's local servers and was never exposed to the leaked transit paths.
+> 2. **RPKI Route Origin Validation:** Major UAE telecom operators enforce RPKI validation. Since RCom's leaked announcements were RPKI Invalid, these ISPs dropped the routes at their borders. The connectivity issues reported in the UAE were likely restricted to smaller enterprise networks, corporate VPNs, or roaming lines that lacked direct peering or RPKI validation.
 *   **IPv6 Traffic Impact (100% route visibility, but limited service impact):** The IPv6 super-prefix `2a0a:f280::/32` had 100% route visibility. This is because Telegram does not advertise the parent `/32` block directly (it only announces `/48` sub-prefixes like `2a0a:f280:203::/48`). Since RCom was the only origin advertising the `/32` block on the global routing table, BGP peers saw no competing path for that exact prefix. However, because routers prefer more-specific routes, any network that received Telegram's legitimate `/48` route continued sending active service traffic to Telegram, while networks that only received the `/32` route diverted their traffic to RCom.
 
-### Sub-section: The IPv4/IPv6 Differential Analysis (and its limitations)
+### The IPv4/IPv6 Differential Analysis (and its limitations)
 
 A critical question in BGP leak analysis is: **What mechanism limited global propagation of the IPv4 prefixes (2% to 4% visibility) when the IPv6 super-prefix achieved 100% propagation through the same upstreams?** We compare the two scenarios, but readers should be aware that this is **not a clean A/B test** — multiple variables differ simultaneously.
 
@@ -280,7 +285,7 @@ The three direct upstream transits cleared more slowly, with Phase 2 sub-prefixe
 2. **Bharti Airtel (AS9498):** The single hijack path we observed via Airtel was for `2a0a:f280::/32` at **16:46:14 UTC** (10:16:14 PM IST).
 3. **FLAG Telecom (AS15412):** By far the slowest to react. It continued propagating announcements until **21:12:44 UTC** (2:42:44 AM IST on June 17). FLAG engineers deployed filters around **21:12:41 UTC**, sending withdrawals to their downstream peers.
 
-### Sub-section: Disaggregated Timeline for All Affected Sub-Prefixes
+### Disaggregated Timeline for All Affected Sub-Prefixes
 
 The BGP hijack progressed in two distinct waves, which also resolved at different times:
 1. **Parent Prefixes (Wave 1):** Large blocks like `95.161.64.0/20` and various `/22`s started leaking around `07:08` UTC and remained active all day until FLAG finally deployed its filters at `21:12` UTC.
@@ -361,7 +366,7 @@ To gather these BGP updates and verify the timeline, we built a python analysis 
 > [!NOTE]
 > **Data Availability:** All raw BGP datasets and prefix lists required to verify these analysis scripts are committed directly in this repository under `data/raw/` for immediate offline execution.
 
-### Sub-section: Core Technical Assumptions and Validation
+### Core Technical Assumptions and Validation
 To ensure the scientific rigour and reproducibility of this BGP routing analysis, we explicitly document the following methodology assumptions, each of which is warranted by standard network engineering operations:
 
 1. **AS-Path Clean (Normalization) Assumption:**
