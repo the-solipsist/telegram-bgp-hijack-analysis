@@ -15,6 +15,7 @@ pip-delete-this-directory.txt
 .DS_Store
 .vscode/
 .idea/
+.commandcode/
 
 # Local data (except tracked timeline JSON)
 *.json
