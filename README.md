@@ -32,7 +32,7 @@ Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/20669
 
 However, Durov appears to have confused RCom with Jio. While Jio (`AS55836`) is a highly active and modern subsidiary of RIL, RCom is a separate corporate entity that is practically defunct and insolvent. Our analysis of RIPE RIS data shows no evidence of Jio appearing as an upstream transit for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.
 
-Instead of implementing a local block for its Indian subscribers to comply with the blocking order, RCom announced BGP route updates claiming that its network was the preferred path for Telegram's global IP address blocks. Because BGP route announcements propagate globally, RCom's rogue advertisements were accepted by its international upstream transit providers and spread across the world. International user traffic destined for Telegram servers was diverted to India and dropped (blackholed), transforming a domestic government censorship order into a global outage.
+Rather than implementing a local block restricted to its domestic subscribers, RCom appears to have accidentally redistributed these static null-routes into its external eBGP sessions due to a configuration error (a route leak). Because BGP route announcements propagate globally by default, these rogue advertisements were accepted by RCom's international upstream transit providers and leaked across the world. While validating networks dropped the invalid routes, international user traffic from some non-validating downstream networks was diverted to India and dropped (blackholed). This configuration error inadvertently transformed a domestic government blocking order into localized connectivity disruptions for a small percentage of Telegram's global user base, though it fell far short of a global outage.
 
 ### Sub-section: Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
@@ -162,7 +162,7 @@ Analyzing these Kentik data visualizations reveals several key insights:
 *   **Timeline and the Two Traffic Spikes:** 
     The timeline chart (the second slide of the carousel) shows two distinct spikes in traffic misdirected to `AS18101` in India, matching our BGP state wave analysis:
     *   **Wave 1 (07:17 - 08:21 UTC):** The first traffic spike corresponds to the period immediately following the initial parent prefix hijacks. The volume of misdirected traffic rose rapidly from `07:17 UTC` onwards as RCom's advertisements propagated globally. However, this spike was brief. By `08:21 UTC`, the volume of misdirected traffic dropped to near-zero. This drop is the direct result of Telegram's counter-measure: originating more-specific `/23` and `/24` sub-prefixes. Because routers always prefer the more-specific route length, this mitigation successfully drew traffic back, and the volume of misdirected traffic dropped back to near-zero.
-    *   **Wave 2 (16:14 - 20:10 UTC):** The second, larger, and longer traffic spike began at `16:14 UTC` when those exact more-specific sub-prefixes were originated directly from `AS18101` (due to RCom updating its domestic blocklist configuration to target Telegram's mitigations, which then leaked globally due to the missing export filters). This bypassed Telegram's mitigation and caused a massive second outage. Traffic remained diverted to India until the hijacks stopped and resolved, showing a sharp drop back to normal around `20:06` to `20:10 UTC`.
+    *   **Wave 2 (16:14 - 20:10 UTC):** The second, larger, and longer traffic spike began at `16:14 UTC` when those exact more-specific sub-prefixes were originated directly from `AS18101` (due to RCom updating its domestic blocklist configuration to target Telegram's mitigations, which then leaked globally due to the missing export filters). This bypassed Telegram's mitigation and caused a second wave of localized connectivity disruptions for affected international networks. Traffic remained diverted to India until the hijacks stopped and resolved, showing a sharp drop back to normal around `20:06` to `20:10 UTC`.
 *   **Source Country Breakdown of Misdirected Traffic (India Excluded):** 
     The donut chart (the first slide of the carousel) breaks down the hijacked international traffic by average bits/s. While only a small fraction of Telegram's global traffic was misdirected, the impact was distributed globally across multiple continents:
     *   **Nepal:** 24.1% (Heavy impact due to proximity and shared cross-border transit upstreams with India)
@@ -202,7 +202,7 @@ Thus, we conclude that the IPv4 vs. IPv6 visibility gap is **consistent with RPK
 
 #### The Longest Prefix Match Nuance
 
-If the IPv6 parent prefix `2a0a:f280::/32` achieved 100% global visibility, why did it not cause a total outage for Telegram's IPv6 traffic? 
+If the IPv6 parent prefix `2a0a:f280::/32` achieved 100% global visibility, why did it not cause widespread disruption to Telegram's IPv6 traffic? 
 
 The answer lies in the **longest prefix match** rule of internet routing. Routers always prefer a more-specific route over a less-specific one. Because Telegram legitimately originates its active service prefixes as more-specific `/48` blocks (such as `2a0a:f280:203::/48` originated by `AS211157`), any network receiving Telegram's legitimate `/48` route continued to route traffic directly to Telegram, ignoring RCom's advertisement of the parent `/32` block. 
 
@@ -372,7 +372,7 @@ To ensure the scientific rigour and reproducibility of this BGP routing analysis
 
 2. **First / Last Event Timeline Assumption:**
    * **The Assumption:** The start of a prefix hijack is defined as the first BGP announcement (`type = "A"`) originating from `AS18101` matching the prefix. The resolution of the prefix hijack is defined as the last observed state change where a peer either withdraws the route (`type = "W"`) or switches its path (`RESOLVED_SWITCH`) to a legitimate origin (e.g., `AS62041`).
-   * **Why it is warranted:** A hijack remains active and visible on the global internet as long as at least one reporting BGP peer propagates the hijacked route to its neighbors. Tracking individual session state transitions ensures that the resolution timestamp captures the absolute end of the outage, rather than just the last update announcement.
+   * **Why it is warranted:** A hijack remains active and visible on the global internet as long as at least one reporting BGP peer propagates the hijacked route to its neighbors. Tracking individual session state transitions ensures that the resolution timestamp captures the absolute end of the routing disruption, rather than just the last update announcement.
 
 3. **RIPE RIS Peer Representation Assumption:**
    * **The Assumption:** The set of Route Collector peers reporting to the RIPE RIS platform provides a representative sample of global BGP table states.
@@ -386,7 +386,7 @@ To ensure the scientific rigour and reproducibility of this BGP routing analysis
 
 ## 8. Conclusion: Routing Security and the Path Forward
 
-The June 16, 2026 BGP hijack of Telegram's IP prefixes by Reliance Communications (`AS18101`) stands as a case study in routing security. It demonstrated how a localized national block order (issued under Section 69A of the IT Act due to NEET-UG paper leaks) can turn into a global outage when implemented incorrectly.
+The June 16, 2026 BGP hijack of Telegram's IP prefixes by Reliance Communications (`AS18101`) stands as a case study in routing security. It demonstrated how a localized national block order (issued under Section 69A of the IT Act due to NEET-UG paper leaks) can turn into accidental global leaks and cause localized international connectivity disruptions when implemented incorrectly without proper export filters.
 
 Our analysis of the RIPE RIS BGP updates verified the following:
 1. The hijack began at **07:08:57 UTC** on June 16, 2026, targeting `95.161.64.0/20`.
