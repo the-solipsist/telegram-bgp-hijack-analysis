@@ -1,0 +1,339 @@
+{
+  "summary": {
+    "ipv4_total_paths_count": 356,
+    "ipv4_hijacked_paths_count": 8,
+    "ipv4_legitimate_paths_count": 348,
+    "ipv6_total_paths_count": 189,
+    "ipv6_hijacked_paths_count": 189,
+    "peer_counts": {
+      "ipv4_hijacked_peers_count": 5,
+      "ipv4_legit_peers_count": 248,
+      "ipv6_hijacked_peers_count": 130
+    },
+    "overlaps": {
+      "ipv4_hijacked_vs_legit_count": 0,
+      "ipv6_hijacked_vs_ipv4_legit_count": 117,
+      "ipv6_hijacked_vs_ipv4_legit_list": [
+        513,
+        835,
+        917,
+        924,
+        1103,
+        1140,
+        1403,
+        1828,
+        2027,
+        2497,
+        3170,
+        3214,
+        3333,
+        3491,
+        4777,
+        6057,
+        6424,
+        6453,
+        6461,
+        6730,
+        6830,
+        6881,
+        8218,
+        8298,
+        8426,
+        8529,
+        8888,
+        12307,
+        12637,
+        13030,
+        13781,
+        13786,
+        14907,
+        15547,
+        15605,
+        15623,
+        17639,
+        18106,
+        20612,
+        20764,
+        20912,
+        21282,
+        21412,
+        24482,
+        24961,
+        25091,
+        25152,
+        25160,
+        25220,
+        28624,
+        28910,
+        29222,
+        29504,
+        29691,
+        34019,
+        34288,
+        34549,
+        34800,
+        34872,
+        34927,
+        35280,
+        35369,
+        35426,
+        36236,
+        36924,
+        37721,
+        38001,
+        38008,
+        41327,
+        41722,
+        44097,
+        44393,
+        45489,
+        46997,
+        47692,
+        48070,
+        49028,
+        49544,
+        50628,
+        50877,
+        51184,
+        51185,
+        51873,
+        52320,
+        56430,
+        57777,
+        58057,
+        58299,
+        59105,
+        59414,
+        59890,
+        59891,
+        61218,
+        61573,
+        62167,
+        132847,
+        133210,
+        196621,
+        197580,
+        199524,
+        199938,
+        200612,
+        202365,
+        204092,
+        205206,
+        207841,
+        207910,
+        209650,
+        209823,
+        212635,
+        213151,
+        215628,
+        263152,
+        264845,
+        271253,
+        327804,
+        328840
+      ]
+    }
+  },
+  "validator_metrics": {
+    "NTT": {
+      "asn": 2914,
+      "ipv4_legitimate_path_appearances": 9,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "Cogent": {
+      "asn": 174,
+      "ipv4_legitimate_path_appearances": 35,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "Hurricane Electric": {
+      "asn": 6939,
+      "ipv4_legitimate_path_appearances": 8,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "Telia": {
+      "asn": 1299,
+      "ipv4_legitimate_path_appearances": 10,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "GTT": {
+      "asn": 3257,
+      "ipv4_legitimate_path_appearances": 3,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "AT&T": {
+      "asn": 7018,
+      "ipv4_legitimate_path_appearances": 1,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "Deutsche Telekom": {
+      "asn": 3320,
+      "ipv4_legitimate_path_appearances": 2,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "Comcast": {
+      "asn": 7922,
+      "ipv4_legitimate_path_appearances": 0,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    },
+    "PCCW": {
+      "asn": 3491,
+      "ipv4_legitimate_path_appearances": 22,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 16
+    },
+    "Tata (Global)": {
+      "asn": 6453,
+      "ipv4_legitimate_path_appearances": 1,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 61
+    },
+    "Telefonica": {
+      "asn": 12956,
+      "ipv4_legitimate_path_appearances": 7,
+      "ipv4_hijacked_path_appearances": 0,
+      "ipv6_hijacked_path_appearances": 0
+    }
+  },
+  "flag_downstreams": {
+    "ipv4": {
+      "6908": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "19151": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "18041": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "57187": {
+        "name": "Non-Validator",
+        "count": 1
+      }
+    },
+    "ipv6": {
+      "6461": {
+        "name": "Non-Validator",
+        "count": 16
+      },
+      "6830": {
+        "name": "Non-Validator",
+        "count": 10
+      },
+      "6453": {
+        "name": "Tata (Global)",
+        "count": 61
+      },
+      "13030": {
+        "name": "Non-Validator",
+        "count": 10
+      },
+      "17639": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "24482": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "3491": {
+        "name": "PCCW",
+        "count": 16
+      },
+      "8218": {
+        "name": "Non-Validator",
+        "count": 13
+      },
+      "137409": {
+        "name": "Non-Validator",
+        "count": 4
+      },
+      "33891": {
+        "name": "Non-Validator",
+        "count": 13
+      },
+      "6908": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "199524": {
+        "name": "Non-Validator",
+        "count": 4
+      },
+      "8529": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "49544": {
+        "name": "Non-Validator",
+        "count": 3
+      },
+      "3303": {
+        "name": "Non-Validator",
+        "count": 11
+      },
+      "2497": {
+        "name": "Non-Validator",
+        "count": 4
+      },
+      "2518": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "41327": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "24961": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "41913": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "8359": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "8426": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "9009": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "4637": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "131149": {
+        "name": "Non-Validator",
+        "count": 1
+      },
+      "18041": {
+        "name": "Non-Validator",
+        "count": 3
+      },
+      "7473": {
+        "name": "Non-Validator",
+        "count": 2
+      },
+      "39386": {
+        "name": "Non-Validator",
+        "count": 1
+      }
+    }
+  }
+}

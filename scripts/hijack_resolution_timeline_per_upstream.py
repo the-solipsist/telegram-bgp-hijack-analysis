@@ -27,6 +27,8 @@ DIRECT_UPSTREAMS = {
     9498: "Bharti Airtel"
 }
 
+TELEGRAM_ASNS = {62041, 62014, 59930, 211157, 205103, 44907}
+
 def main():
     # Load and combine all updates from the prefix-specific files
     updates = []
@@ -104,13 +106,20 @@ def main():
                         prev = hijacked_sessions.pop(session_key)
                         upstream_hijacks[prev].append(
                             (timestamp, "SWITCH_TO_OTHER", target, clean_path, source))
-            else:
-                # It's announced, but not originating from 18101 (resolved to legitimate route)
+            elif path and path[-1] in TELEGRAM_ASNS:
+                # It's announced, and originating from a legitimate Telegram ASN
                 session_key = (source, target)
                 if session_key in hijacked_sessions:
                     prev = hijacked_sessions.pop(session_key)
                     upstream_hijacks[prev].append(
                         (timestamp, "RESOLVED_SWITCH", target, path, source))
+            else:
+                # Origin changed to another ASN (neither RCom nor Telegram, e.g. AS45820)
+                session_key = (source, target)
+                if session_key in hijacked_sessions:
+                    prev = hijacked_sessions.pop(session_key)
+                    upstream_hijacks[prev].append(
+                        (timestamp, "SWITCH_TO_OTHER_HIJACKER", target, path, source))
         elif utype == "W":
             session_key = (source, target)
             if session_key in hijacked_sessions:
@@ -119,7 +128,7 @@ def main():
                     (timestamp, "RESOLVED_WITHDRAWAL", target, [], source))
 
     # Print per-upstream summary
-    print("\n=== MULTI-UPSTREAM BGP HIJACK TIMELINE PROOF ===")
+    print("\n=== MULTI-UPSTREAM BGP HIJACK TIMELINE SUMMARY ===")
 
     for upstream_asn, name in DIRECT_UPSTREAMS.items():
         events = upstream_hijacks[upstream_asn]

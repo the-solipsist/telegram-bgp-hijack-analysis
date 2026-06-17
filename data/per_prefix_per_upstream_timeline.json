@@ -141,10 +141,17 @@
   },
   {
     "prefix": "2a0a:f280::/32",
-    "status": "Hijacked (FLAG=234, Airtel=1)",
+    "status": "Hijacked (Unresolved: FLAG=234, Airtel=1, F5=12)",
     "start_time": "2026-06-16T16:46:04",
     "last_announcement": "2026-06-16T20:40:09",
-    "resolution_time": "2026-06-16T20:43:54"
+    "resolution_time": "Unresolved"
+  },
+  {
+    "prefix": "2a0a:f280::/48",
+    "status": "Hijacked (Unresolved: F5=12)",
+    "start_time": "2026-06-16T18:32:53",
+    "last_announcement": "2026-06-16T18:32:55",
+    "resolution_time": "Unresolved"
   },
   {
     "prefix": "91.105.192.0/23",
