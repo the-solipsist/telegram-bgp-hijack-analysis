@@ -1,0 +1,233 @@
+[
+  {
+    "prefix": "149.154.160.0/22",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.160.0/23",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.160.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.161.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.162.0/23",
+    "status": "Hijacked (FLAG=9, Tata=2)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.162.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.163.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.164.0/22",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.164.0/23",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.164.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.165.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.166.0/23",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "149.154.166.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.167.0/24",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "149.154.168.0/22",
+    "status": "Hijacked (FLAG=2, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:19",
+    "resolution_time": "2026-06-16T16:14:19"
+  },
+  {
+    "prefix": "185.76.151.0/24",
+    "status": "Hijacked (FLAG=102, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T20:06:05",
+    "resolution_time": "2026-06-16T20:06:05"
+  },
+  {
+    "prefix": "2001:67c:4e8::/48",
+    "status": "Hijacked (FLAG=6)",
+    "start_time": "2026-06-16T07:21:32",
+    "last_announcement": "2026-06-16T07:21:33",
+    "resolution_time": "2026-06-16T07:21:33"
+  },
+  {
+    "prefix": "2001:b28:f23d::/48",
+    "status": "Hijacked (FLAG=3)",
+    "start_time": "2026-06-16T16:29:42",
+    "last_announcement": "2026-06-16T16:29:44",
+    "resolution_time": "2026-06-16T16:29:44"
+  },
+  {
+    "prefix": "2001:b28:f23f::/48",
+    "status": "Hijacked (FLAG=2)",
+    "start_time": "2026-06-16T16:30:41",
+    "last_announcement": "2026-06-16T16:30:41",
+    "resolution_time": "2026-06-16T16:30:41"
+  },
+  {
+    "prefix": "2a0a:f280::/32",
+    "status": "Hijacked (FLAG=587, Airtel=1)",
+    "start_time": "2026-06-16T16:46:04",
+    "last_announcement": "2026-06-16T20:43:35",
+    "resolution_time": "2026-06-16T20:43:35"
+  },
+  {
+    "prefix": "91.105.192.0/23",
+    "status": "Hijacked (FLAG=13, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T20:06:05",
+    "resolution_time": "2026-06-16T20:06:05"
+  },
+  {
+    "prefix": "91.108.10.0/23",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "91.108.16.0/22",
+    "status": "Hijacked (FLAG=4, Tata=2)",
+    "start_time": "2026-06-16T16:13:16",
+    "last_announcement": "2026-06-16T16:13:16",
+    "resolution_time": "2026-06-16T16:13:16"
+  },
+  {
+    "prefix": "91.108.4.0/22",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:17:27",
+    "last_announcement": "2026-06-16T07:17:42",
+    "resolution_time": "2026-06-16T07:17:42"
+  },
+  {
+    "prefix": "91.108.4.0/23",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "91.108.56.0/22",
+    "status": "Hijacked (FLAG=21, Tata=2)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T21:12:44",
+    "resolution_time": "2026-06-16T21:12:44"
+  },
+  {
+    "prefix": "91.108.56.0/23",
+    "status": "Hijacked (FLAG=6, Tata=2)",
+    "start_time": "2026-06-16T16:16:05",
+    "last_announcement": "2026-06-16T20:06:05",
+    "resolution_time": "2026-06-16T20:06:05"
+  },
+  {
+    "prefix": "91.108.6.0/23",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "91.108.8.0/22",
+    "status": "Hijacked (FLAG=9, Tata=1)",
+    "start_time": "2026-06-16T07:18:30",
+    "last_announcement": "2026-06-16T07:18:42",
+    "resolution_time": "2026-06-16T07:18:42"
+  },
+  {
+    "prefix": "91.108.8.0/23",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "95.161.64.0/20",
+    "status": "Hijacked (FLAG=9, Tata=5)",
+    "start_time": "2026-06-16T07:08:57",
+    "last_announcement": "2026-06-16T07:09:12",
+    "resolution_time": "2026-06-16T07:09:12"
+  },
+  {
+    "prefix": "95.161.64.0/21",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  },
+  {
+    "prefix": "95.161.72.0/21",
+    "status": "Hijacked (FLAG=7, Tata=2)",
+    "start_time": "2026-06-16T16:14:19",
+    "last_announcement": "2026-06-16T16:14:49",
+    "resolution_time": "2026-06-16T16:14:49"
+  }
+]

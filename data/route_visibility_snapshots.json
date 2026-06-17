@@ -1,0 +1,85 @@
+[
+  {
+    "label": "Wave 1 Peak (95.161.64.0/20)",
+    "prefix": "95.161.64.0/20",
+    "timestamp": "2026-06-16T08:30:00",
+    "total_reporting_peers": 356,
+    "hijacked_peers_count": 10,
+    "hijacked_visibility_pct": 0.028089887640449437,
+    "legitimate_peers_count": 346,
+    "legitimate_visibility_pct": 0.9719101123595506,
+    "origin_asn_distribution": {
+      "62041": 346,
+      "18101": 10
+    }
+  },
+  {
+    "label": "Wave 2 Peak (95.161.64.0/20)",
+    "prefix": "95.161.64.0/20",
+    "timestamp": "2026-06-16T16:30:00",
+    "total_reporting_peers": 356,
+    "hijacked_peers_count": 8,
+    "hijacked_visibility_pct": 0.02247191011235955,
+    "legitimate_peers_count": 348,
+    "legitimate_visibility_pct": 0.9775280898876404,
+    "origin_asn_distribution": {
+      "62041": 348,
+      "18101": 8
+    }
+  },
+  {
+    "label": "Wave 1 Peak (91.108.56.0/22)",
+    "prefix": "91.108.56.0/22",
+    "timestamp": "2026-06-16T08:30:00",
+    "total_reporting_peers": 342,
+    "hijacked_peers_count": 15,
+    "hijacked_visibility_pct": 0.043859649122807015,
+    "legitimate_peers_count": 327,
+    "legitimate_visibility_pct": 0.956140350877193,
+    "origin_asn_distribution": {
+      "62041": 327,
+      "18101": 15
+    }
+  },
+  {
+    "label": "Wave 2 Peak (91.108.56.0/22)",
+    "prefix": "91.108.56.0/22",
+    "timestamp": "2026-06-16T16:30:00",
+    "total_reporting_peers": 341,
+    "hijacked_peers_count": 13,
+    "hijacked_visibility_pct": 0.03812316715542522,
+    "legitimate_peers_count": 328,
+    "legitimate_visibility_pct": 0.9618768328445748,
+    "origin_asn_distribution": {
+      "62041": 328,
+      "18101": 13
+    }
+  },
+  {
+    "label": "Wave 2 Peak Sub-prefix (91.108.56.0/23)",
+    "prefix": "91.108.56.0/23",
+    "timestamp": "2026-06-16T16:30:00",
+    "total_reporting_peers": 374,
+    "hijacked_peers_count": 6,
+    "hijacked_visibility_pct": 0.016042780748663103,
+    "legitimate_peers_count": 368,
+    "legitimate_visibility_pct": 0.983957219251337,
+    "origin_asn_distribution": {
+      "62014": 368,
+      "18101": 6
+    }
+  },
+  {
+    "label": "IPv6 Hijack Peak (2a0a:f280::/32)",
+    "prefix": "2a0a:f280::/32",
+    "timestamp": "2026-06-16T17:00:00",
+    "total_reporting_peers": 189,
+    "hijacked_peers_count": 189,
+    "hijacked_visibility_pct": 1.0,
+    "legitimate_peers_count": 0,
+    "legitimate_visibility_pct": 0.0,
+    "origin_asn_distribution": {
+      "18101": 189
+    }
+  }
+]
