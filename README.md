@@ -97,10 +97,10 @@ To find all affected prefixes, we wrote a Python script to mathematically check 
 | **`149.154.162.0/23`** *(AS62041)* | `149.154.162.0/23`<br>`149.154.162.0/24`<br>`149.154.163.0/24`<br>`149.154.160.0/22` | Exact Match<br>Sub-prefix<br>Sub-prefix<br>Super-prefix (Less-specific) |
 | **`149.154.164.0/23`** *(AS62041)* | `149.154.164.0/23`<br>`149.154.164.0/24`<br>`149.154.165.0/24`<br>`149.154.164.0/22` | Exact Match<br>Sub-prefix<br>Sub-prefix<br>Super-prefix (Less-specific) |
 | **`149.154.164.0/22`** *(AS62041)* | `149.154.166.0/23`<br>`149.154.166.0/24`<br>`149.154.167.0/24` | Sub-prefix<br>Sub-prefix<br>Sub-prefix |
-| **`149.154.168.0/22`** *(AS62041)* | `149.154.168.0/22` | Exact Match |
-| **`185.76.151.0/24`** *(AS62041)* | `185.76.151.0/24` | Exact Match |
-| **`91.105.192.0/23`** *(AS59930)* | `91.105.192.0/23` | Exact Match |
-| **`91.108.16.0/22`** *(AS62041)* | `91.108.16.0/22` | Exact Match |
+| **`149.154.168.0/22`** *(AS62014)* | `149.154.168.0/22` | Exact Match |
+| **`185.76.151.0/24`** *(AS211157)* | `185.76.151.0/24` | Exact Match |
+| **`91.105.192.0/23`** *(AS211157)* | `91.105.192.0/23` | Exact Match |
+| **`91.108.16.0/22`** *(AS62014)* | `91.108.16.0/22` | Exact Match |
 | **`2a0a:f280:203::/48`** *(AS211157)*| `2a0a:f280::/32` | Super-prefix (Less-specific) |
 | **`2001:67c:4e8::/48`** *(AS62041)* | `2001:67c:4e8::/48` | Exact Match |
 | **`2001:b28:f23d::/48`** *(AS59930)* | `2001:b28:f23d::/48` | Exact Match |
@@ -153,11 +153,9 @@ By querying RIPE Stat's `bgp-state` API, we quantified the route distribution am
 
 To visualize and quantify the actual impact on user traffic, we analyze aggregate flow measurements compiled by global internet analysis firm **Kentik**. The routing state changes described above translated directly into traffic shifts, which Kentik captured and broke down by volume (bits/s) and geographical origin.
 
-````carousel
 ![Donut chart of misdirected Telegram traffic by source country (India excluded)](./images/kentik_traffic_breakdown_donut.jpg)
-<!-- slide -->
+
 ![Timeline chart showing the volume of hijacked traffic to AS18101 and the two waves of hijack activity](./images/kentik_traffic_breakdown_timeline.jpg)
-````
 *Image Credits: [Doug Madory / Kentik](https://x.com/DougMadory/status/2067048607858016416).*
 
 Analyzing these Kentik data visualizations reveals several key insights:
