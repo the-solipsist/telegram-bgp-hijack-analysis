@@ -15,6 +15,7 @@
 5. When Did It Start Getting Resolved?
 6. When Can We Say It Finally Got Resolved?
 7. Methodology: Gathering the Evidentiary Proof
+    * Sub-section: Core Technical Assumptions and Validation
 8. Conclusion: Routing Security and the Path Forward
 
 ---
@@ -366,6 +367,25 @@ To gather these BGP updates and verify the timeline, we built a python analysis 
 
 > [!IMPORTANT]
 > **Data Directory Setup:** The raw JSON datasets used by these analysis scripts are gitignored to prevent storing large payloads (~46MB) in version control. After cloning the repository, you **MUST** run the download scripts (`scripts/download_34_telegram_prefix_bgp_updates.py` and `scripts/download_as18101_updates_and_identify_hijacked_prefixes.py`) first to populate the `data/raw/` directory before executing the analysis scripts.
+
+### Sub-section: Core Technical Assumptions and Validation
+To ensure the scientific rigour and reproducibility of this BGP routing analysis, we explicitly document the following methodology assumptions, each of which is warranted by standard network engineering operations:
+
+1. **AS-Path Clean (Normalization) Assumption:**
+   * **The Assumption:** Consecutively identical ASNs in the `AS_PATH` attribute are collapsed (e.g., `[18101, 18101, 18101]` -> `[18101]`) to represent unique AS hops. The ASN immediately preceding RCom's origin ASN (`AS18101`) in the collapsed path is assumed to be the direct upstream transit neighbor that accepted and propagated the advertisement.
+   * **Why it is warranted:** AS path prepending is a standard BGP traffic engineering mechanism used to make a route less attractive to peers. Collapsing duplicates does not alter the topological relationships between networks; it accurately identifies the direct peer-to-peer peering interface through which the route entered the global table.
+
+2. **First / Last Event Timeline Assumption:**
+   * **The Assumption:** The start of a prefix hijack is defined as the first BGP announcement (`type = "A"`) originating from `AS18101` matching the prefix. The resolution of the prefix hijack is defined as the last observed state change where a peer either withdraws the route (`type = "W"`) or switches its path (`RESOLVED_SWITCH`) to a legitimate origin (e.g., `AS62041`).
+   * **Why it is warranted:** A hijack remains active and visible on the global internet as long as at least one reporting BGP peer propagates the hijacked route to its neighbors. Tracking individual session state transitions ensures that the resolution timestamp captures the absolute end of the outage, rather than just the last update announcement.
+
+3. **RIPE RIS Peer Representation Assumption:**
+   * **The Assumption:** The set of Route Collector peers reporting to the RIPE RIS platform provides a representative sample of global BGP table states.
+   * **Why it is warranted:** RIPE RIS (along with Route Views) is the industry-standard repository for global BGP archival data, collecting routes from hundreds of diverse peers (Tier-1s, Tier-2s, IXPs, and stub networks) across multiple continents. While not capturing every single router in existence, it is statistically accepted as a representative proxy for global routing visibility.
+
+4. **RPKI Status Inferences:**
+   * **The Assumption:** The RPKI Route Origin Validation labels (Invalid vs. Unknown) in our analysis are inferred deterministically based on Telegram's published ROAs at the time of the event, rather than by querying live validating route servers in real time.
+   * **Why it is warranted:** An ROA cryptographically defines the authorized origin ASN and maximum prefix length. Route validation is a deterministic process: any advertisement from an unauthorized ASN (like `AS18101`) for a prefix covered by a valid ROA is mathematically invalid. Since Telegram's ROAs are public and static, these inferences are mathematically robust.
 
 ---
 

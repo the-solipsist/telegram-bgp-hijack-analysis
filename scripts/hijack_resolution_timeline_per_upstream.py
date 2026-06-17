@@ -3,7 +3,7 @@
 # 1. 95.161.64.0/20: The first IPv4 prefix hijacked (marking the start of Wave 1 at 07:08:57 UTC).
 # 2. 91.108.56.0/22: The last IPv4 prefix hijacked/announced (marking the end/resolution of Phase 1/2).
 # 3. 2a0a:f280::/32: The IPv6 parent prefix used as the validation control group.
-# For analyzing all 33 hijacked prefixes, run scripts/per_prefix_hijack_lifecycle_all_upstreams.py.
+# For analyzing all 34 hijacked prefixes, run scripts/per_prefix_hijack_lifecycle_all_upstreams.py.
 #
 # Tracks all 3 direct upstreams (FLAG AS15412, Tata AS4755, Airtel AS9498)
 # and produces per-upstream resolution timestamps.

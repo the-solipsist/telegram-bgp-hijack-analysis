@@ -9,7 +9,7 @@ if not os.path.exists(file_path):
     print(f"Updates file missing at {file_path}! Please run scripts/download_as18101_updates_and_identify_hijacked_prefixes.py first.")
     exit(1)
 
-# The list of 33 unique hijacked prefixes identified during overlap analysis
+# The list of 34 unique hijacked prefixes identified during overlap analysis
 hijacked_prefixes = {
     "149.154.160.0/22", "149.154.160.0/23", "149.154.160.0/24", "149.154.161.0/24",
     "149.154.162.0/23", "149.154.162.0/24", "149.154.163.0/24", "149.154.164.0/22",
