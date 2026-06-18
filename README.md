@@ -5,19 +5,20 @@
 *This analysis is a joint authorship. The data pipeline execution, BGP routing verification scripts, and drafts were developed by Gemini 3.5 Flash, MiniMax M3, and DeepSeek v4 Flash under my direction, fact-checking guidance, and policy framing.*
 
 ## Table of Contents
-1. Introduction: The NEET-UG Paper Leak, the 69A IT Act Block, and the Durov Accusation
-    * How a Domestic Block Became a Global Route Leak
-2. When Did All This Begin? What Telegram IP Prefixes Were Affected?
-    * The Two Waves of the Hijack (Phase 1 vs Phase 2)
-    * Parent Prefix vs. Sub-Prefix Overlap Analysis
-3. Which Networks Were Affected?
-4. How Vast Was the Problem at Its Peak?
-5. When Did It Start Getting Resolved?
-6. When Can We Say It Finally Got Resolved?
-7. Methodology: BGP Path Reconstruction and Analysis
-    * Core Technical Assumptions and Validation
-8. The Secondary Tata Teleservices Leak (AS45820)
-9. Conclusion: Routing Security and the Path Forward
+
+- [1. Introduction: The NEET-UG Paper Leak, the 69A IT Act Block, and the Durov Accusation](#1-introduction-the-neet-ug-paper-leak-the-69a-it-act-block-and-the-durov-accusation)
+  - [How a Domestic Block Became a Global Route Leak](#how-a-domestic-block-became-a-global-route-leak)
+- [2. When Did All This Begin? What Telegram IP Prefixes Were Affected?](#2-when-did-all-this-begin-what-telegram-ip-prefixes-were-affected)
+  - [The Two Waves of the Hijack (Phase 1 vs Phase 2)](#the-two-waves-of-the-hijack-phase-1-vs-phase-2)
+  - [Parent Prefix vs. Sub-Prefix Overlap Analysis](#parent-prefix-vs-sub-prefix-overlap-analysis)
+- [3. Which Networks Were Affected?](#3-which-networks-were-affected)
+- [4. How Vast Was the Problem at Its Peak?](#4-how-vast-was-the-problem-at-its-peak)
+- [5. When Did It Start Getting Resolved?](#5-when-did-it-start-getting-resolved)
+- [6. When Can We Say It Finally Got Resolved?](#6-when-can-we-say-it-finally-got-resolved)
+- [7. Methodology: BGP Path Reconstruction and Analysis](#7-methodology-bgp-path-reconstruction-and-analysis)
+  - [Core Technical Assumptions and Validation](#core-technical-assumptions-and-validation)
+- [8. The Secondary Tata Teleservices Leak (AS45820)](#8-the-secondary-tata-teleservices-leak-as45820)
+- [9. Conclusion: Routing Security and the Path Forward](#9-conclusion-routing-security-and-the-path-forward)
 
 ---
 
@@ -31,7 +32,7 @@ Under Section 69A of the IT Act, MEIT directs domestic internet service provider
 
 Telegram's CEO, Pavel Durov, [publicly accused](https://x.com/durov/status/2066945969854234977) Reliance Communications (operating under ASN 18101 / RCom) of BGP hijacking at 23:38 IST (18:08 UTC) on June 16, 2026. Durov pointed out a potential conflict of interest, noting that Meta (the parent company of WhatsApp, Telegram's primary competitor) holds a substantial stake in Jio, a digital subsidiary of Reliance Industries Limited (RIL). 
 
-However, Durov appears to have confused RCom with Jio. While Jio (which operates multiple ASes, including `AS55836`) is a highly active and modern subsidiary of RIL, RCom is a separate corporate entity that is practically defunct and insolvent. Our analysis of RIPE RIS data found no evidence of any Jio ASN appearing as an upstream transit for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.
+However, Durov appears to have confused RCom with Jio. While Jio (which operates multiple ASes, including `AS55836`) is a highly active and modern subsidiary of RIL, RCom is a separate corporate entity that is practically defunct and insolvent. Due to RCom's ongoing insolvency proceedings and the partial sale of its assets, it is unclear which entity or operator (the insolvency resolution professional, a buyer of specific assets, or a contracted network operations team) was actually managing `AS18101` at the time of the incident. We use "RCom" throughout as a convenient label for the operator of `AS18101`, but the identity of the party responsible for the route leak is unknown. Our analysis of RIPE RIS data found no evidence of any Jio ASN appearing as an upstream transit for any of the 34 hijacked Telegram prefixes; Jio's BGP path observations in our dataset involve only RCom's own legitimate prefixes.
 
 Rather than implementing a local block restricted to its domestic subscribers, RCom appears to have accidentally redistributed these static null-routes into its external eBGP sessions due to a configuration error (a route leak). Because BGP route announcements propagate globally by default, these rogue advertisements were accepted by RCom's international upstream transit providers and leaked across the world. While validating networks dropped the invalid routes, international user traffic from some non-validating downstream networks was diverted to India and dropped (blackholed). This configuration error inadvertently transformed a domestic government blocking order into localized connectivity disruptions for a small percentage of Telegram's global user base, though it fell far short of a global outage.
 
@@ -42,6 +43,8 @@ Pavel Durov's public accusation that RCom's action was "intentional sabotage" li
 Indeed, the incident is a classic illustration of [Hanlon's razor](https://en.wikipedia.org/wiki/Hanlon%27s_razor): *"Never attribute to malice that which can be adequately explained by stupidity (or incompetence/ignorance)."* 
 
 While standard web blocking in India is typically implemented at the DNS or application layers (via DNS poisoning, SNI filtering, or HTTP Host header inspection, as documented by Saini and by Singh, Grover, and Bansal), an operator can also implement blocks at the routing/IP layer by configuring "blackhole" or null routes for the target's IP prefixes. In this case, RCom chose to use static null routes (routing Telegram's IP blocks to a discard interface like `null0`) and redistributed these routes internally to its domestic routers so that subscribers' requests were dropped.
+
+A companion RIPE Atlas measurement campaign (106 traceroutes across 15 ISPs, documented in `atlas_investigation.md`) confirms routing-layer blocking at every ISP with viable probe data — packets are consistently dropped at each ISP's network border, consistent with BGP null routes. This includes ISPs that OONI classified as "DNS blocking" (Airtel, Jio, Excitel, ACT), showing that both routing-layer and DNS-layer blocking are active simultaneously.
 
 Routing-layer blocking via static null routes does not appear to be standard practice among Indian ISPs. The Singh, Grover, and Bansal study — which documents the common blocking methods employed in India — does not identify BGP-level blackhole routing among them. The fact that two separate ISPs (RCom and Tata Teleservices) independently configured null routes for the same target and both leaked them globally, assuming (as seems likely) that the route leaks were unintentional, suggests unfamiliarity with the approach.
 
@@ -54,6 +57,10 @@ Telegram blocking remains widespread in India as of June 18, 2026. Data from the
 | HTTP-level blocking | Tata Teleservices (AS17762), Vodafone Idea (AS55410), NKN (AS55824) |
 
 Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements to have successfully implemented routing-layer blocking without leaking globally.
+
+> **Note on access medium**: OONI probes run on both Android (mobile data) and desktop (wired broadband). The table above does not distinguish which access method produced each result. Dual-service ISPs — Jio, BSNL, Airtel, Vodafone Idea — operate both wired and mobile networks and may apply blocks differently on each. RIPE Atlas measurements (see below) cover only wired broadband. Mobile-side OONI measurements run without Private DNS on June 18 reveal additional detail:
+> - **Jio mobile**: DNS returns a Jio-owned IP (`49.44.79.236`) for `web.telegram.org` — DNS poisoning on top of routing-layer blocking.
+> - **Vi mobile**: DNS returns no data (`android_dns_cache_no_data`) for `web.telegram.org` — DNS-level blocking in addition to routing-layer blocking. Facebook Messenger control test succeeded, confirming the block is Telegram-specific.
 
 However, if the ISP's external BGP export policies (route-maps) are misconfigured or fail to filter these newly redistributed static routes, the router will advertise them to external eBGP peers and upstream transits. As I noted in my [thread](https://x.com/pranesh/status/2066948164025008343), RCom leaked the hijack to the global internet. The underlying cause was likely RCom trying to redirect Telegram traffic internally within India to comply with the Section 69A blocking order, but failing to apply proper export filters on their external sessions. This is exactly what happened: instead of keeping the blackhole routes internal to drop local traffic, RCom redistributed them into its external BGP sessions, announcing to the entire internet that `AS18101` was the origin for Telegram's prefixes.
 
@@ -100,7 +107,7 @@ To find all affected prefixes, we wrote a Python script to mathematically check 
 | **`185.76.151.0/24`** *(AS211157)* | `185.76.151.0/24` | Exact Match |
 | **`91.105.192.0/23`** *(AS211157)* | `91.105.192.0/23` | Exact Match |
 | **`91.108.16.0/22`** *(AS62014)* | `91.108.16.0/22` | Exact Match |
-| **`2a0a:f280:203::/48`** *(AS211157)*| `2a0a:f280::/32`<br>`2a0a:f280::/48` | Super-prefix (Less-specific)<br>Sub-prefix |
+| **`2a0a:f280:203::/48`** *(AS211157)*| `2a0a:f280::/32`<br>`2a0a:f280::/48` | Super-prefix (Less-specific)<br>Sibling prefix |
 | **`2001:67c:4e8::/48`** *(AS62041)* | `2001:67c:4e8::/48` | Exact Match |
 | **`2001:b28:f23d::/48`** *(AS59930)* | `2001:b28:f23d::/48` | Exact Match |
 | **`2001:b28:f23f::/48`** *(AS62014)* | `2001:b28:f23f::/48` | Exact Match |
@@ -253,6 +260,8 @@ While these observations are **consistent with** RPKI ROV containing the hijack,
    Outbound prefix-lists and Internet Routing Registry (IRR) filters are historically more aggressively maintained and strictly enforced for IPv4 than for IPv6. The fact that Tata (`AS6453`) and PCCW (`AS3491`) accepted RCom's IPv6 prefix but not its IPv4 prefix could be explained by differing transit export policies or IRR validation differences between the two protocols, rather than RPKI.
 
 Ultimately, while the empirical BGP path data provides strong correlational support that RPKI Route Origin Validation played a role in protecting the global internet from RCom's route leak, the lack of direct control-plane validation measurements on individual routers means we present RPKI's role as a well-supported hypothesis rather than a measured conclusion.
+
+> **Additional caveat — ROV bypass mechanisms**: The RPKI analysis above assumes that Route Origin Validation, when deployed, universally blocks routes from unauthorized origins. In practice, ROV can be bypassed by certain route attributes and provider-specific policies. Network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) has documented that routes carrying the [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666) may circumvent ROV at some providers, and that long prefixes can bypass ROV where providers apply IRR-only filtering for more-specific routes ([CHI-NOG 13 presentation](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf)). Network analyst [Anurag Bhatia (Hurricane Electric)](https://x.com/anurag_bhatia/status/2067553124735492443) hypothesized that the secondary AS45820 leak may have carried this community (see [§8](#8-the-secondary-tata-teleservices-leak-as45820)). This is an additional confound: RPKI's protective effect is not absolute and depends on provider-specific ROV enforcement. As with the other confounders, this is a qualitative caveat — we lack direct community-attribute data from RIPE RIS to confirm the mechanism in this incident.
 
 ---
 
@@ -424,6 +433,7 @@ The secondary leak by Tata Teleservices shares the identical root cause and stru
 1.  **Block Order Implementation**: To block Telegram domestically under Section 69A of the IT Act, Tata Teleservices network operators configured static "null" or blackhole routes for Telegram's parent blocks (including `2a0a:f280::/32`) on their domestic edge routers.
 2.  **Export Filter Failure**: Because Tata Teleservices failed to configure appropriate export filters on their external BGP peerings (specifically with F5 Networks `AS35280` at regional exchange points), these newly created static routes immediately leaked to their global peers.
 3.  **RPKI Ineffectiveness**: Since Telegram does not publish an ROA for the parent IPv6 block `2a0a:f280::/32`, the leaked route's RPKI validation status was **RPKI Unknown**. This allowed it to propagate uncontested across the global internet.
+4.  **Hypothesized BLACKHOLE community mechanism**: Network analyst [Anurag Bhatia (Hurricane Electric)](https://x.com/anurag_bhatia/status/2067553124735492443) hypothesized that AS45820's route leak may have used the [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666) — a well-known BGP community that signals receiving routers to discard traffic towards the tagged prefix. If confirmed, this would differ from RCom's static null-route mechanism, representing an intentional signaling of blackholing rather than an accidental redistribution. Critically, network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) has documented that BLACKHOLE-tagged routes can bypass RPKI Route Origin Validation at providers that honor the community without also performing ROV, and that long-prefix routes may circumvent ROV where providers apply IRR-only filtering instead of ROV ([CHI-NOG 13 presentation](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf)). However, our RIPE RIS data does not preserve community attributes for these paths, and both Bhatia and Herdes described the mechanism in general terms rather than confirming its application in this specific incident. The mechanism remains unconfirmed but is noted as a plausible explanation for the leak's persistence and its distinction from RCom's leak.
 
 This secondary leak highlights the systemic risk of national web blocking orders. When multiple eyeball ISPs are forced to implement hasty blocking configurations without strict BGP export policies, it increases the probability of multiple independent route leaks propagating globally.
 

@@ -1,0 +1,1003 @@
+{
+  "annotations": {
+    "architecture": "arm64",
+    "engine_name": "ooniprobe-engine",
+    "engine_version": "3.29.0",
+    "flavor": "ooniprobe-android",
+    "go_version": "go1.24.12",
+    "installer_store": "",
+    "network_type": "mobile",
+    "ooni_run_link_id": "",
+    "origin": "ooni-run",
+    "os_version": "36",
+    "platform": "android",
+    "vcs_modified": "",
+    "vcs_revision": "",
+    "vcs_time": "",
+    "vcs_tool": ""
+  },
+  "data_format_version": "0.2.0",
+  "extensions": {
+    "dnst": 0,
+    "httpt": 0,
+    "netevents": 0,
+    "tcpconnect": 0,
+    "tlshandshake": 0,
+    "tunnel": 0
+  },
+  "input": null,
+  "measurement_start_time": "2026-06-18 10:54:51",
+  "probe_asn": "AS38266",
+  "probe_cc": "IN",
+  "probe_ip": "127.0.0.1",
+  "probe_network_name": "Vodafone Idea Ltd. (VIL)",
+  "report_id": "20260618T105555Z_telegram_IN_38266_n4_K4P9ommKxwSnhSv3",
+  "resolver_asn": "AS0",
+  "resolver_ip": "64:ff9b::2a69:36ee",
+  "resolver_network_name": "",
+  "software_name": "ooniprobe-android",
+  "software_version": "6.0.2",
+  "test_keys": {
+    "agent": "redirect",
+    "failed_operation": null,
+    "failure": null,
+    "network_events": [
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 0.00025375
+      },
+      {
+        "failure": null,
+        "operation": "resolve_start",
+        "t": 0.000355365
+      },
+      {
+        "failure": "android_dns_cache_no_data",
+        "operation": "resolve_done",
+        "t": 0.053477969
+      },
+      {
+        "failure": "android_dns_cache_no_data",
+        "operation": "http_transaction_done",
+        "t": 0.053560208
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 0.00028224
+      },
+      {
+        "address": "149.154.175.50:80",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 15.001884369
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 15.001986244
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 0.000253698
+      },
+      {
+        "address": "149.154.175.50:443",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 15.007554682
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 15.007786557
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 0.053721146
+      },
+      {
+        "address": "149.154.167.51:80",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 15.054309682
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 15.054406661
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 15.013787442
+      },
+      {
+        "address": "149.154.175.100:80",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 30.014219103
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 30.014314624
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 15.009997546
+      },
+      {
+        "address": "149.154.167.51:443",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 30.014539364
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 30.014589468
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 15.054800619
+      },
+      {
+        "address": "149.154.175.100:443",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 30.055912072
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 30.055964364
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 30.014723947
+      },
+      {
+        "address": "149.154.167.91:80",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 45.015247691
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 45.015261389
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 30.014690197
+      },
+      {
+        "address": "149.154.167.91:443",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 45.015248212
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 45.015389931
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 30.056133426
+      },
+      {
+        "address": "149.154.171.5:80",
+        "failure": "generic_timeout_error",
+        "operation": "connect",
+        "proto": "tcp",
+        "t": 45.056885764
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 45.056910712
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 45.056979566
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 60.00164404
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 45.015535452
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 60.001785498
+      },
+      {
+        "failure": null,
+        "operation": "http_transaction_start",
+        "t": 45.015308577
+      },
+      {
+        "failure": "generic_timeout_error",
+        "operation": "http_transaction_done",
+        "t": 60.001872321
+      }
+    ],
+    "queries": [
+      {
+        "answers": null,
+        "engine": "system",
+        "failure": "android_dns_cache_no_data",
+        "hostname": "web.telegram.org",
+        "query_type": "A",
+        "resolver_address": "",
+        "resolver_hostname": null,
+        "resolver_port": null,
+        "t": 0.053477969,
+        "tags": null
+      },
+      {
+        "answers": null,
+        "engine": "system",
+        "failure": "android_dns_cache_no_data",
+        "hostname": "web.telegram.org",
+        "query_type": "AAAA",
+        "resolver_address": "",
+        "resolver_hostname": null,
+        "resolver_port": null,
+        "t": 0.053477969,
+        "tags": null
+      }
+    ],
+    "requests": [
+      {
+        "failure": "android_dns_cache_no_data",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "web.telegram.org",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "web.telegram.org"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "GET",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "https://web.telegram.org/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 0.053560208,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.175.50/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 15.001986244,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.175.50:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 15.007786557,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.167.51/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 15.054406661,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.175.100/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 30.014314624,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.167.51:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 30.014589468,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.175.100:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 30.055964364,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.167.91/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 45.015261389,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.167.91:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 45.015389931,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.171.5/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 45.056910712,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://95.161.76.100:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 60.00164404,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://95.161.76.100/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 60.001785498,
+        "tags": null
+      },
+      {
+        "failure": "generic_timeout_error",
+        "request": {
+          "body": "",
+          "body_is_truncated": false,
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Host": "[scrubbed]",
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+          },
+          "headers_list": [
+            [
+              "Accept",
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            ],
+            [
+              "Accept-Language",
+              "en-US,en;q=0.9"
+            ],
+            [
+              "Host",
+              "[scrubbed]"
+            ],
+            [
+              "User-Agent",
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.10 Safari/605.1.1"
+            ]
+          ],
+          "method": "POST",
+          "tor": {
+            "exit_ip": null,
+            "exit_name": null,
+            "is_tor": false
+          },
+          "url": "http://149.154.171.5:443/",
+          "x_transport": "tcp"
+        },
+        "response": {
+          "body": "",
+          "body_is_truncated": false,
+          "code": 0,
+          "headers": {},
+          "headers_list": []
+        },
+        "t": 60.001872321,
+        "tags": null
+      }
+    ],
+    "tcp_connect": [
+      {
+        "ip": "149.154.175.50",
+        "port": 80,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 15.001884369,
+        "tags": null
+      },
+      {
+        "ip": "149.154.175.50",
+        "port": 443,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 15.007554682,
+        "tags": null
+      },
+      {
+        "ip": "149.154.167.51",
+        "port": 80,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 15.054309682,
+        "tags": null
+      },
+      {
+        "ip": "149.154.175.100",
+        "port": 80,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 30.014219103,
+        "tags": null
+      },
+      {
+        "ip": "149.154.167.51",
+        "port": 443,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 30.014539364,
+        "tags": null
+      },
+      {
+        "ip": "149.154.175.100",
+        "port": 443,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 30.055912072,
+        "tags": null
+      },
+      {
+        "ip": "149.154.167.91",
+        "port": 80,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 45.015247691,
+        "tags": null
+      },
+      {
+        "ip": "149.154.167.91",
+        "port": 443,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 45.015248212,
+        "tags": null
+      },
+      {
+        "ip": "149.154.171.5",
+        "port": 80,
+        "status": {
+          "failure": "generic_timeout_error",
+          "success": false
+        },
+        "t": 45.056885764,
+        "tags": null
+      }
+    ],
+    "telegram_http_blocking": true,
+    "telegram_tcp_blocking": false,
+    "telegram_web_failure": "android_dns_cache_no_data",
+    "telegram_web_status": "blocked",
+    "tls_handshakes": null
+  },
+  "test_name": "telegram",
+  "test_runtime": 60.001960759,
+  "test_start_time": "2026-06-18 10:54:51",
+  "test_version": "0.3.1"
+}
