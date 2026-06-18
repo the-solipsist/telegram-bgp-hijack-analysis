@@ -1,4 +1,4 @@
-# An Anatomy of a BGP Hijack: How Reliance Communications (AS18101) Hijacked Telegram and How We Proved It
+# An Anatomy of a BGP Hijack: How Reliance Communications (AS18101) Hijacked Telegram
 
 **Authors:** Gemini 3.5 Flash, MiniMax M3, DeepSeek v4 Flash, & Pranesh Prakash
 
@@ -39,7 +39,7 @@ Rather than implementing a local block restricted to its domestic subscribers, R
 
 ### Censorship Leak: Policy Failure vs. Intentional Sabotage (The "Fat Finger" Debate)
 
-Pavel Durov's public accusation that RCom's action was "intentional sabotage" linked to corporate competition generated massive media attention. However, BGP routing experts and network operators—including [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/), [Doug Madory (Kentik)](https://x.com/DougMadory/status/2067048607858016416?s=20), and myself in a [thread](https://x.com/pranesh/status/2066948164025008343)—quickly pointed to a more mundane yet equally dangerous culprit: a **route leak** caused by a "fat finger" policy configuration mistake.
+Pavel Durov's public accusation that RCom's action was "intentional sabotage" linked to corporate competition generated massive media attention. However, BGP routing experts and network operators—including [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/) and [Doug Madory (Kentik)](https://x.com/DougMadory/status/2067048607858016416?s=20)—quickly identified a more mundane yet equally dangerous culprit: a **route leak** caused by a "fat finger" policy configuration mistake. I independently arrived at the same conclusion in my [thread](https://x.com/pranesh/status/2066948164025008343).
 
 Indeed, the incident is a classic illustration of [Hanlon's razor](https://en.wikipedia.org/wiki/Hanlon%27s_razor): *"Never attribute to malice that which can be adequately explained by stupidity (or incompetence/ignorance)."* 
 
@@ -68,16 +68,6 @@ By analyzing RIPE RIS BGP updates, we determined that the hijack officially bega
 ### The Two Waves of the Hijack (Phase 1 vs Phase 2)
 
 Our temporal update analysis revealed that the BGP hijack was not a single static event, but progressed in **two distinct waves**:
-
-```mermaid
-flowchart TD
-    Phase1["Phase 1: Parent Prefix Hijack (07:08:57 UTC)<br/>- Targets parent /20 and /22 prefixes<br/>- Propagates via upstreams like FLAG & Tata"]
-    
-    Phase2["Phase 2: Sub-Prefix Injection (16:14:19 UTC)<br/>- Injects more-specific /23 and /24 sub-prefixes<br/>- Bypasses standard routing filters via prefix length"]
-    
-    Phase1 -->|Telegram Counter-Announcements| Phase2
-```
-
 1. **Phase 1 (The Parent Hijacks & Telegram's Immediate Counter):** The initial hijack of the parent prefix `95.161.64.0/20` started at `07:08:57` UTC. The RIPE RIS BGP updates confirm a staggered start: the other parent prefixes (including `91.108.56.0/22`, `91.108.8.0/22`, `91.108.4.0/22`, `149.154.164.0/23`, `149.154.164.0/22`, `149.154.162.0/23`, `149.154.160.0/23`, `149.154.160.0/22`, `149.154.166.0/23`) began propagating about 10 minutes later, starting between `07:17:27` and `07:18:30` UTC. Aggregate traffic data from Kentik shows that misdirected traffic peaked between **07:17 and 08:21 UTC**. 
 
    To counter this, Telegram network operators launched a rapid mitigation response: they began announcing **more-specific `/23` and `/24` sub-prefixes** of their own IP space to override RCom's announcements and pull traffic back to Telegram. Because routers always prefer the more-specific route length, this mitigation successfully drew traffic back, and the volume of misdirected traffic dropped back to near-zero by **08:21 UTC**.
