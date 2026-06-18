@@ -26,20 +26,41 @@ def run_rpki_analysis() -> None:
     }
 
     raw_data: Dict[str, List[Dict[str, Any]]] = {}
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(repo_root, "data", "raw")
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
 
     # Fetch data
     for label, (prefix, ts) in prefixes_to_test.items():
-        url = f"https://stat.ripe.net/data/bgp-state/data.json?resource={prefix}&timestamp={ts}"
-        print(f"Querying bgp-state for {label} ({prefix}) at {ts}...")
-        try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req) as response:
-                data = json.loads(response.read().decode())
-            raw_data[label] = data.get("data", {}).get("bgp_state", [])
-            print(f"  Retrieved {len(raw_data[label])} BGP state entries.")
-        except Exception as e:
-            print(f"  Error: {e}")
-            raw_data[label] = []
+        safe_name = prefix.replace("/", "_").replace(":", "_")
+        cache_path = os.path.join(data_dir, f"bgp_state_{safe_name}_peak.json")
+
+        if os.path.exists(cache_path):
+            print(f"Reading cached bgp-state for {label} ({prefix}) from {cache_path}...")
+            try:
+                with open(cache_path, "r") as f:
+                    data = json.load(f)
+            except Exception as e:
+                print(f"  Error reading cache {cache_path}: {e}")
+                data = {}
+        else:
+            url = f"https://stat.ripe.net/data/bgp-state/data.json?resource={prefix}&timestamp={ts}"
+            print(f"Querying bgp-state for {label} ({prefix}) at {ts}...")
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                with urllib.request.urlopen(req) as response:
+                    data = json.loads(response.read().decode())
+                # Cache the raw response
+                with open(cache_path, "w") as f:
+                    json.dump(data, f, indent=2)
+                print(f"  Saved raw response to {cache_path}")
+            except Exception as e:
+                print(f"  Error: {e}")
+                data = {}
+
+        raw_data[label] = data.get("data", {}).get("bgp_state", [])
+        print(f"  Loaded {len(raw_data[label])} BGP state entries.")
 
     # Analysis results dictionary
     analysis: Dict[str, Any] = {}
@@ -164,7 +185,6 @@ def run_rpki_analysis() -> None:
     }
 
     # Save to json file
-    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_path = os.path.join(repo_root, "data", "rpki_enforcement_analysis.json")
     with open(output_path, "w") as f:
         json.dump(analysis, f, indent=2)

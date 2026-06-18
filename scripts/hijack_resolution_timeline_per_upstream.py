@@ -152,6 +152,8 @@ def main():
         if resolutions:
             lr = resolutions[-1]
             print(f"  Last resolution: {lr[0]} UTC (event: {lr[1]}, prefix: {lr[2]})")
+        else:
+            print("  Last resolution: Unresolved")
 
     # Cross-upstream summary
     print("\n=== CROSS-UPSTREAM SUMMARY ===")

@@ -1,3 +1,12 @@
+# Processes the raw update data for all 35 hijacked subnets to calculate their start and stop times per upstream.
+# Generates the processed timeline output file: data/per_prefix_per_upstream_timeline.json
+#
+# NOTE ON UNRESOLVED TRACKING: When a peer switches from a hijack ASN (AS18101 or AS45820)
+# to a non-Telegram, non-hijack origin (e.g. an arbitrary third-party ASN), the peer is popped
+# from active hijack tracking (hijacked_peers) but is intentionally NOT removed from unresolved_peers.
+# This ensures that the prefix remains flagged as Unresolved, since we cannot verify the legitimacy
+# of the unknown origin path or guarantee that it has resolved back to Telegram.
+
 import json
 import os
 from typing import Any, Set, Dict, List
