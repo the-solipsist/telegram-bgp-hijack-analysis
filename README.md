@@ -226,7 +226,7 @@ flowchart TD
     query --> check{"Matches Telegram ROA?"}
     check -->|Yes| valid["RPKI Valid Route"]
     check -->|No| invalid["RPKI Invalid Route"]
-    valid --> accept["Route Accepted & Propagated"]
+    valid --> accept["Route Accepted and Propagated"]
     invalid --> drop["Route Dropped (Filtered)"]
     
     style accept fill:#d4edda,stroke:#28a745,stroke-width:2px
