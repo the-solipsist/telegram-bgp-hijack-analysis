@@ -45,6 +45,16 @@ While standard web blocking in India is typically implemented at the DNS or appl
 
 Routing-layer blocking via static null routes does not appear to be standard practice among Indian ISPs. The Singh, Grover, and Bansal study — which documents the common blocking methods employed in India — does not identify BGP-level blackhole routing among them. The fact that two separate ISPs (RCom and Tata Teleservices) independently configured null routes for the same target and both leaked them globally, assuming (as seems likely) that the route leaks were unintentional, suggests unfamiliarity with the approach.
 
+Telegram blocking remains widespread in India as of June 18, 2026. Data from the Open Observatory of Network Interference (OONI) shows that at least 24 Indian ISPs across 27 ASNs were actively blocking Telegram during and after the incident, though the blocking method varies by ISP:
+
+| Blocking method | ISPs |
+|---|---|
+| TCP/IP-level blocking (consistent with null routes) | BSNL (AS9829), Hathway (AS17488), Alliance Broadband (AS23860), ACT Fibernet (AS24309), Vodafone Idea (AS38266), Kerala Vision (AS138754), Netplus (AS133661), Tata Play Broadband (AS134674), Speednet (AS135760), GTPL (AS135872), Airwir (AS136371), SREERAM (AS56268), B Tel (AS58765) |
+| DNS-level blocking | Bharti Airtel (AS24560/AS45609), Reliance Jio (AS55836), RailTel (AS24186), Excitel (AS133982), Asianet (AS17465), ACT (AS55577) |
+| HTTP-level blocking | Tata Teleservices (AS17762), Vodafone Idea (AS55410), NKN (AS55824) |
+
+Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements to have successfully implemented routing-layer blocking without leaking globally.
+
 However, if the ISP's external BGP export policies (route-maps) are misconfigured or fail to filter these newly redistributed static routes, the router will advertise them to external eBGP peers and upstream transits. As I noted in my [thread](https://x.com/pranesh/status/2066948164025008343), RCom leaked the hijack to the global internet. The underlying cause was likely RCom trying to redirect Telegram traffic internally within India to comply with the Section 69A blocking order, but failing to apply proper export filters on their external sessions. This is exactly what happened: instead of keeping the blackhole routes internal to drop local traffic, RCom redistributed them into its external BGP sessions, announcing to the entire internet that `AS18101` was the origin for Telegram's prefixes.
 
 Several pieces of technical evidence support this route leak theory over intentional sabotage:
