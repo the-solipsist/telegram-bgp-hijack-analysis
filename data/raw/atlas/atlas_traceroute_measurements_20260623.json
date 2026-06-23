@@ -1,0 +1,250 @@
+{
+  "created_at": "2026-06-23T06:36:39Z",
+  "measurements": [
+    {
+      "id": 183001562,
+      "asn": "9829",
+      "name": "BSNL",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183001593,
+      "asn": "9829",
+      "name": "BSNL",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183001625,
+      "asn": "9829",
+      "name": "BSNL",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183001661,
+      "asn": "9829",
+      "name": "BSNL",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183001695,
+      "asn": "9829",
+      "name": "BSNL",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183001730,
+      "asn": "17488",
+      "name": "Hathway",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183001791,
+      "asn": "17488",
+      "name": "Hathway",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183001827,
+      "asn": "17488",
+      "name": "Hathway",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183001830,
+      "asn": "17488",
+      "name": "Hathway",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183001842,
+      "asn": "17488",
+      "name": "Hathway",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183001870,
+      "asn": "133982",
+      "name": "Excitel",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183001905,
+      "asn": "133982",
+      "name": "Excitel",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183001937,
+      "asn": "133982",
+      "name": "Excitel",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183001970,
+      "asn": "133982",
+      "name": "Excitel",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183002001,
+      "asn": "133982",
+      "name": "Excitel",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183002035,
+      "asn": "45609",
+      "name": "Airtel (consumer alt)",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183002068,
+      "asn": "45609",
+      "name": "Airtel (consumer alt)",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183002101,
+      "asn": "45609",
+      "name": "Airtel (consumer alt)",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183002133,
+      "asn": "45609",
+      "name": "Airtel (consumer alt)",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183002184,
+      "asn": "45609",
+      "name": "Airtel (consumer alt)",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183002212,
+      "asn": "55824",
+      "name": "NKN",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183002245,
+      "asn": "55824",
+      "name": "NKN",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183002275,
+      "asn": "55824",
+      "name": "NKN",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183002305,
+      "asn": "55824",
+      "name": "NKN",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183002338,
+      "asn": "55824",
+      "name": "NKN",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183002368,
+      "asn": "133661",
+      "name": "Netplus",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183002402,
+      "asn": "133661",
+      "name": "Netplus",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183002433,
+      "asn": "133661",
+      "name": "Netplus",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183002471,
+      "asn": "133661",
+      "name": "Netplus",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183002504,
+      "asn": "133661",
+      "name": "Netplus",
+      "target": "1.1.1.1",
+      "type": "control"
+    },
+    {
+      "id": 183002538,
+      "asn": "9498",
+      "name": "Airtel (transit)",
+      "target": "149.154.167.99",
+      "type": "icmp"
+    },
+    {
+      "id": 183002552,
+      "asn": "9498",
+      "name": "Airtel (transit)",
+      "target": "95.161.76.100",
+      "type": "icmp"
+    },
+    {
+      "id": 183002563,
+      "asn": "9498",
+      "name": "Airtel (transit)",
+      "target": "149.154.175.50",
+      "type": "icmp"
+    },
+    {
+      "id": 183002574,
+      "asn": "9498",
+      "name": "Airtel (transit)",
+      "target": "149.154.167.99",
+      "type": "tcp"
+    },
+    {
+      "id": 183002612,
+      "asn": "9498",
+      "name": "Airtel (transit)",
+      "target": "1.1.1.1",
+      "type": "control"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "9829|BSNL|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "10.1.30.253"
+  },
+  "9829|BSNL|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "10.1.30.253"
+  },
+  "9829|BSNL|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "10.1.30.253"
+  },
+  "9829|BSNL|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 6,
+    "last_hop": "*",
+    "src": "10.1.30.253"
+  },
+  "9829|BSNL|control|1.1.1.1": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "192.168.30.102"
+  },
+  "17488|Hathway|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "172.17.0.2"
+  },
+  "17488|Hathway|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "172.17.0.3"
+  },
+  "17488|Hathway|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "172.17.0.3"
+  },
+  "17488|Hathway|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "172.17.0.3"
+  },
+  "17488|Hathway|control|1.1.1.1": {
+    "reached": true,
+    "hops": 8,
+    "last_hop": "*",
+    "src": "172.17.0.3"
+  },
+  "133982|Excitel|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 29,
+    "last_hop": "*",
+    "src": "172.21.0.2"
+  },
+  "133982|Excitel|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 23,
+    "last_hop": "*",
+    "src": "7.0.0.2"
+  },
+  "133982|Excitel|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 15,
+    "last_hop": "*",
+    "src": "172.21.0.2"
+  },
+  "133982|Excitel|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 28,
+    "last_hop": "*",
+    "src": "7.0.0.2"
+  },
+  "133982|Excitel|control|1.1.1.1": {
+    "reached": true,
+    "hops": 8,
+    "last_hop": "*",
+    "src": "7.0.0.2"
+  },
+  "45609|Airtel (consumer alt)|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 13,
+    "last_hop": "*",
+    "src": "10.0.160.20"
+  },
+  "45609|Airtel (consumer alt)|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 13,
+    "last_hop": "*",
+    "src": "10.0.160.20"
+  },
+  "45609|Airtel (consumer alt)|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 14,
+    "last_hop": "*",
+    "src": "10.0.160.20"
+  },
+  "45609|Airtel (consumer alt)|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 13,
+    "last_hop": "*",
+    "src": "10.0.160.20"
+  },
+  "45609|Airtel (consumer alt)|control|1.1.1.1": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "10.0.160.20"
+  },
+  "55824|NKN|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "10.32.80.151"
+  },
+  "55824|NKN|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "10.32.80.151"
+  },
+  "55824|NKN|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "10.32.80.151"
+  },
+  "55824|NKN|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 11,
+    "last_hop": "*",
+    "src": "10.32.80.151"
+  },
+  "55824|NKN|control|1.1.1.1": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "10.32.80.151"
+  },
+  "133661|Netplus|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 14,
+    "last_hop": "*",
+    "src": "10.10.10.19"
+  },
+  "133661|Netplus|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 12,
+    "last_hop": "*",
+    "src": "10.10.10.19"
+  },
+  "133661|Netplus|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 13,
+    "last_hop": "*",
+    "src": "10.10.10.19"
+  },
+  "133661|Netplus|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 14,
+    "last_hop": "*",
+    "src": "10.10.10.19"
+  },
+  "133661|Netplus|control|1.1.1.1": {
+    "reached": true,
+    "hops": 8,
+    "last_hop": "*",
+    "src": "10.10.10.19"
+  },
+  "9498|Airtel (transit)|icmp|149.154.167.99": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "192.168.142.100"
+  },
+  "9498|Airtel (transit)|icmp|95.161.76.100": {
+    "reached": true,
+    "hops": 9,
+    "last_hop": "*",
+    "src": "192.168.142.100"
+  },
+  "9498|Airtel (transit)|icmp|149.154.175.50": {
+    "reached": true,
+    "hops": 11,
+    "last_hop": "*",
+    "src": "192.168.142.100"
+  },
+  "9498|Airtel (transit)|tcp|149.154.167.99": {
+    "reached": true,
+    "hops": 10,
+    "last_hop": "*",
+    "src": "192.168.142.100"
+  },
+  "9498|Airtel (transit)|control|1.1.1.1": {
+    "reached": true,
+    "hops": 6,
+    "last_hop": "*",
+    "src": "192.168.142.100"
+  }
+}

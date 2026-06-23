@@ -1,0 +1,1767 @@
+{
+  "v": 0,
+  "dimension_count": 2,
+  "db_stats": {
+    "row_count": 14852458,
+    "bytes": 289636456,
+    "total_row_count": 14852458,
+    "elapsed_seconds": 3.3515408039093018
+  },
+  "result": [
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 17465
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 7,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 17665
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 17762
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 10,
+      "measurement_count": 19,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 35,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 21,
+      "measurement_count": 56,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 10,
+      "measurement_count": 10,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 41564
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 45284
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 55333
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 55410
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 74,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 34,
+      "measurement_count": 108,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 132296
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 133287
+    },
+    {
+      "anomaly_count": 7,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 133661
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 134337
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 14,
+      "measurement_count": 14,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 135760
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 136371
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-16",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 10,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 10,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 17465
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 17665
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 17762
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 16,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 16,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 57,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 57,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 45117
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 55410
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 94,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 94,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 58765
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 133661
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 134053
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 134337
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 135269
+    },
+    {
+      "anomaly_count": 14,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 14,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 135760
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 135872
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 136371
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-17",
+      "probe_asn": 139555
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 9583
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 17465
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 17665
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 17762
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 24186
+    },
+    {
+      "anomaly_count": 16,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 16,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 59,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 59,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 45117
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 12,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 12,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 55410
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 96,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 96,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 58765
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 133661
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 17,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 17,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 135760
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 136371
+    },
+    {
+      "anomaly_count": 10,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 10,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-18",
+      "probe_asn": 139555
+    },
+    {
+      "anomaly_count": 7,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 7,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 17465
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 24186
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 55,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 55,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 45117
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 11,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 11,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 77,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 77,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 58765
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 132296
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 133287
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 133661
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 134053
+    },
+    {
+      "anomaly_count": 11,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 11,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 10,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 10,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 135760
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 136371
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-19",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 9498
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 10225
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 17754
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 11,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 11,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 28,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 28,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 45117
+    },
+    {
+      "anomaly_count": 6,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 81,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 81,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 58765
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 132296
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 133661
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 134337
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 14,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 14,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-20",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 9498
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 14061
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 18209
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 22,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 22,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 37,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 37,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 110,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 110,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 56268
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 58765
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 7,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 7,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 134337
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-21",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 14061
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 30,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 30,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 37,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 37,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 45769
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 45916
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 8,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 55824
+    },
+    {
+      "anomaly_count": 97,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 97,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 56268
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 132116
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 133982
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 135811
+    },
+    {
+      "anomaly_count": 14,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 14,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 136371
+    },
+    {
+      "anomaly_count": 7,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 7,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 138754
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-22",
+      "probe_asn": 139555
+    },
+    {
+      "anomaly_count": 7,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 7,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 9,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 11,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 22,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 4,
+      "measurement_count": 26,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 55410
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 18,
+      "measurement_count": 20,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 8,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 9,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23",
+      "probe_asn": 138754
+    }
+  ]
+}

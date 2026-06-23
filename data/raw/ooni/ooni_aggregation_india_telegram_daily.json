@@ -1,0 +1,76 @@
+{
+  "v": 0,
+  "dimension_count": 1,
+  "db_stats": {
+    "row_count": 14852439,
+    "bytes": 259039619,
+    "total_row_count": 14852439,
+    "elapsed_seconds": 0.12315678596496582
+  },
+  "result": [
+    {
+      "anomaly_count": 156,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 118,
+      "measurement_count": 274,
+      "measurement_start_day": "2026-06-16"
+    },
+    {
+      "anomaly_count": 271,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 272,
+      "measurement_start_day": "2026-06-17"
+    },
+    {
+      "anomaly_count": 281,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 281,
+      "measurement_start_day": "2026-06-18"
+    },
+    {
+      "anomaly_count": 231,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 231,
+      "measurement_start_day": "2026-06-19"
+    },
+    {
+      "anomaly_count": 184,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 184,
+      "measurement_start_day": "2026-06-20"
+    },
+    {
+      "anomaly_count": 219,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 219,
+      "measurement_start_day": "2026-06-21"
+    },
+    {
+      "anomaly_count": 240,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 243,
+      "measurement_start_day": "2026-06-22"
+    },
+    {
+      "anomaly_count": 62,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 32,
+      "measurement_count": 94,
+      "measurement_start_day": "2026-06-23"
+    }
+  ]
+}

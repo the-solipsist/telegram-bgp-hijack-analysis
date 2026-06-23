@@ -1,0 +1,106 @@
+181670986  ICMP trace Netplus -> 91.108.56.1
+181670994  ICMP trace Netplus -> 149.154.167.99
+181671003  TCP:443 trace Netplus -> 91.108.56.1
+181671014  TCP:443 trace Netplus -> 149.154.167.99
+181671024  ICMP trace Netplus -> 1.1.1.1 (control)
+181671030  DNS A telegram.org from Netplus
+181671039  ICMP trace Excitel -> 91.108.56.1
+181671040  ICMP trace Excitel -> 149.154.167.99
+181671041  TCP:443 trace Excitel -> 91.108.56.1
+181671045  TCP:443 trace Excitel -> 149.154.167.99
+181671047  ICMP trace Excitel -> 1.1.1.1 (control)
+181671049  DNS A telegram.org from Excitel
+181671051  DNS AAAA telegram.org from Excitel
+181671062  ICMPv6 trace Excitel -> 2a0a:f280:203::1
+181671073  ICMP trace Tata Play BB -> 91.108.56.1
+181671082  ICMP trace Tata Play BB -> 149.154.167.99
+181671090  TCP:443 trace Tata Play BB -> 91.108.56.1
+181671096  TCP:443 trace Tata Play BB -> 149.154.167.99
+181671103  ICMP trace Tata Play BB -> 1.1.1.1 (control)
+181671112  DNS A telegram.org from Tata Play BB
+181671118  ICMP trace Kerala Vision -> 91.108.56.1
+181671129  ICMP trace Kerala Vision -> 149.154.167.99
+181671132  TCP:443 trace Kerala Vision -> 91.108.56.1
+181671143  TCP:443 trace Kerala Vision -> 149.154.167.99
+181671150  ICMP trace Kerala Vision -> 1.1.1.1 (control)
+181671159  DNS A telegram.org from Kerala Vision
+181671166  DNS AAAA telegram.org from Kerala Vision
+181671167  ICMPv6 trace Kerala Vision -> 2a0a:f280:203::1
+181671169  ICMP trace Hathway -> 91.108.56.1
+181671171  ICMP trace Hathway -> 149.154.167.99
+181671175  TCP:443 trace Hathway -> 91.108.56.1
+181671180  TCP:443 trace Hathway -> 149.154.167.99
+181671182  ICMP trace Hathway -> 1.1.1.1 (control)
+181671183  DNS A telegram.org from Hathway
+181671195  ICMP trace Alliance Broadband -> 91.108.56.1
+181671204  ICMP trace Alliance Broadband -> 149.154.167.99
+181671210  TCP:443 trace Alliance Broadband -> 91.108.56.1
+181671221  TCP:443 trace Alliance Broadband -> 149.154.167.99
+181671228  ICMP trace Alliance Broadband -> 1.1.1.1 (control)
+181671236  DNS A telegram.org from Alliance Broadband
+181671245  DNS AAAA telegram.org from Alliance Broadband
+181671255  ICMPv6 trace Alliance Broadband -> 2a0a:f280:203::1
+181671262  ICMP trace ACT Fibernet -> 91.108.56.1
+181671269  ICMP trace ACT Fibernet -> 149.154.167.99
+181671279  TCP:443 trace ACT Fibernet -> 91.108.56.1
+181671285  TCP:443 trace ACT Fibernet -> 149.154.167.99
+181671292  ICMP trace ACT Fibernet -> 1.1.1.1 (control)
+181671295  DNS A telegram.org from ACT Fibernet
+181671296  DNS AAAA telegram.org from ACT Fibernet
+181671297  ICMPv6 trace ACT Fibernet -> 2a0a:f280:203::1
+181671301  ICMP trace Airtel BB -> 91.108.56.1
+181671302  ICMP trace Airtel BB -> 149.154.167.99
+181671303  TCP:443 trace Airtel BB -> 91.108.56.1
+181671305  TCP:443 trace Airtel BB -> 149.154.167.99
+181671307  ICMP trace Airtel BB -> 1.1.1.1 (control)
+181671310  DNS A telegram.org from Airtel BB
+181671323  DNS AAAA telegram.org from Airtel BB
+181671362  ICMPv6 trace Airtel BB -> 2a0a:f280:203::1
+181671407  ICMP trace Airtel BB2 -> 91.108.56.1
+181671459  ICMP trace Airtel BB2 -> 149.154.167.99
+181671505  TCP:443 trace Airtel BB2 -> 91.108.56.1
+181671551  TCP:443 trace Airtel BB2 -> 149.154.167.99
+181671627  ICMP trace Airtel BB2 -> 1.1.1.1 (control)
+181671685  DNS A telegram.org from Airtel BB2
+181671728  ICMP trace ACT DNS -> 91.108.56.1
+181671781  ICMP trace ACT DNS -> 149.154.167.99
+181671828  TCP:443 trace ACT DNS -> 91.108.56.1
+181671870  TCP:443 trace ACT DNS -> 149.154.167.99
+181671881  ICMP trace ACT DNS -> 1.1.1.1 (control)
+181671882  DNS A telegram.org from ACT DNS
+181671887  DNS AAAA telegram.org from ACT DNS
+181671888  ICMPv6 trace ACT DNS -> 2a0a:f280:203::1
+181671889  ICMP trace NKN -> 91.108.56.1
+181671891  ICMP trace NKN -> 149.154.167.99
+181671892  TCP:443 trace NKN -> 91.108.56.1
+181671893  TCP:443 trace NKN -> 149.154.167.99
+181671899  ICMP trace NKN -> 1.1.1.1 (control)
+181671901  DNS A telegram.org from NKN
+181671904  ICMP trace Reliance Jio -> 91.108.56.1
+181671908  ICMP trace Reliance Jio -> 149.154.167.99
+181671911  TCP:443 trace Reliance Jio -> 91.108.56.1
+181671913  TCP:443 trace Reliance Jio -> 149.154.167.99
+181671916  ICMP trace Reliance Jio -> 1.1.1.1 (control)
+181671920  DNS A telegram.org from Reliance Jio
+181671921  DNS AAAA telegram.org from Reliance Jio
+181671924  ICMPv6 trace Reliance Jio -> 2a0a:f280:203::1
+181671929  ICMP trace B Tel -> 91.108.56.1
+181671931  ICMP trace B Tel -> 149.154.167.99
+181671933  TCP:443 trace B Tel -> 91.108.56.1
+181671934  TCP:443 trace B Tel -> 149.154.167.99
+181671936  ICMP trace B Tel -> 1.1.1.1 (control)
+181671937  DNS A telegram.org from B Tel
+181671938  ICMP trace Airtel Mobile -> 91.108.56.1
+181671940  ICMP trace Airtel Mobile -> 149.154.167.99
+181671941  TCP:443 trace Airtel Mobile -> 91.108.56.1
+181671942  TCP:443 trace Airtel Mobile -> 149.154.167.99
+181671947  ICMP trace Airtel Mobile -> 1.1.1.1 (control)
+181671953  DNS A telegram.org from Airtel Mobile
+181671961  ICMP trace BSNL -> 91.108.56.1
+181671964  ICMP trace BSNL -> 149.154.167.99
+181671966  TCP:443 trace BSNL -> 91.108.56.1
+181671968  TCP:443 trace BSNL -> 149.154.167.99
+181671971  ICMP trace BSNL -> 1.1.1.1 (control)
+181671975  DNS A telegram.org from BSNL
+181671977  DNS AAAA telegram.org from BSNL
+181671979  ICMPv6 trace BSNL -> 2a0a:f280:203::1

@@ -1,0 +1,569 @@
+{
+  "AS10225": {
+    "anomaly_count": 2,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-20T06:27:51.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-20T07:36:11.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 2
+  },
+  "AS132116": {
+    "anomaly_count": 7,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T12:41:15.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "connection_reset",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T15:19:34.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 7
+  },
+  "AS132296": {
+    "anomaly_count": 3,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-19T00:07:01.000000Z",
+    "clean_count": 1,
+    "failure_codes": [],
+    "last_seen": "2026-06-20T15:17:25.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 4
+  },
+  "AS133287": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-19T08:39:37.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-19T08:39:37.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 2
+  },
+  "AS133661": {
+    "anomaly_count": 16,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T16:37:32.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-20T03:28:58.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 17
+  },
+  "AS133982": {
+    "anomaly_count": 35,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T01:32:26.000000Z",
+    "clean_count": 2,
+    "failure_codes": [
+      "connection_reset",
+      "generic_timeout_error",
+      "ssl_invalid_hostname"
+    ],
+    "last_seen": "2026-06-22T13:00:36.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 37
+  },
+  "AS134053": {
+    "anomaly_count": 2,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T08:52:46.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-19T14:31:04.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 2
+  },
+  "AS134337": {
+    "anomaly_count": 4,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T08:41:50.000000Z",
+    "clean_count": 0,
+    "failure_codes": [],
+    "last_seen": "2026-06-21T10:59:23.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 4
+  },
+  "AS134674": {
+    "anomaly_count": 52,
+    "blocking_ended": "2026-06-23T06:09:16.000000Z",
+    "blocking_started": "2026-06-17T06:07:38.000000Z",
+    "clean_count": 2,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T06:09:16.000000Z",
+    "status": "UNBLOCKED",
+    "total": 54
+  },
+  "AS134886": {
+    "anomaly_count": 14,
+    "blocking_ended": "2026-06-22T21:36:28.000000Z",
+    "blocking_started": "2026-06-18T20:52:39.000000Z",
+    "clean_count": 3,
+    "failure_codes": [
+      "connection_reset"
+    ],
+    "last_seen": "2026-06-23T00:44:06.000000Z",
+    "status": "UNBLOCKED",
+    "total": 17
+  },
+  "AS135269": {
+    "anomaly_count": 0,
+    "blocking_ended": null,
+    "blocking_started": null,
+    "clean_count": 1,
+    "failure_codes": [],
+    "last_seen": "2026-06-17T00:44:54.000000Z",
+    "status": "no_blocking",
+    "total": 1
+  },
+  "AS135760": {
+    "anomaly_count": 33,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T01:55:12.000000Z",
+    "clean_count": 14,
+    "failure_codes": [
+      "dns_nxdomain_error",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-19T14:34:10.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 47
+  },
+  "AS135811": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-22T09:32:12.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T09:32:12.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS135872": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T15:04:15.000000Z",
+    "clean_count": 0,
+    "failure_codes": [],
+    "last_seen": "2026-06-17T15:04:15.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS136311": {
+    "anomaly_count": 30,
+    "blocking_ended": "2026-06-23T06:00:48.000000Z",
+    "blocking_started": "2026-06-20T02:02:29.000000Z",
+    "clean_count": 2,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T06:00:48.000000Z",
+    "status": "UNBLOCKED",
+    "total": 32
+  },
+  "AS136371": {
+    "anomaly_count": 19,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T13:33:18.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T14:06:58.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 20
+  },
+  "AS138754": {
+    "anomaly_count": 42,
+    "blocking_ended": "2026-06-23T06:00:16.000000Z",
+    "blocking_started": "2026-06-16T13:07:38.000000Z",
+    "clean_count": 4,
+    "failure_codes": [
+      "generic_timeout_error",
+      "host_unreachable",
+      "ssl_invalid_certificate"
+    ],
+    "last_seen": "2026-06-23T06:00:16.000000Z",
+    "status": "UNBLOCKED",
+    "total": 46
+  },
+  "AS139555": {
+    "anomaly_count": 4,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T11:24:42.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T00:38:55.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 4
+  },
+  "AS14061": {
+    "anomaly_count": 2,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-21T06:25:21.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T06:39:43.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 2
+  },
+  "AS17465": {
+    "anomaly_count": 11,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T14:49:57.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "connection_refused"
+    ],
+    "last_seen": "2026-06-19T19:31:35.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 11
+  },
+  "AS17488": {
+    "anomaly_count": 34,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T10:51:33.000000Z",
+    "clean_count": 7,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T02:58:05.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 41
+  },
+  "AS17665": {
+    "anomaly_count": 6,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T07:36:23.000000Z",
+    "clean_count": 1,
+    "failure_codes": [],
+    "last_seen": "2026-06-18T10:52:02.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 7
+  },
+  "AS17754": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-20T08:53:45.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-20T08:53:45.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS17762": {
+    "anomaly_count": 13,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T05:41:55.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "dns_nxdomain_error"
+    ],
+    "last_seen": "2026-06-18T10:42:22.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 13
+  },
+  "AS18209": {
+    "anomaly_count": 10,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T11:33:53.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-21T15:05:41.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 10
+  },
+  "AS23860": {
+    "anomaly_count": 12,
+    "blocking_ended": "2026-06-23T00:02:19.000000Z",
+    "blocking_started": "2026-06-16T23:48:40.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T00:02:19.000000Z",
+    "status": "UNBLOCKED",
+    "total": 13
+  },
+  "AS24186": {
+    "anomaly_count": 4,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-18T09:18:41.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "android_dns_cache_no_data"
+    ],
+    "last_seen": "2026-06-19T06:31:01.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 4
+  },
+  "AS24309": {
+    "anomaly_count": 118,
+    "blocking_ended": "2026-06-23T05:51:39.000000Z",
+    "blocking_started": "2026-06-16T07:22:07.000000Z",
+    "clean_count": 12,
+    "failure_codes": [
+      "eof_error",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T05:58:34.000000Z",
+    "status": "UNBLOCKED",
+    "total": 130
+  },
+  "AS24560": {
+    "anomaly_count": 330,
+    "blocking_ended": "2026-06-23T06:16:50.000000Z",
+    "blocking_started": "2026-06-16T10:35:32.000000Z",
+    "clean_count": 23,
+    "failure_codes": [
+      "android_dns_cache_no_data",
+      "generic_timeout_error",
+      "host_unreachable"
+    ],
+    "last_seen": "2026-06-23T06:20:00.000000Z",
+    "status": "UNBLOCKED",
+    "total": 353
+  },
+  "AS38266": {
+    "anomaly_count": 7,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T03:00:58.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "android_dns_cache_no_data",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T05:55:33.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 7
+  },
+  "AS41564": {
+    "anomaly_count": 0,
+    "blocking_ended": null,
+    "blocking_started": null,
+    "clean_count": 10,
+    "failure_codes": [],
+    "last_seen": "2026-06-16T09:35:47.000000Z",
+    "status": "no_blocking",
+    "total": 10
+  },
+  "AS45117": {
+    "anomaly_count": 4,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T19:38:46.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "connection_reset",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-20T03:53:41.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 4
+  },
+  "AS45271": {
+    "anomaly_count": 7,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-18T18:10:57.000000Z",
+    "clean_count": 3,
+    "failure_codes": [
+      "android_dns_cache_no_data",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T03:50:30.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 10
+  },
+  "AS45284": {
+    "anomaly_count": 0,
+    "blocking_ended": null,
+    "blocking_started": null,
+    "clean_count": 1,
+    "failure_codes": [],
+    "last_seen": "2026-06-16T00:45:46.000000Z",
+    "status": "no_blocking",
+    "total": 1
+  },
+  "AS45609": {
+    "anomaly_count": 47,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T11:00:22.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T05:07:05.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 48
+  },
+  "AS45769": {
+    "anomaly_count": 7,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T08:20:37.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T08:17:40.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 7
+  },
+  "AS45916": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-22T10:36:51.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T10:36:51.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS55333": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T12:22:21.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "connection_reset"
+    ],
+    "last_seen": "2026-06-16T12:22:21.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS55410": {
+    "anomaly_count": 12,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T08:45:30.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "dns_nxdomain_error"
+    ],
+    "last_seen": "2026-06-23T06:23:21.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 12
+  },
+  "AS55577": {
+    "anomaly_count": 23,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T01:56:47.000000Z",
+    "clean_count": 3,
+    "failure_codes": [
+      "eof_error",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T01:29:02.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 26
+  },
+  "AS55824": {
+    "anomaly_count": 35,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T11:48:53.000000Z",
+    "clean_count": 1,
+    "failure_codes": [
+      "connection_reset",
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T12:36:02.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 36
+  },
+  "AS55836": {
+    "anomaly_count": 631,
+    "blocking_ended": "2026-06-23T04:46:10.000000Z",
+    "blocking_started": "2026-06-16T07:21:46.000000Z",
+    "clean_count": 51,
+    "failure_codes": [
+      "connection_aborted",
+      "connection_refused",
+      "generic_timeout_error",
+      "timed_out"
+    ],
+    "last_seen": "2026-06-23T06:23:55.000000Z",
+    "status": "UNBLOCKED",
+    "total": 682
+  },
+  "AS56268": {
+    "anomaly_count": 3,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-21T16:08:40.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-22T16:04:58.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 3
+  },
+  "AS58765": {
+    "anomaly_count": 8,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-17T23:51:04.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-21T04:35:24.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 8
+  },
+  "AS9498": {
+    "anomaly_count": 2,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-20T17:35:45.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-21T02:17:42.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 2
+  },
+  "AS9583": {
+    "anomaly_count": 1,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-18T05:36:27.000000Z",
+    "clean_count": 0,
+    "failure_codes": [
+      "dns_nxdomain_error"
+    ],
+    "last_seen": "2026-06-18T05:36:27.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 1
+  },
+  "AS9829": {
+    "anomaly_count": 48,
+    "blocking_ended": null,
+    "blocking_started": "2026-06-16T10:48:43.000000Z",
+    "clean_count": 3,
+    "failure_codes": [
+      "generic_timeout_error"
+    ],
+    "last_seen": "2026-06-23T05:20:13.000000Z",
+    "status": "STILL BLOCKED",
+    "total": 51
+  }
+}

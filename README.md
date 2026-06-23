@@ -17,8 +17,9 @@
 - [6. When Can We Say It Finally Got Resolved?](#6-when-can-we-say-it-finally-got-resolved)
 - [7. Methodology: BGP Path Reconstruction and Analysis](#7-methodology-bgp-path-reconstruction-and-analysis)
   - [Core Technical Assumptions and Validation](#core-technical-assumptions-and-validation)
-- [8. The Secondary Tata Teleservices Leak (AS45820)](#8-the-secondary-tata-teleservices-leak-as45820)
+- [8. The Secondary Tata Teleservices & Lightstorm Leaks (AS45820 / AS135709 / AS152144)](#8-the-secondary-tata-teleservices--lightstorm-leaks-as45820--as135709--as152144)
 - [9. Conclusion: Routing Security and the Path Forward](#9-conclusion-routing-security-and-the-path-forward)
+- [Postscript: The Unblocking (June 23, 2026)](#postscript-the-unblocking-june-23-2026)
 
 ---
 
@@ -48,7 +49,7 @@ A companion RIPE Atlas measurement campaign (106 traceroutes across 15 ISPs, doc
 
 Routing-layer blocking via static null routes does not appear to be standard practice among Indian ISPs. The Singh, Grover, and Bansal study — which documents the common blocking methods employed in India — does not identify BGP-level blackhole routing among them. The fact that two separate ISPs (RCom and Tata Teleservices) independently configured null routes for the same target and both leaked them globally, assuming (as seems likely) that the route leaks were unintentional, suggests unfamiliarity with the approach.
 
-Telegram blocking remains widespread in India as of June 18, 2026. Data from the Open Observatory of Network Interference (OONI) shows that at least 24 Indian ISPs across 27 ASNs were actively blocking Telegram during and after the incident, though the blocking method varies by ISP:
+Telegram blocking remains widespread in India as of June 18, 2026. Data from the Open Observatory of Network Interference (OONI), as compiled by [Doug Madory / Kentik](https://www.kentik.com/blog/when-local-blocks-go-global-the-india-telegram-bgp-incident/), shows at least 24 Indian ISPs across 23 ASNs actively blocking Telegram during and after the incident, though the blocking method varies by ISP:
 
 | Blocking method | ISPs |
 |---|---|
@@ -56,7 +57,9 @@ Telegram blocking remains widespread in India as of June 18, 2026. Data from the
 | DNS-level blocking | Bharti Airtel (AS24560/AS45609), Reliance Jio (AS55836), RailTel (AS24186), Excitel (AS133982), Asianet (AS17465), ACT (AS55577) |
 | HTTP-level blocking | Tata Teleservices (AS17762), Vodafone Idea (AS55410), NKN (AS55824) |
 
-Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements to have successfully implemented routing-layer blocking without leaking globally.
+> **Note on OONI classification:** The table is based on Doug Madory's summary of OONI measurements, not on local data in this repository. Our own OONI measurements cover only Jio (AS55836), Vi (AS38266), and ACT (AS24309). The table also lists ACT twice under different ASNs (AS24309 "ACT Fibernet" under TCP/IP and AS55577 "ACT" under DNS). This likely reflects a single operator with multiple ASNs — both blocking layers may be active simultaneously. RIPE Atlas traceroutes (see below, documented in `atlas_investigation.md`) found routing-layer blocking at every ISP with viable probe data, including networks OONI classified as "DNS blocking" (Airtel, Jio, Excitel, ACT).
+
+Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements compiled by [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/) to have successfully implemented routing-layer blocking without leaking globally. AS9498 is Airtel's transit backbone — it does not appear in the OONI table above (which lists Airtel's consumer ASNs AS24560/AS45609).
 
 > **Note on access medium**: OONI probes run on both Android (mobile data) and desktop (wired broadband). The table above does not distinguish which access method produced each result. Dual-service ISPs — Jio, BSNL, Airtel, Vodafone Idea — operate both wired and mobile networks and may apply blocks differently on each. RIPE Atlas measurements (see below) cover only wired broadband. Mobile-side OONI measurements run without Private DNS on June 18 reveal additional detail:
 > - **Jio mobile**: DNS returns a Jio-owned IP (`49.44.79.236`) for `web.telegram.org` — DNS poisoning on top of routing-layer blocking.
@@ -65,12 +68,12 @@ Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements to
 However, if the ISP's external BGP export policies (route-maps) are misconfigured or fail to filter these newly redistributed static routes, the router will advertise them to external eBGP peers and upstream transits. As I noted in my [thread](https://x.com/pranesh/status/2066948164025008343), RCom leaked the hijack to the global internet. The underlying cause was likely RCom trying to redirect Telegram traffic internally within India to comply with the Section 69A blocking order, but failing to apply proper export filters on their external sessions. This is exactly what happened: instead of keeping the blackhole routes internal to drop local traffic, RCom redistributed them into its external BGP sessions, announcing to the entire internet that `AS18101` was the origin for Telegram's prefixes.
 
 Several pieces of technical evidence support this route leak theory over intentional sabotage:
-1. **The Origin ASN:** RCom announced the routes with its own ASN (`AS18101`) as the origin. If RCom had intended to hijack the traffic maliciously and silently, a sophisticated attacker would have spoofed Telegram's own origin ASN (`AS62041` or `AS211157`) in the path. By originating the prefixes under its own ASN, RCom guaranteed that the announcements would immediately trigger **RPKI Route Origin Validation (ROV) failures** at all validating networks globally. This kept the hijack's propagation very low (~2.2% to 4.4% visibility for IPv4 prefixes) and restricted the traffic diversion to non-validating networks downstream of RCom's upstreams.
+1. **The Origin ASN:** RCom announced the routes with its own ASN (`AS18101`) as the origin. If RCom had intended to hijack the traffic maliciously and silently, a sophisticated attacker would have spoofed Telegram's own origin ASN (`AS62041` or `AS211157`) in the path. By originating the prefixes under its own ASN, RCom guaranteed that the announcements would immediately trigger **RPKI Route Origin Validation (ROV) failures** at all validating networks globally. This kept the hijack's propagation very low (~1.6% to 4.4% visibility across measured IPv4 prefixes) and restricted the traffic diversion to non-validating networks downstream of RCom's upstreams.
 2. **Comparison with Other ISPs:** Other major Indian ISPs implemented the block successfully without leaking routes. For example, traceroute (`mtr`) measurements compiled by [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/) showed that Bharti Airtel (`AS9498`) successfully blackholed Telegram's traffic locally inside India (losing packets at the network boundary) without advertising those prefixes to its global peers. This demonstrates that while the domestic block order was common, the global routing leak was a configuration failure not shared by all implementing ISPs (for instance, Bharti Airtel successfully blocked it locally without leaking, although Tata Teleservices also experienced a similar leak).
 3. **The BGP Export Filter Failure:** The inclusion of Telegram's parent blocks along with subsequent updates targeting more-specific `/23` and `/24` sub-prefixes suggests RCom was copy-pasting prefix-lists into its routing tables to mirror Telegram's own mitigations, but continually failing to apply export filters on its external peerings.
 
 > **Did RCom intend to leak or hijack BGP?** 
-> The answer requires distinguishing the [BGP hijack](https://www.cloudflare.com/learning/security/glossary/bgp-hijacking/) (prefix origination) from the [BGP route leak](https://datatracker.ietf.org/doc/html/rfc7908) (policy propagation error). As [Doug Madory (Kentik) observed](https://x.com/DougMadory/status/2067304547727380887)**, the *hijack* itself was entirely intentional: RCom deliberately originated BGP announcements for Telegram's prefixes under its own ASN (`AS18101`) to intercept and blackhole the traffic domestically to comply with the Section 69A blocking order. However, the global *route leak*—allowing these originated routes to propagate via eBGP to upstream transits and the global internet—was almost certainly accidental. RCom had a persistent, underlying configuration failure: a lack of BGP export filters on their external sessions. Consequently, whenever they updated their internal null-routes (first for the parent prefixes in Phase 1, and subsequently for the more-specific sub-prefixes in Phase 2 to mirror Telegram's mitigations), these new routing updates immediately leaked to the global internet via their unfiltered eBGP sessions.
+> The answer requires distinguishing the [BGP hijack](https://www.cloudflare.com/learning/security/glossary/bgp-hijacking/) (prefix origination) from the [BGP route leak](https://datatracker.ietf.org/doc/html/rfc7908) (policy propagation error). As [Doug Madory (Kentik) observed](https://x.com/DougMadory/status/2067304547727380887), the *hijack* itself was "intentional, but also accidental": RCom deliberately originated BGP announcements for Telegram's prefixes under its own ASN (`AS18101`) to intercept and blackhole the traffic domestically to comply with the Section 69A blocking order. However, the global *route leak*—allowing these originated routes to propagate via eBGP to upstream transits and the global internet—was almost certainly accidental. RCom had a persistent, underlying configuration failure: a lack of BGP export filters on their external sessions. Consequently, whenever they updated their internal null-routes (first for the parent prefixes in Phase 1, and subsequently for the more-specific sub-prefixes in Phase 2 to mirror Telegram's mitigations), these new routing updates immediately leaked to the global internet via their unfiltered eBGP sessions. Doug Madory's Kentik [blog post](https://www.kentik.com/blog/when-local-blocks-go-global-the-india-telegram-bgp-incident/) provides additional analysis and historical context, comparing this incident to Pakistan Telecom's 2008 YouTube hijack and other "domestic blocks gone global."
 
 This repository provides a step-by-step technical analysis of this incident. We will explain how we gathered raw routing data, filtered out false positives, wrote code to trace BGP updates, and generated the disaggregated timeline that proves RCom's role.
 
@@ -88,7 +91,7 @@ Our temporal update analysis revealed that the BGP hijack was not a single stati
 1. **Phase 1 (The Parent Hijacks & Telegram's Immediate Counter):** The initial hijack of the parent prefix `95.161.64.0/20` started at **07:08:57 UTC**. The RIPE RIS BGP updates confirm a staggered start: the other parent prefixes (including `91.108.56.0/22`, `91.108.8.0/22`, `91.108.4.0/22`, `149.154.164.0/23`, `149.154.164.0/22`, `149.154.162.0/23`, `149.154.160.0/23`, `149.154.160.0/22`, `149.154.166.0/23`) began propagating about 10 minutes later, starting between 07:17:27 and 07:18:30 UTC. Aggregate traffic data from Kentik shows that misdirected traffic peaked between **07:17 and 08:21 UTC**. 
 
    To counter this, Telegram network operators launched a rapid mitigation response: they began announcing **more-specific `/23` and `/24` sub-prefixes** of their own IP space to override RCom's announcements and pull traffic back to Telegram. Because routers always prefer the more-specific route length, this mitigation successfully drew traffic back, and the volume of misdirected traffic dropped back to near-zero by **08:21 UTC**.
-2. **Phase 2 (The Rogue Sub-Prefix Injection):** At **16:14:19 UTC**, RCom's announcements expanded to include the more-specific `/23` and `/24` sub-prefixes themselves. In a route leak context, this suggests RCom network operators updated their domestic null-route configurations to block Telegram's new sub-prefixes locally (to keep up with Telegram's mitigations), but because the export filters on their external BGP peerings were still missing, these newly configured static routes immediately leaked to global peers. This bypassed Telegram's mitigation and caused a second, much larger spike in global misdirected traffic. This wave remained active until **20:10 UTC**, which matches Kentik's traffic measurements and our analysis of the RIPE RIS data showing that the rogue `/24` announcements stopped and resolved at **20:06 UTC**.
+2. **Phase 2 (The Rogue Sub-Prefix Injection):** At approximately **16:14 UTC**, RCom's announcements expanded to include the more-specific `/23` and `/24` sub-prefixes themselves (with most `/24` sub-prefixes starting at 16:14:19 UTC; a few outliers like `91.108.16.0/22` at 16:13:16 UTC and `91.108.56.0/23` at 16:16:05 UTC). In a route leak context, this suggests RCom network operators updated their domestic null-route configurations to block Telegram's new sub-prefixes locally (to keep up with Telegram's mitigations), but because the export filters on their external BGP peerings were still missing, these newly configured static routes immediately leaked to global peers. This bypassed Telegram's mitigation and caused a second, much larger spike in global misdirected traffic. This wave remained active until **20:10 UTC**, which matches Kentik's traffic measurements and our analysis of the RIPE RIS data showing that the rogue `/24` announcements stopped and resolved at **20:06 UTC**.
 
 ### Parent Prefix vs. Sub-Prefix Overlap Analysis
 To find all affected prefixes, we wrote a Python script to mathematically check overlaps between the prefixes announced by RCom (`AS18101`) and Telegram's registered IP prefixes. In total, the incident affected **35 unique prefixes** that overlapped with Telegram's space (34 originated by RCom `AS18101` and 1 originated exclusively by Tata Teleservices `AS45820`, with `2a0a:f280::/32` originated by both). These 35 prefixes mapped back to **17 distinct parent prefixes** announced legitimately by Telegram:
@@ -107,11 +110,13 @@ To find all affected prefixes, we wrote a Python script to mathematically check 
 | **`185.76.151.0/24`** *(AS211157)* | `185.76.151.0/24` | Exact Match |
 | **`91.105.192.0/23`** *(AS211157)* | `91.105.192.0/23` | Exact Match |
 | **`91.108.16.0/22`** *(AS62014)* | `91.108.16.0/22` | Exact Match |
-| **`2a0a:f280:203::/48`** *(AS211157)*| `2a0a:f280::/32`<br>`2a0a:f280::/48` | Super-prefix (Less-specific)<br>Sibling prefix |
+| **`2a0a:f280:203::/48`** *(AS211157)*| `2a0a:f280::/32`<br>`2a0a:f280::/48` † | Super-prefix (Less-specific)<br>Sibling prefix |
 | **`2001:67c:4e8::/48`** *(AS62041)* | `2001:67c:4e8::/48` | Exact Match |
 | **`2001:b28:f23d::/48`** *(AS59930)* | `2001:b28:f23d::/48` | Exact Match |
 | **`2001:b28:f23f::/48`** *(AS62014)* | `2001:b28:f23f::/48` | Exact Match |
 | **`2001:b28:f23c::/48`** *(AS44907)* | `2001:b28:f23c::/48` | Exact Match |
+
+> † `2a0a:f280::/48` was announced exclusively by **Tata Teleservices (AS45820)** via F5 Networks (AS35280) — it was never originated by RCom (AS18101). It is listed here because it overlaps with Telegram's `2a0a:f280:203::/48` and was part of the same incident. See [§8](#8-the-secondary-tata-teleservices--lightstorm-leaks-as45820--as135709--as152144).
 
 ---
 
@@ -125,7 +130,7 @@ By normalizing prepended paths (removing duplicate consecutive ASNs) and isolati
 2. **Tata Communications (AS4755):** Tata is a global Tier-1 transit provider. It propagated the routes in **12 hijack events** — primarily parent `/22` prefixes during the early phase of the hijack.
 3. **Bharti Airtel (AS9498):** Airtel is a major Indian telecommunications network. In our RIPE RIS dataset, Airtel appears as the direct upstream of `AS18101` for **exactly 1 hijacked path** — the IPv6 super-prefix `2a0a:f280::/32` at 16:46:14 UTC. This is a marginal propagation contribution but technically qualifies Airtel as a direct upstream.
 
-Behind these 3 direct transits, a total of **44 second-tier transit providers** accepted these routes and propagated them further. This second tier includes major networks such as Sify Technologies (`AS9583`, observed in 31 unique hijacked prefix-path combinations), Cogent (`AS174`), Sparkle (`AS6762`), and Hurricane Electric (`AS6939`). In total, **158 unique final receiver/peer networks** (downstreams) logged the hijacked paths in their routing tables.
+Behind these 3 direct transits, our script-based analysis (`scripts/count_as18101_hijack_paths_and_upstreams.py`, running on the June 16 07:00–22:00 UTC data window) identified **44 unique second-tier transit providers** that accepted these routes and propagated them further. This second tier includes major networks such as Sify Technologies (`AS9583`, observed in 31 unique hijacked prefix-path combinations), Cogent (`AS174`), Sparkle (`AS6762`), and Hurricane Electric (`AS6939`). In total, the same analysis window counted **158 unique final receiver/peer networks** (downstreams) logging the hijacked paths in their routing tables. These numbers are lower bounds; paths that never reached a RIPE RIS collector, or path changes after 22:00 UTC (including the secondary Tata leak), are not included.
 
 *(Note: We did not observe any Jio ASN (including `AS55836`) in any hijacked Telegram prefix path in our RIPE RIS dataset. Jio's appearances in our data are exclusively as an upstream for RCom's own legitimate prefixes. Sify (AS9583) did appear as a second-tier transit for 31 unique hijacked prefix-path combinations (56 total updates) — the last such path being at 20:39:36 UTC for `2a0a:f280::/32` (and last Sify path overall being at 20:55:31 UTC for `95.161.64.0/20`).)*
 
@@ -261,7 +266,7 @@ While these observations are **consistent with** RPKI ROV containing the hijack,
 
 Ultimately, while the empirical BGP path data provides strong correlational support that RPKI Route Origin Validation played a role in protecting the global internet from RCom's route leak, the lack of direct control-plane validation measurements on individual routers means we present RPKI's role as a well-supported hypothesis rather than a measured conclusion.
 
-> **Additional caveat — ROV bypass mechanisms**: The RPKI analysis above assumes that Route Origin Validation, when deployed, universally blocks routes from unauthorized origins. In practice, ROV can be bypassed by certain route attributes and provider-specific policies. Network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) has documented that routes carrying the [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666) may circumvent ROV at some providers, and that long prefixes can bypass ROV where providers apply IRR-only filtering for more-specific routes ([CHI-NOG 13 presentation](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf)). Network analyst [Anurag Bhatia (Hurricane Electric)](https://x.com/anurag_bhatia/status/2067553124735492443) hypothesized that the secondary AS45820 leak may have carried this community (see [§8](#8-the-secondary-tata-teleservices-leak-as45820)). This is an additional confound: RPKI's protective effect is not absolute and depends on provider-specific ROV enforcement. As with the other confounders, this is a qualitative caveat — we lack direct community-attribute data from RIPE RIS to confirm the mechanism in this incident.
+> **Additional caveat — ROV bypass mechanisms**: The RPKI analysis above assumes that Route Origin Validation, when deployed, universally blocks routes from unauthorized origins. In practice, ROV can be bypassed by certain route attributes and provider-specific policies. Network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) has documented that routes carrying the [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666) may circumvent ROV at some providers because RPKI validation is often excluded for BLACKHOLE-tagged routes, and that long prefixes can bypass ROV where providers apply IRR-only filtering for more-specific routes ([CHI-NOG 13 presentation](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf)). Network analyst [Anurag Bhatia (Hurricane Electric)](https://anuragbhatia.com/post/2026/06/telegram-bgp-hijack-and-blackholing/) confirmed via lab testing that the secondary AS45820 leak used this community — a repurposed DDoS blackholing mechanism (see [§8](#8-the-secondary-tata-teleservices--lightstorm-leaks-as45820--as135709--as152144)). This is an additional confound: RPKI's protective effect is not absolute and depends on provider-specific ROV enforcement and community handling policies.
 
 ---
 
@@ -307,7 +312,7 @@ Our analysis pipeline (specifically `scripts/hijack_resolution_timeline_per_upst
 
 The three direct upstream transits cleared more slowly, with Phase 2 sub-prefixes and parent prefixes resolving on separate tracks:
 1. **Tata India (AS4755):** Last hijack announcement observed at **20:55:31 UTC** (2:25:31 AM IST on June 17) for `95.161.64.0/20`, with final resolution at **21:08:31 UTC** (per `hijack_resolution_timeline_per_upstream.py`). Tata cleared ~5 minutes before FLAG.
-2. **Bharti Airtel (AS9498):** The single hijack path we observed via Airtel was for `2a0a:f280::/32` at **16:46:14 UTC** (10:16:14 PM IST). This route was never withdrawn and remains active and stuck as of the last verified BGP state scan at 16:30 UTC on June 17, 2026.
+2. **Bharti Airtel (AS9498):** The single hijack path we observed via Airtel was for `2a0a:f280::/32` at **16:46:14 UTC** (10:16:14 PM IST). This route was never withdrawn in our RIPE RIS data window (ending June 17, 06:00 UTC) and was confirmed active via a live RIPE Stat BGP state query on June 17. It points to the ongoing pollution of the `2a0a:f280::/32` parent prefix (see [§6](#6-when-can-we-say-it-finally-got-resolved)).
 3. **FLAG Telecom (AS15412):** By far the slowest to react. It continued propagating announcements until **21:12:44 UTC** (2:42:44 AM IST on June 17). FLAG engineers deployed filters around **21:12:41 UTC**, sending withdrawals to their downstream peers.
 
 ### Disaggregated Timeline for All Affected Sub-Prefixes
@@ -368,12 +373,11 @@ When we analyze the "resolution" of the hijack, we are measuring the exact momen
 
 ## 6. When Can We Say It Finally Got Resolved?
 
-The hijack of the **last remaining affected prefix** — the IPv4 parent block `91.108.56.0/22` — finally resolved at **21:13:11 UTC** (2:43:11 AM IST on June 17, 2026), when the last peer in the RIPE RIS database received a `RESOLVED_SWITCH` update, changing its path from RCom's network (`18101 -> 15412 -> ...`) back to Telegram's legitimate path:
-`62041 -> 6762 -> 2914 -> 19151` (Telegram -> transits -> receiver peer).
+The hijack of the **last remaining affected prefix** — the IPv4 parent block `91.108.56.0/22` — finally resolved at **21:13:11 UTC** (2:43:11 AM IST on June 17, 2026), when the last peer in the RIPE RIS database received a `RESOLVED_SWITCH` update, changing its path from RCom's network back to Telegram's legitimate path: `19151 -> 2914 -> 6762 -> 62041` (receiver peer AS19151 → NTT AS2914 → Sparkle AS6762 → Telegram AS62041, standard BGP AS_PATH notation).
 
 However, the parent IPv6 prefix `2a0a:f280::/32` **never resolved globally**. This is a structural consequence of Telegram not advertising the parent `/32` itself. For the IPv4 prefixes, resolution happened via `RESOLVED_SWITCH` — peers dropped RCom's leaked path and picked up Telegram's legitimate announcement for the same prefix. The `/32` had no legitimate Telegram path to switch to; the only possible resolution would be a full withdrawal from the global routing table. Since no upstream withdrew the route, the `/32` remained polluted:
-1. **The Stuck RCom Path**: A single Bharti Airtel-mediated peer session (`AS9498 -> AS18101`) remains stuck and continues to announce `AS18101` as the origin as of our last verified BGP state scan at 16:30 UTC on June 17, 2026. This can be observed live via the [HE Super Looking Glass](https://bgp.he.net/super-lg/#2a0a:f280::/32?tob=none&els=exact) (which queries raw route tables globally and displays the path containing the intermediate transit hop `9498` ending at origin `18101`) or by querying the raw [RIPE Stat BGP State API](https://stat.ripe.net/data/bgp-state/data.json?resource=2a0a:f280::/32) (which returns a single active path containing `path: [36236, 9498, 18101]`).
-2. **The Secondary Tata Teleservices Leak**: 12 other peers that switched away from `AS18101` at **20:39 UTC** on June 16 did not switch to a legitimate Telegram ASN. Instead, they switched to **Tata Teleservices (AS45820)**, which began leaking the same prefix. This secondary leak remains active as of our last verified BGP state scan. This is visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) (which lists `AS45820` as an active origin and shows it in the path graph) and the [RIPE Stat Widget Page](https://stat.ripe.net/2a0a:f280::/32#tabId=routing) (where the Looking Glass widget lists active peer paths ending in `35280 45820`).
+1. **The Stuck RCom Path**: A single Bharti Airtel-mediated peer session (`AS9498 -> AS18101`) remains stuck and continues to announce `AS18101` as the origin (confirmed via live RIPE Stat BGP state query). This can be observed via the [HE Super Looking Glass](https://bgp.he.net/super-lg/#2a0a:f280::/32?tob=none&els=exact) (which queries raw route tables globally and displays the path containing the intermediate transit hop `9498` ending at origin `18101`) or the raw [RIPE Stat BGP State API](https://stat.ripe.net/data/bgp-state/data.json?resource=2a0a:f280::/32) (which returns a single active path containing `path: [36236, 9498, 18101]`).
+2. **The Secondary Tata Teleservices Leak**: 12 other peers that switched away from `AS18101` at **20:39 UTC** on June 16 did not switch to a legitimate Telegram ASN. Instead, they switched to **Tata Teleservices (AS45820)**, which began leaking the same prefix. This secondary leak remains active as of live BGP state queries (June 17). This is visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) (which lists `AS45820` as an active origin and shows it in the path graph) and the [RIPE Stat Widget Page](https://stat.ripe.net/2a0a:f280::/32#tabId=routing) (where the Looking Glass widget lists active peer paths ending in `35280 45820`).
 
 Therefore, while RCom's hijack resolved for all other prefixes, the IPv6 parent prefix `2a0a:f280::/32` remains hijacked as of the last verified snapshot. The global routing table was never fully cleaned for this block.
 
@@ -417,23 +421,25 @@ To ensure the scientific rigour and reproducibility of this BGP routing analysis
 
 ---
 
-## 8. The Secondary Tata Teleservices Leak (AS45820)
+## 8. The Secondary Tata Teleservices & Lightstorm Leaks (AS45820 / AS135709 / AS152144)
 
-During our extended timeline analysis, we discovered a secondary BGP route leak originating from **Tata Teleservices (AS45820)** that began on June 16, 2026, and remains active (as of the last verified BGP state scan at 16:30 UTC, June 17, 2026).
+During our extended timeline analysis, we discovered secondary BGP route leaks originating from **Tata Teleservices (AS45820)** and **Lightstorm (AS135709 / AS152144)** that began on June 16, 2026, and remain unresolved as of our RIPE RIS data window (June 17, 06:00 UTC) — with live BGP state queries on June 17 confirming ongoing propagation. Network analyst Anurag Bhatia ([blog post](https://anuragbhatia.com/post/2026/06/telegram-bgp-hijack-and-blackholing/)) independently identified the same actors and conducted lab tests to confirm the mechanism.
 
 ### 1. The Handoff in the IPv6 Timeline
 At **20:39 UTC** on June 16, 2026—just as the primary AS18101 (RCom) hijack was beginning to resolve globally—12 different BGP peers in the RIPE RIS dataset switched their path for the IPv6 parent prefix `2a0a:f280::/32` to a route originating from `AS45820` (Tata Teleservices):
 *   **The AS Path:** `[..., 35280, 45820]` (routed via F5 Networks `AS35280`)
 *   **Pre-hijack State:** Prior to the incident, the parent prefix `2a0a:f280::/32` was completely unannounced (0 active peers).
-*   **Status (as of 16:30 UTC, June 17, 2026):** A query of the live BGP routing table at that timestamp shows that **12 peer sessions** continue to announce the prefix originating from `AS45820`. This is visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) (which shows `AS45820` as an active origin) and the [RIPE Stat Widget Page](https://stat.ripe.net/2a0a:f280::/32#tabId=routing) (where the Looking Glass widget lists active peer paths ending in `35280 45820`).
-*   **The More-Specific Sub-prefix Leak:** Alongside the parent block `2a0a:f280::/32`, RIPE RIS data shows that Tata Teleservices simultaneously began originating a more-specific subnet, **`2a0a:f280::/48`**. This prefix was never announced by RCom during the primary hijack, and its global propagation is also active as of the last verified BGP state scan (with the same 12 peer sessions routing it via the path `[..., 35280, 45820]`). This confirms that Tata Teleservices configured null routes for both the parent block and the sub-prefix locally, leaking both of them to the global internet.
+*   **Status:** A live BGP state query confirmed that **12 peer sessions** continue to announce the prefix originating from `AS45820`, alongside additional announcements from **Lightstorm (AS135709 / AS152144)**. This is visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) (which shows `AS45820` as an active origin) and the [RIPE Stat Widget Page](https://stat.ripe.net/2a0a:f280::/32#tabId=routing) (where the Looking Glass widget lists active peer paths ending in `35280 45820`).
+*   **The More-Specific Sub-prefix Leak:** Alongside the parent block `2a0a:f280::/32`, RIPE RIS data shows that Tata Teleservices simultaneously began originating a more-specific subnet, **`2a0a:f280::/48`**. This prefix was never announced by RCom during the primary hijack, and its global propagation was confirmed active via live BGP state query (with the same 12 peer sessions routing it via the path `[..., 35280, 45820]`). This confirms that Tata Teleservices configured null routes for both the parent block and the sub-prefix locally, leaking both of them to the global internet.
 
 ### 2. Root Cause and Mechanism
-The secondary leak by Tata Teleservices shares the identical root cause and structure as RCom's Phase 2 leak:
-1.  **Block Order Implementation**: To block Telegram domestically under Section 69A of the IT Act, Tata Teleservices network operators configured static "null" or blackhole routes for Telegram's parent blocks (including `2a0a:f280::/32`) on their domestic edge routers.
-2.  **Export Filter Failure**: Because Tata Teleservices failed to configure appropriate export filters on their external BGP peerings (specifically with F5 Networks `AS35280` at regional exchange points), these newly created static routes immediately leaked to their global peers.
+The secondary leaks by Tata Teleservices and Lightstorm share the identical root cause and structure as RCom's Phase 2 leak:
+1.  **Block Order Implementation**: To block Telegram domestically under Section 69A of the IT Act, network operators configured static blackhole routes for Telegram's IPv6 blocks (including `2a0a:f280::/32`) on their domestic edge routers.
+2.  **Export Filter Failure**: Because these operators failed to configure appropriate export filters on their external BGP peerings, these newly created static routes immediately leaked to their BGP adjacencies.
 3.  **RPKI Ineffectiveness**: Since Telegram does not publish an ROA for the parent IPv6 block `2a0a:f280::/32`, the leaked route's RPKI validation status was **RPKI Unknown**. This allowed it to propagate uncontested across the global internet.
-4.  **Hypothesized BLACKHOLE community mechanism**: Network analyst [Anurag Bhatia (Hurricane Electric)](https://x.com/anurag_bhatia/status/2067553124735492443) hypothesized that AS45820's route leak may have used the [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666) — a well-known BGP community that signals receiving routers to discard traffic towards the tagged prefix. If confirmed, this would differ from RCom's static null-route mechanism, representing an intentional signaling of blackholing rather than an accidental redistribution. Critically, network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) has documented that BLACKHOLE-tagged routes can bypass RPKI Route Origin Validation at providers that honor the community without also performing ROV, and that long-prefix routes may circumvent ROV where providers apply IRR-only filtering instead of ROV ([CHI-NOG 13 presentation](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf)). However, our RIPE RIS data does not preserve community attributes for these paths, and both Bhatia and Herdes described the mechanism in general terms rather than confirming its application in this specific incident. The mechanism remains unconfirmed but is noted as a plausible explanation for the leak's persistence and its distinction from RCom's leak.
+4.  **Confirmed BLACKHOLE community mechanism**: Anurag Bhatia ([blog post](https://anuragbhatia.com/post/2026/06/telegram-bgp-hijack-and-blackholing/)) tested this behavior in a lab and concluded that these ISPs likely already had blackhole route configurations in place for **DDoS protection** purposes and repurposed the same mechanism for blocking Telegram. Rather than configuring fresh static null-routes (as RCom did), they treated Telegram's IPv6 prefixes like they would treat their own prefixes when under attack — signaling the blackhole to BGP adjacencies using the standard [RFC 7999](https://datatracker.ietf.org/doc/html/rfc7999) BLACKHOLE community (65535:666). This differs fundamentally from RCom's ad-hoc static null-route approach, representing an existing operational process (DDoS blackholing) being redirected at a new target.
+
+   Critically, as Bhatia notes, **"RPKI RoV usually excludes RFC7999"** — meaning networks that honor the BLACKHOLE community often skip Route Origin Validation for these tagged routes, allowing them to propagate to peers that would otherwise filter them. Network engineer [Bryton Herdes (Cloudflare)](https://x.com/next_hopself/status/2067554808593105301) confirmed this at [CHI-NOG 13](https://chinog.org/wp-content/uploads/2026/06/bryton_herdes_false_immunity_long_prefixes_rov.pdf), and Lightstorm has customers outside India (e.g., Nepal, where Telegram is not blocked) — multi-homed users in those regions could prefer Lightstorm's shorter AS_PATH for these prefixes and get blackholed as a side effect.
 
 This secondary leak highlights the systemic risk of national web blocking orders. When multiple eyeball ISPs are forced to implement hasty blocking configurations without strict BGP export policies, it increases the probability of multiple independent route leaks propagating globally.
 
@@ -447,8 +453,8 @@ Our analysis of the RIPE RIS BGP updates and extended-timeline validation verifi
 1. **The Primary Hijack Timeline:** The primary hijack by RCom began at **07:08:57 UTC** on June 16, 2026, targeting `95.161.64.0/20` and eventually expanding to cover **34 unique prefixes and sub-prefixes** (with a total of **35 unique prefixes** affected when including the secondary Tata Teleservices leak, representing 17 Telegram parent ranges). RCom utilized a combination of exact-match and highly disruptive sub-prefix injections (Phase 2, starting at approximately 16:14 UTC) to bypass basic routing filters.
 2. **Upstream Transit Behaviors:** Three direct upstream transits accepted RCom's leaked routes, with **FLAG Telecom (AS15412) dominating propagation** at 830 of 843 total hijack events (98.5%) across the 3 representative prefixes tracked in the timeline script. Tata Communications accounted for 12 events and Bharti Airtel for a single IPv6 path. Sify Technologies (AS9583) acted as a second-tier transit for 31 unique prefix-path combinations (56 total updates).
 3. **Resolution of Remaining Affected Prefixes:** The primary RCom leak for all remaining affected prefixes (the IPv4 parent /22 and /20 blocks) resolved at **21:13:11 UTC** on June 16, 2026 (when the last peer received a `RESOLVED_SWITCH` update via FLAG for prefix `91.108.56.0/22`). Tata Communications cleared at 21:08:31 UTC. By that point the IPv4 /24 sub-prefixes had already cleared at ~20:06 UTC and the IPv6 /48 sub-prefixes at 20:39 UTC.
-4. **The Stuck Bharti Airtel Route:** Unlike the sub-prefixes, the parent IPv6 prefix `2a0a:f280::/32` never resolved globally on all paths. Bharti Airtel's single peer session (`AS9498 -> AS18101`) did not show a withdrawal or route switch, remaining active and stuck as of the last verified BGP state scan at 16:30 UTC on June 17, 2026 (visible live on the [HE Super Looking Glass](https://bgp.he.net/super-lg/#2a0a:f280::/32?tob=none&els=exact) showing intermediate hop `9498` and origin `18101`).
-5. **The Secondary Tata Teleservices Leak:** At **20:39 UTC** on June 16, 2026, 12 peer sessions switched their path for prefix `2a0a:f280::/32` to **Tata Teleservices (AS45820)** via F5 Networks (`AS35280`). This secondary leak remains active as of the last verified BGP state scan (visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) listing `AS45820` as an active origin), meaning the parent IPv6 block remains globally hijacked and routed to invalid destinations.
+4. **The Stuck Bharti Airtel Route:** Unlike the sub-prefixes, the parent IPv6 prefix `2a0a:f280::/32` never resolved globally on all paths. Bharti Airtel's single peer session (`AS9498 -> AS18101`) did not show a withdrawal or route switch, remaining active as of live BGP state queries on June 17 (visible on the [HE Super Looking Glass](https://bgp.he.net/super-lg/#2a0a:f280::/32?tob=none&els=exact) showing intermediate hop `9498` and origin `18101`).
+5. **The Secondary Tata Teleservices & Lightstorm Leaks:** At **20:39 UTC** on June 16, 2026, 12 peer sessions switched their path for prefix `2a0a:f280::/32` to **Tata Teleservices (AS45820)** via F5 Networks (`AS35280`), with **Lightstorm (AS135709 / AS152144)** also originating the prefix. These secondary leaks — driven by a repurposed DDoS blackholing mechanism using the RFC 7999 BLACKHOLE community — remain active as of live BGP state queries (visible on the [HE BGP Toolkit Prefix Page](https://bgp.he.net/net/2a0a:f280::/32) listing `AS45820` as an active origin), meaning the parent IPv6 block remains globally hijacked and routed to invalid destinations.
 
 ### Systemic Risks and the Path Forward
 
@@ -460,5 +466,184 @@ This incident reveals critical weaknesses in how national blocking orders are im
 
 To prevent future incidents, the networking community must push for complete RPKI ROA coverage for all announced IP blocks (including parent ranges), and transit networks must enforce strict ingress prefix filtering aligned with MANRS actions.
 
+---
 
+## Postscript: The Unblocking (June 23, 2026)
+
+The Section 69A blocking order was set to expire on June 22, 2026. We used the [OONI aggregation API](https://api.ooni.io/api/v1/aggregation) to query all India `telegram` test measurements from June 16–23 and determine when blocking started, how widespread it was, and when — and for which ISPs — it ended.
+
+**Reproducibility.** The analysis in this section is derived from three API queries. Anyone can reproduce it by fetching these URLs:
+
+```
+# 1. Daily aggregate (all ISPs combined)
+https://api.ooni.org/api/v1/aggregation?probe_cc=IN&since=2026-06-16&until=2026-06-24&time_grain=day&axis_x=measurement_start_day&test_name=telegram
+
+# 2. Daily per-ASN breakdown
+https://api.ooni.org/api/v1/aggregation?probe_cc=IN&since=2026-06-16&until=2026-06-24&time_grain=day&axis_x=measurement_start_day&axis_y=probe_asn&test_name=telegram
+
+# 3. Hourly per-ASN breakdown for June 23 (the unblocking day)
+https://api.ooni.org/api/v1/aggregation?probe_cc=IN&since=2026-06-23&time_grain=hour&axis_x=measurement_start_day&axis_y=probe_asn&test_name=telegram
+```
+
+Saved JSON snapshots: `data/raw/ooni/ooni_aggregation_india_telegram_daily.json`, `ooni_aggregation_india_telegram_daily_per_asn.json`, `ooni_aggregation_india_telegram_hourly_20260623_per_asn.json`, `ooni_aggregation_india_telegram_hourly_20260616_per_asn.json`.
+
+### Daily Aggregate: When Was Blocking Active?
+
+| Date | Total | Anomaly | OK | % OK |
+|---|---|---|---|---|
+| **Jun 16** | 274 | 156 | 118 | 43% |
+| **Jun 17** | 272 | 271 | 1 | 0.4% |
+| **Jun 18** | 281 | 281 | 0 | 0% |
+| **Jun 19** | 231 | 231 | 0 | 0% |
+| **Jun 20** | 184 | 184 | 0 | 0% |
+| **Jun 21** | 219 | 219 | 0 | 0% |
+| **Jun 22** | 243 | 240 | 3 | 1% |
+| **Jun 23** | 94 | 62 | 32 | 34% |
+
+- **June 16** shows 43% OK because the block was imposed mid-day (≈07:00 UTC). Measurements before 07:00 UTC were clean; afterwards, near-universally anomalous.
+- **June 17–21** are at or near 100% anomaly — the block was universal across all measured ISPs.
+- **June 22** shows the first 3 clean measurements (from Alliance Broadband AS23860).
+- **June 23** shows a dramatic transition: 34% OK. The block is collapsing.
+
+### Per-ASN Daily Transition (Key ISPs)
+
+| ISP | ASN | Jun 16 | Jun 17 | Jun 18–21 | Jun 22 | Jun 23 |
+|---|---|---|---|---|---|---|
+| **Jio** | 55836 | 74B/34OK | 94B/1OK | 100% B | 97B/0OK | **2B/18OK** |
+| **Airtel** | 24560 | 35B/21OK | 57B/0OK | 100% B | 37B/0OK | **22B/4OK** |
+| **ACT** | 24309 | 9B/10OK | 16B/0OK | 100% B | 30B/0OK | **9B/2OK** |
+| **BSNL** | 9829 | 6B/3OK | 10B/0OK | 100% B | 5B/0OK | **7B/0OK** |
+| **Vi** | 38266 | — | 1B/0OK | sparse B | — | **2B/0OK** |
+| **Hathway** | 17488 | 2B/7OK | 3B/0OK | 100% B | 3B/0OK | **3B/0OK** |
+
+> B = anomaly (blocked), OK = clean (unblocked). "100% B" means zero OK measurements that day. Data from query #2 above.
+
+**Jio** led the unblocking: it had clean measurements as early as 00:00 UTC on June 23 (6:30 AM IST), and by 05:00 UTC showed 0 anomalies out of 6 measurements. **Airtel** and **ACT** both flipped at 05:00–06:00 UTC (10:30–11:30 AM IST). **BSNL**, **Hathway**, and **Vi** show zero OK measurements on June 23 — their blocks remain active per OONI.
+
+### The Hour of Unblocking (June 23, UTC)
+
+Per-ASN anomaly/OK counts by hour, from query #3:
+
+| Hour (UTC) | Jio (55836) | Airtel (24560) | ACT (24309) | BSNL (9829) | Vi (38266) |
+|---|---|---|---|---|---|
+| 00:00 | 0A/2C ✓ | 4A/0C ✗ | 2A/0C ✗ | 2A/0C ✗ | — |
+| 01:00 | 0A/1C ✓ | 4A/0C ✗ | 2A/0C ✗ | 1A/0C ✗ | — |
+| 02:00 | 0A/2C ✓ | 5A/0C ✗ | — | — | 1A/0C ✗ |
+| 03:00 | 1A/3C | 2A/0C ✗ | 2A/0C ✗ | 1A/0C ✗ | — |
+| 04:00 | 1A/2C | 3A/0C ✗ | 1A/0C ✗ | 1A/0C ✗ | — |
+| 05:00 | **0A/6C** ✓ | 4A/0C ✗ | 2A/2C ≈ | 1A/0C ✗ | 1A/0C ✗ |
+| 06:00 | 0A/2C ✓ | **0A/4C** ✓ | — | 1A/0C ✗ | — |
+
+The unblocking wave is clearly visible: Jio is clean from the start of June 23, ACT is evenly split at 05:00 UTC and clean afterward, Airtel flips to clean at 06:00 UTC. BSNL and Vi remain blocked through the entire window.
+
+### Blocking Onset (June 16, hourly)
+
+The order in which ISPs showed their first OONI anomaly on June 16, from [hourly per-ASN data](https://api.ooni.org/api/v1/aggregation?probe_cc=IN&since=2026-06-16&until=2026-06-17&time_grain=hour&axis_x=measurement_start_day&axis_y=probe_asn&test_name=telegram):
+
+| # | ASN | ISP | First Anomaly (UTC) |
+|---|---|---|---|
+| 1 | 17762 | Tata Teleservices | 05:00 |
+| 2 | 24309 | ACT | 07:00 |
+| 3 | 55836 | Jio | 07:00 |
+| 4 | 45769 | — | 08:00 |
+| 5 | 55410 | Vi (consumer) | 08:00 |
+| 6 | 134337 | — | 08:00 |
+| 7 | 9829 | BSNL | 10:00 |
+| 8 | 17488 | Hathway | 10:00 |
+| 9 | 24560 | Airtel | 10:00 |
+| 10 | 18209 | — | 11:00 |
+| 11 | 45609 | Airtel (consumer) | 11:00 |
+| 12 | 55824 | NKN | 11:00 |
+| 13 | 55333 | — | 12:00 |
+| 14 | 136371 | Airwir | 13:00 |
+| 15 | 138754 | Kerala Vision | 13:00 |
+| 16 | 17465 | Asianet | 14:00 |
+| 17 | 133661 | Netplus | 16:00 |
+| 18 | 23860 | Alliance | 23:00 |
+
+The earliest anomalies appear at 05:00 UTC (10:30 AM IST), hours before RCom's BGP hijack began at 07:08 UTC. This suggests Tata Teleservices may have imposed DNS-level blocking (NXDOMAIN) before routing-layer blocking began. Major ISPs — ACT, Jio, BSNL, Hathway, Airtel — show anomalies starting between 07:00 and 11:00 UTC, consistent with a morning deployment of the Section 69A blocking order. Additional ISPs joined on June 17–19 as measurements accumulated.
+
+> **Caveat:** These are the earliest anomaly times *recorded by OONI*. OONI measurements are user-submitted; the actual block may have been imposed earlier on any given ISP, and would only appear in the data once a user on that network ran a test.
+
+### Unblocking Order (June 23, hourly)
+
+The order in which ISPs transitioned from blocked to clean on June 23, from the [hourly June 23 aggregation](https://api.ooni.org/api/v1/aggregation?probe_cc=IN&since=2026-06-23&time_grain=hour&axis_x=measurement_start_day&axis_y=probe_asn&test_name=telegram):
+
+| # | ASN | ISP | Unblocked At (UTC) | Notes |
+|---|---|---|---|---|
+| 1 | 55836 | Jio | 00:00 | Clean from the first hour of June 23 (2C) — block lifted overnight |
+| 2 | 23860 | Alliance | 00:00 | Clean from the first hour (1C) |
+| 3 | 134886 | — | 00:00 | Clean from the first hour (1C) |
+| 4 | 24309 | ACT | 05:00 | Transition hour: 2A/2C (block being lifted mid-hour) |
+| 5 | 24560 | Airtel | 06:00 | First clean after 22 straight hours of blocking (4C) |
+| 6 | 134674 | Tata Play | 06:00 | Clean (1C) |
+| 7 | 136311 | — | 06:00 | Clean (2C) |
+| 8 | 45609 | Airtel (consumer) | 06:00 | Clean (1C) |
+| 9 | 138754 | Kerala Vision | 06:00 | Clean (1C) |
+
+**Still blocked** as of their last June 23 measurement (zero OK measurements):
+
+| ASN | ISP | Last Anomaly (UTC) |
+|---|---|---|
+| 9829 | BSNL | 06:00 |
+| 55410 | Vi (consumer) | 06:00 |
+| 38266 | Vi | 05:00 |
+| 17488 | Hathway | 02:00 |
+| 45271 | — | 03:00 |
+| 55577 | ACT (alt ASN) | 01:00 |
+
+**No June 23 data** — 32 ISPs had measurements in earlier days but none on June 23. Their status is unknown; some may already be unblocked. Notable among them: Excitel (AS133982, last Jun 22), NKN (AS55824, last Jun 22), Netplus (AS133661, last Jun 20), Airtel transit (AS9498, last Jun 21). See `data/raw/ooni/ooni_aggregation_india_telegram_daily_per_asn.json` for the full list.
+
+> **Caveat:** Unblocking times are when the first clean OONI measurement appeared. The actual block may have been lifted earlier — OONI only records data when a user runs a test. ISPs with no June 23 measurements are not confirmed blocked; they are simply unobserved. We cross-verified several of these with RIPE Atlas traceroutes below.
+
+### RIPE Atlas Cross-Verification (June 23)
+
+To determine current routing-layer state for ISPs where OONI data is stale or missing, we created 35 RIPE Atlas traceroutes (ICMP and TCP/443) across 7 ISPs. Targets: `149.154.167.99`, `95.161.76.100`, `149.154.175.50`, plus a `1.1.1.1` control (measurement IDs in `data/raw/atlas/atlas_traceroute_measurements_20260623.json`, results in `data/raw/atlas/atlas_traceroute_results_20260623.json`).
+
+| ASN | ISP | OONI last seen | Atlas ICMP | Atlas TCP | Verdict |
+|---|---|---|---|---|---|
+| 9829 | BSNL | Jun 23 05:20 (blocked) | ALL BLOCKED | BLOCKED | **Still blocked** |
+| 17488 | Hathway | Jun 23 02:58 (blocked) | 2 of 3 blocked | BLOCKED | **Still blocked** |
+| 133982 | Excitel | Jun 22 13:00 (stale) | 1 of 3 blocked | ALL OK | **Unblocked** (residual ICMP) |
+| 45609 | Airtel consumer | Jun 23 05:07 (blocked) | 1 of 3 blocked | ALL OK | **Unblocked** (residual ICMP) |
+| 133661 | Netplus | Jun 20 03:28 (stale) | 1 of 3 blocked | ALL OK | **Unblocked** (residual ICMP) |
+| 9498 | Airtel transit | Jun 21 02:17 (stale) | 1 of 3 blocked | ALL OK | **Unblocked** (residual ICMP) |
+| 55824 | NKN | Jun 22 12:36 (blocked) | ALL BLOCKED | BLOCKED | **Still blocked** * |
+
+\* NKN's Atlas probe also cannot reach the control target (`1.1.1.1`) — its firewall blocks all traffic generically, not specifically Telegram.
+
+Atlas reveals that Excitel, Netplus, and both Airtel ASNs (45609 + 9498) are unblocked at the TCP level, contradicting their OONI flags (which are from stale measurements). The only residual evidence is an ICMP filter on `149.154.167.99` — likely a leftover null route that was removed for TCP traffic but not for ICMP. BSNL and Hathway remain confirmed blocked across all protocols.
+
+### Summary
+
+- **Blocking started** mid-day June 16 (≈07:00 UTC), reached near-100% by June 17, and held through June 21.
+- **Unblocking began** on June 22 (Alliance Broadband), accelerated dramatically on June 23 between 00:00–06:00 UTC.
+- **Fully unblocked** per both OONI aggregation and Atlas traceroutes: Jio (AS55836), ACT (AS24309), Airtel x3 (AS24560/AS45609/AS9498), Excitel (AS133982), Netplus (AS133661), Tata Play (AS134674), Kerala Vision (AS138754), Alliance (AS23860).
+- **Still blocked** as of June 23 06:00 UTC: BSNL (AS9829), Hathway (AS17488). Vi (AS38266) is IPv4-only blocked (IPv6 works). NKN (AS55824) blocks all traffic generically.
+- **Unblocking is asynchronous and independent** across ISPs — consistent with each ISP acting on its own timeline rather than a coordinated government de-escalation.
+
+---
+
+### Data Files
+
+All data used in this postscript is available in the repository. The analysis is reproducible using the public OONI aggregation API.
+
+**OONI aggregations** (`data/raw/ooni/`):
+- `ooni_aggregation_india_telegram_daily.json` — daily anomaly/OK counts, India-wide
+- `ooni_aggregation_india_telegram_daily_per_asn.json` — per-ASN daily breakdown
+- `ooni_aggregation_india_telegram_hourly_20260623_per_asn.json` — June 23 hourly per-ASN
+- `ooni_aggregation_india_telegram_hourly_20260616_per_asn.json` — June 16 hourly per-ASN (blocking onset)
+
+**RIPE Atlas** (`data/raw/atlas/`):
+- `atlas_probes_india.json` — probe inventory (160 probes across 65 ASNs)
+- `atlas_traceroute_measurements_20260623.json` — measurement IDs for cross-verification
+- `atlas_traceroute_results_20260623.json` — traceroute results per ISP/target
+- `atlas_traceroute_results_raw.json` — full raw results from the earlier investigation
+- `atlas_measurements_created.json` — measurement IDs from the earlier investigation
+
+### Further Reading
+
+- **Anurag Bhatia** — *Telegram prefix hijack by RCom* ([link](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/))
+- **Anurag Bhatia** — *Telegram BGP hijack due to weird blackholing config* ([link](https://anuragbhatia.com/post/2026/06/telegram-bgp-hijack-and-blackholing/))
+- **Doug Madory / Kentik** — *When Local Blocks Go Global: The India-Telegram BGP Incident* ([link](https://www.kentik.com/blog/when-local-blocks-go-global-the-india-telegram-bgp-incident/))
 

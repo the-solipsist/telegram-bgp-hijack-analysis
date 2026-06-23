@@ -1,0 +1,462 @@
+{
+  "v": 0,
+  "dimension_count": 2,
+  "db_stats": {
+    "row_count": 605384,
+    "bytes": 12367047,
+    "total_row_count": 605384,
+    "elapsed_seconds": 1.3093183040618896
+  },
+  "result": [
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 23860
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T00:00:00Z",
+      "probe_asn": 134886
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 55577
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T01:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 17488
+    },
+    {
+      "anomaly_count": 5,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 5,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T02:00:00Z",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 45271
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 3,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T03:00:00Z",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T04:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T04:00:00Z",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 3,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23T04:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 3,
+      "measurement_start_day": "2026-06-23T04:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T04:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 2,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 24309
+    },
+    {
+      "anomaly_count": 4,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 38266
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 6,
+      "measurement_count": 6,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T05:00:00Z",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 9829
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 4,
+      "measurement_count": 4,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 24560
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 45609
+    },
+    {
+      "anomaly_count": 1,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 0,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 55410
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 55836
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 134674
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 2,
+      "measurement_count": 2,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 136311
+    },
+    {
+      "anomaly_count": 0,
+      "confirmed_count": 0,
+      "failure_count": 0,
+      "ok_count": 1,
+      "measurement_count": 1,
+      "measurement_start_day": "2026-06-23T06:00:00Z",
+      "probe_asn": 138754
+    }
+  ]
+}

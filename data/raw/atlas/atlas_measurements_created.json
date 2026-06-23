@@ -1,0 +1,1290 @@
+[
+  {
+    "id": 181670986,
+    "description": "ICMP trace Netplus -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Netplus-91.108.56.1"
+    }
+  },
+  {
+    "id": 181670994,
+    "description": "ICMP trace Netplus -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Netplus-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671003,
+    "description": "TCP:443 trace Netplus -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Netplus-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671014,
+    "description": "TCP:443 trace Netplus -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Netplus-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671024,
+    "description": "ICMP trace Netplus -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Netplus-cf"
+    }
+  },
+  {
+    "id": 181671030,
+    "description": "DNS A telegram.org from Netplus",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Netplus"
+    }
+  },
+  {
+    "id": 181671039,
+    "description": "ICMP trace Excitel -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Excitel-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671040,
+    "description": "ICMP trace Excitel -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Excitel-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671041,
+    "description": "TCP:443 trace Excitel -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Excitel-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671045,
+    "description": "TCP:443 trace Excitel -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Excitel-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671047,
+    "description": "ICMP trace Excitel -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Excitel-cf"
+    }
+  },
+  {
+    "id": 181671049,
+    "description": "DNS A telegram.org from Excitel",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Excitel"
+    }
+  },
+  {
+    "id": 181671051,
+    "description": "DNS AAAA telegram.org from Excitel",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-Excitel"
+    }
+  },
+  {
+    "id": 181671062,
+    "description": "ICMPv6 trace Excitel -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-Excitel"
+    }
+  },
+  {
+    "id": 181671073,
+    "description": "ICMP trace Tata Play BB -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Tata Play BB-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671082,
+    "description": "ICMP trace Tata Play BB -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Tata Play BB-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671090,
+    "description": "TCP:443 trace Tata Play BB -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Tata Play BB-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671096,
+    "description": "TCP:443 trace Tata Play BB -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Tata Play BB-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671103,
+    "description": "ICMP trace Tata Play BB -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Tata Play BB-cf"
+    }
+  },
+  {
+    "id": 181671112,
+    "description": "DNS A telegram.org from Tata Play BB",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Tata Play BB"
+    }
+  },
+  {
+    "id": 181671118,
+    "description": "ICMP trace Kerala Vision -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Kerala Vision-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671129,
+    "description": "ICMP trace Kerala Vision -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Kerala Vision-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671132,
+    "description": "TCP:443 trace Kerala Vision -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Kerala Vision-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671143,
+    "description": "TCP:443 trace Kerala Vision -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Kerala Vision-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671150,
+    "description": "ICMP trace Kerala Vision -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Kerala Vision-cf"
+    }
+  },
+  {
+    "id": 181671159,
+    "description": "DNS A telegram.org from Kerala Vision",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Kerala Vision"
+    }
+  },
+  {
+    "id": 181671166,
+    "description": "DNS AAAA telegram.org from Kerala Vision",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-Kerala Vision"
+    }
+  },
+  {
+    "id": 181671167,
+    "description": "ICMPv6 trace Kerala Vision -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-Kerala Vision"
+    }
+  },
+  {
+    "id": 181671169,
+    "description": "ICMP trace Hathway -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Hathway-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671171,
+    "description": "ICMP trace Hathway -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Hathway-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671175,
+    "description": "TCP:443 trace Hathway -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Hathway-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671180,
+    "description": "TCP:443 trace Hathway -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Hathway-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671182,
+    "description": "ICMP trace Hathway -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Hathway-cf"
+    }
+  },
+  {
+    "id": 181671183,
+    "description": "DNS A telegram.org from Hathway",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Hathway"
+    }
+  },
+  {
+    "id": 181671195,
+    "description": "ICMP trace Alliance Broadband -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Alliance Broadband-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671204,
+    "description": "ICMP trace Alliance Broadband -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Alliance Broadband-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671210,
+    "description": "TCP:443 trace Alliance Broadband -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Alliance Broadband-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671221,
+    "description": "TCP:443 trace Alliance Broadband -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Alliance Broadband-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671228,
+    "description": "ICMP trace Alliance Broadband -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Alliance Broadband-cf"
+    }
+  },
+  {
+    "id": 181671236,
+    "description": "DNS A telegram.org from Alliance Broadband",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Alliance Broadband"
+    }
+  },
+  {
+    "id": 181671245,
+    "description": "DNS AAAA telegram.org from Alliance Broadband",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-Alliance Broadband"
+    }
+  },
+  {
+    "id": 181671255,
+    "description": "ICMPv6 trace Alliance Broadband -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-Alliance Broadband"
+    }
+  },
+  {
+    "id": 181671262,
+    "description": "ICMP trace ACT Fibernet -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-ACT Fibernet-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671269,
+    "description": "ICMP trace ACT Fibernet -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-ACT Fibernet-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671279,
+    "description": "TCP:443 trace ACT Fibernet -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-ACT Fibernet-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671285,
+    "description": "TCP:443 trace ACT Fibernet -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-ACT Fibernet-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671292,
+    "description": "ICMP trace ACT Fibernet -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-ACT Fibernet-cf"
+    }
+  },
+  {
+    "id": 181671295,
+    "description": "DNS A telegram.org from ACT Fibernet",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-ACT Fibernet"
+    }
+  },
+  {
+    "id": 181671296,
+    "description": "DNS AAAA telegram.org from ACT Fibernet",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-ACT Fibernet"
+    }
+  },
+  {
+    "id": 181671297,
+    "description": "ICMPv6 trace ACT Fibernet -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-ACT Fibernet"
+    }
+  },
+  {
+    "id": 181671301,
+    "description": "ICMP trace Airtel BB -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel BB-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671302,
+    "description": "ICMP trace Airtel BB -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel BB-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671303,
+    "description": "TCP:443 trace Airtel BB -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel BB-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671305,
+    "description": "TCP:443 trace Airtel BB -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel BB-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671307,
+    "description": "ICMP trace Airtel BB -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Airtel BB-cf"
+    }
+  },
+  {
+    "id": 181671310,
+    "description": "DNS A telegram.org from Airtel BB",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Airtel BB"
+    }
+  },
+  {
+    "id": 181671323,
+    "description": "DNS AAAA telegram.org from Airtel BB",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-Airtel BB"
+    }
+  },
+  {
+    "id": 181671362,
+    "description": "ICMPv6 trace Airtel BB -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-Airtel BB"
+    }
+  },
+  {
+    "id": 181671407,
+    "description": "ICMP trace Airtel BB2 -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel BB2-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671459,
+    "description": "ICMP trace Airtel BB2 -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel BB2-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671505,
+    "description": "TCP:443 trace Airtel BB2 -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel BB2-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671551,
+    "description": "TCP:443 trace Airtel BB2 -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel BB2-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671627,
+    "description": "ICMP trace Airtel BB2 -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Airtel BB2-cf"
+    }
+  },
+  {
+    "id": 181671685,
+    "description": "DNS A telegram.org from Airtel BB2",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Airtel BB2"
+    }
+  },
+  {
+    "id": 181671728,
+    "description": "ICMP trace ACT DNS -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-ACT DNS-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671781,
+    "description": "ICMP trace ACT DNS -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-ACT DNS-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671828,
+    "description": "TCP:443 trace ACT DNS -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-ACT DNS-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671870,
+    "description": "TCP:443 trace ACT DNS -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-ACT DNS-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671881,
+    "description": "ICMP trace ACT DNS -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-ACT DNS-cf"
+    }
+  },
+  {
+    "id": 181671882,
+    "description": "DNS A telegram.org from ACT DNS",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-ACT DNS"
+    }
+  },
+  {
+    "id": 181671887,
+    "description": "DNS AAAA telegram.org from ACT DNS",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-ACT DNS"
+    }
+  },
+  {
+    "id": 181671888,
+    "description": "ICMPv6 trace ACT DNS -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-ACT DNS"
+    }
+  },
+  {
+    "id": 181671889,
+    "description": "ICMP trace NKN -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-NKN-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671891,
+    "description": "ICMP trace NKN -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-NKN-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671892,
+    "description": "TCP:443 trace NKN -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-NKN-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671893,
+    "description": "TCP:443 trace NKN -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-NKN-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671899,
+    "description": "ICMP trace NKN -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-NKN-cf"
+    }
+  },
+  {
+    "id": 181671901,
+    "description": "DNS A telegram.org from NKN",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-NKN"
+    }
+  },
+  {
+    "id": 181671904,
+    "description": "ICMP trace Reliance Jio -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Reliance Jio-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671908,
+    "description": "ICMP trace Reliance Jio -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Reliance Jio-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671911,
+    "description": "TCP:443 trace Reliance Jio -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Reliance Jio-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671913,
+    "description": "TCP:443 trace Reliance Jio -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Reliance Jio-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671916,
+    "description": "ICMP trace Reliance Jio -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Reliance Jio-cf"
+    }
+  },
+  {
+    "id": 181671920,
+    "description": "DNS A telegram.org from Reliance Jio",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Reliance Jio"
+    }
+  },
+  {
+    "id": 181671921,
+    "description": "DNS AAAA telegram.org from Reliance Jio",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-Reliance Jio"
+    }
+  },
+  {
+    "id": 181671924,
+    "description": "ICMPv6 trace Reliance Jio -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-Reliance Jio"
+    }
+  },
+  {
+    "id": 181671929,
+    "description": "ICMP trace B Tel -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-B Tel-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671931,
+    "description": "ICMP trace B Tel -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-B Tel-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671933,
+    "description": "TCP:443 trace B Tel -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-B Tel-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671934,
+    "description": "TCP:443 trace B Tel -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-B Tel-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671936,
+    "description": "ICMP trace B Tel -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-B Tel-cf"
+    }
+  },
+  {
+    "id": 181671937,
+    "description": "DNS A telegram.org from B Tel",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-B Tel"
+    }
+  },
+  {
+    "id": 181671938,
+    "description": "ICMP trace Airtel Mobile -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel Mobile-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671940,
+    "description": "ICMP trace Airtel Mobile -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-Airtel Mobile-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671941,
+    "description": "TCP:443 trace Airtel Mobile -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel Mobile-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671942,
+    "description": "TCP:443 trace Airtel Mobile -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-Airtel Mobile-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671947,
+    "description": "ICMP trace Airtel Mobile -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-Airtel Mobile-cf"
+    }
+  },
+  {
+    "id": 181671953,
+    "description": "DNS A telegram.org from Airtel Mobile",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-Airtel Mobile"
+    }
+  },
+  {
+    "id": 181671961,
+    "description": "ICMP trace BSNL -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-BSNL-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671964,
+    "description": "ICMP trace BSNL -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "ICMP",
+      "description": "TG-ICMP-BSNL-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671966,
+    "description": "TCP:443 trace BSNL -> 91.108.56.1",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "91.108.56.1",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-BSNL-91.108.56.1"
+    }
+  },
+  {
+    "id": 181671968,
+    "description": "TCP:443 trace BSNL -> 149.154.167.99",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "149.154.167.99",
+      "protocol": "TCP",
+      "port": 443,
+      "description": "TG-TCP-BSNL-149.154.167.99"
+    }
+  },
+  {
+    "id": 181671971,
+    "description": "ICMP trace BSNL -> 1.1.1.1 (control)",
+    "definition": {
+      "type": "traceroute",
+      "af": 4,
+      "target": "1.1.1.1",
+      "protocol": "ICMP",
+      "description": "CTRL-ICMP-BSNL-cf"
+    }
+  },
+  {
+    "id": 181671975,
+    "description": "DNS A telegram.org from BSNL",
+    "definition": {
+      "type": "dns",
+      "af": 4,
+      "query_class": "IN",
+      "query_type": "A",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-A-BSNL"
+    }
+  },
+  {
+    "id": 181671977,
+    "description": "DNS AAAA telegram.org from BSNL",
+    "definition": {
+      "type": "dns",
+      "af": 6,
+      "query_class": "IN",
+      "query_type": "AAAA",
+      "query_argument": "telegram.org",
+      "protocol": "UDP",
+      "set_rd_bit": true,
+      "use_probe_resolver": true,
+      "description": "TG-DNS-AAAA-BSNL"
+    }
+  },
+  {
+    "id": 181671979,
+    "description": "ICMPv6 trace BSNL -> 2a0a:f280:203::1",
+    "definition": {
+      "type": "traceroute",
+      "af": 6,
+      "target": "2a0a:f280:203::1",
+      "protocol": "ICMP",
+      "description": "TG-ICMP6-BSNL"
+    }
+  }
+]
