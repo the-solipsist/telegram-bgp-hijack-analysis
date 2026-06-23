@@ -61,6 +61,12 @@ Telegram blocking remains widespread in India as of June 18, 2026. Data from the
 
 Only Bharti Airtel (`AS9498`) has been documented via traceroute measurements compiled by [Anurag Bhatia](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/) to have successfully implemented routing-layer blocking without leaking globally. AS9498 is Airtel's transit backbone — it does not appear in the OONI table above (which lists Airtel's consumer ASNs AS24560/AS45609).
 
+OONI published an [official report](https://explorer.ooni.org/findings/321816829100) on June 18, 2026 by Maria Xynou and Arturo Filastò, which corroborates and adds detail to the blocking picture. Key findings from the report:
+
+- **Confirmed DNS poisoning**: Jio (AS55836) returns `49.44.79.236`, ACT (AS24309) returns `172.16.16.250`, and Asianet (AS17465) returns `202.83.21.14` — IP addresses in OONI's censorship fingerprint database. These blocks were automatically confirmed.
+- **TLS interference**: On Tatanet (AS55333) and Vodafone Idea (AS55410), TCP connections to Telegram IPs succeed but the connection is reset or times out after the TLS `ClientHello` — a distinct blocking method from both DNS poisoning and pure TCP/IP blocking.
+- **Measurement coverage**: 77 ASNs tested for `telegram.org`, 75 ASNs for the Telegram app, between May 18 and June 18, 2026. The largest anomaly volumes were observed on Jio, Airtel, Tata Teleservices, and Vi.
+
 > **Note on access medium**: OONI probes run on both Android (mobile data) and desktop (wired broadband). The table above does not distinguish which access method produced each result. Dual-service ISPs — Jio, BSNL, Airtel, Vodafone Idea — operate both wired and mobile networks and may apply blocks differently on each. RIPE Atlas measurements (see below) cover only wired broadband. Mobile-side OONI measurements run without Private DNS on June 18 reveal additional detail:
 > - **Jio mobile**: DNS returns a Jio-owned IP (`49.44.79.236`) for `web.telegram.org` — DNS poisoning on top of routing-layer blocking.
 > - **Vi mobile**: DNS returns no data (`android_dns_cache_no_data`) for `web.telegram.org` — DNS-level blocking in addition to routing-layer blocking. Facebook Messenger control test succeeded, confirming the block is Telegram-specific.
@@ -646,4 +652,5 @@ All data used in this postscript is available in the repository. The analysis is
 - **Anurag Bhatia** — *Telegram prefix hijack by RCom* ([link](https://anuragbhatia.com/post/2026/06/telegram-prefix-hijack-by-rcom/))
 - **Anurag Bhatia** — *Telegram BGP hijack due to weird blackholing config* ([link](https://anuragbhatia.com/post/2026/06/telegram-bgp-hijack-and-blackholing/))
 - **Doug Madory / Kentik** — *When Local Blocks Go Global: The India-Telegram BGP Incident* ([link](https://www.kentik.com/blog/when-local-blocks-go-global-the-india-telegram-bgp-incident/))
+- **Maria Xynou & Arturo Filastò / OONI** — *India blocked Telegram during exams* ([link](https://explorer.ooni.org/findings/321816829100))
 
